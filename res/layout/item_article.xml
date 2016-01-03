@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:padding="9dp"
+              android:gravity="center|left"
+              android:background="@drawable/zhuye_item_select">
+
+    <ImageView android:layout_width="60dp"
+               android:id="@+id/pic"
+               android:layout_alignParentLeft="true"
+               android:scaleType="centerCrop"
+               android:src="@drawable/head"
+               android:layout_height="60dp"/>
+
+    <TextView android:layout_width="wrap_content"
+              android:id="@+id/title"
+              android:text="腾讯新闻"
+              android:singleLine="true"
+              android:layout_marginTop="8dp"
+              android:layout_marginLeft="8dp"
+              android:textColor="@color/textColor"
+              android:layout_toRightOf="@+id/pic"
+              android:textSize="16dp"
+              android:layout_height="wrap_content"/>
+
+    <TextView android:layout_width="wrap_content"
+              android:id="@+id/content"
+              android:layout_below="@+id/title"
+              android:text="退役轰炸机现身山东农村集市"
+              android:singleLine="true"
+              android:layout_marginTop="8dp"
+              android:layout_marginLeft="8dp"
+              android:textColor="@color/textColortwo"
+              android:layout_toRightOf="@+id/pic"
+              android:textSize="14dp"
+              android:layout_height="wrap_content"/>
+
+    <TextView android:layout_width="150dp"
+              android:id="@+id/dateline"
+              android:gravity="right"
+              android:layout_alignParentRight="true"
+              android:text="21:48"
+              android:layout_marginTop="8dp"
+              android:layout_marginLeft="6dp"
+              android:textColor="#414141"
+              android:textSize="14dp"
+              android:layout_height="wrap_content"/>
+    <LinearLayout android:layout_width="wrap_content"
+                  android:orientation="horizontal"
+                  android:id="@+id/share"
+                  android:layout_marginTop="8dp"
+                  android:layout_below="@+id/title"
+                  android:layout_marginLeft="6dp"
+                  android:layout_alignParentRight="true"
+                  android:layout_height="wrap_content">
+        <ImageView android:layout_width="26dp"
+                   android:src="@drawable/share"
+                   android:layout_height="26dp"/>
+        <TextView android:layout_width="wrap_content"
+                  android:text="分享"
+                  android:textColor="#414141"
+                  android:textSize="14dp"
+                  android:layout_height="wrap_content"/>
+    </LinearLayout>
+</RelativeLayout>
+
+

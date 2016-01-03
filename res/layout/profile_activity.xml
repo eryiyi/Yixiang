@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:background="@color/gray"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <RelativeLayout android:layout_width="match_parent"
+                    android:background="@drawable/top"
+                    android:layout_height="@dimen/height_top_bar">
+        <ImageView android:layout_width="wrap_content"
+                  android:src="@drawable/back"
+                  android:onClick="back"
+                  android:padding="8dp"
+                  android:layout_centerVertical="true"
+                  android:layout_height="wrap_content"/>
+        <TextView android:layout_width="wrap_content"
+                  android:text="个人中心"
+                  android:textColor="@color/white"
+                  android:textSize="18sp"
+                  android:layout_centerInParent="true"
+                  android:layout_height="wrap_content"/>
+    </RelativeLayout>
+    <com.xiaogang.yixiang.widget.ReboundScrollView android:layout_width="match_parent"
+                                                   android:layout_height="match_parent">
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:orientation="vertical"
+                      android:layout_height="match_parent">
+
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:padding="8dp"
+                    android:id="@+id/profile"
+                    android:background="@color/white"
+                    android:layout_height="wrap_content">
+        <ImageView android:layout_width="50dp"
+                   android:scaleType="centerCrop"
+                   android:id="@+id/mine_head"
+                   android:src="@drawable/head"
+                   android:layout_centerVertical="true"
+                   android:layout_height="50dp"/>
+        <TextView android:layout_width="wrap_content"
+                  android:text="张三"
+                  android:textColor="@color/textColor"
+                  android:layout_marginTop="5dp"
+                  android:id="@+id/mine_name"
+                  android:layout_marginLeft="8dp"
+                  android:layout_toRightOf="@+id/mine_head"
+                  android:layout_height="wrap_content"/>
+        <TextView android:layout_width="wrap_content"
+                  android:text="普通合伙人"
+                  android:layout_marginLeft="8dp"
+                  android:layout_marginTop="8dp"
+                  android:layout_toRightOf="@+id/mine_head"
+                  android:layout_below="@+id/mine_name"
+                  android:textColor="@color/textColortwo"
+                  android:id="@+id/mine_zhiye"
+                  android:layout_height="wrap_content"/>
+        <ImageView android:layout_width="wrap_content"
+                   android:layout_alignParentRight="true"
+                   android:layout_centerVertical="true"
+                   android:layout_marginRight="8dp"
+                   android:id="@+id/mine_erweima"
+                   android:src="@drawable/erweima"
+                   android:layout_height="wrap_content"/>
+    </RelativeLayout>
+    <RelativeLayout android:layout_width="match_parent"
+                    android:padding="8dp"
+                    android:id="@+id/liner_sex"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:layout_height="wrap_content">
+
+        <TextView android:layout_width="wrap_content"
+                  android:textColor="@color/textColor"
+                  android:text="性别"
+                  android:layout_centerVertical="true"
+                  android:layout_marginLeft="8dp"
+                  android:layout_gravity="center_vertical"
+                  android:gravity="center_vertical"
+                  android:layout_height="wrap_content"/>
+        <TextView android:layout_width="wrap_content"
+                  android:layout_marginLeft="100dp"
+                  android:text="女"
+                  android:layout_centerVertical="true"
+                  android:layout_gravity="center_vertical"
+                  android:gravity="center_vertical"
+                  android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+    <RelativeLayout android:layout_width="match_parent"
+                    android:padding="8dp"
+                    android:id="@+id/liner_birth"
+                    android:layout_marginTop="3dp"
+                    android:background="@color/white"
+                    android:layout_height="wrap_content">
+
+        <TextView android:layout_width="wrap_content"
+                  android:textColor="@color/textColor"
+                  android:layout_toRightOf="@+id/mine_qianbao_img"
+                  android:text="出生年月"
+                  android:layout_centerVertical="true"
+                  android:layout_marginLeft="8dp"
+                  android:layout_gravity="center_vertical"
+                  android:gravity="center_vertical"
+                  android:layout_height="wrap_content"/>
+        <TextView android:layout_width="wrap_content"
+                  android:layout_marginLeft="100dp"
+                  android:text="19880211"
+                  android:layout_centerVertical="true"
+                  android:layout_gravity="center_vertical"
+                  android:gravity="center_vertical"
+                  android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+    <RelativeLayout android:layout_width="match_parent"
+                    android:padding="8dp"
+                    android:id="@+id/liner_sign"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:layout_marginTop="3dp"
+                    android:background="@color/white"
+                    android:layout_height="wrap_content">
+
+        <TextView android:layout_width="wrap_content"
+                  android:textColor="@color/textColor"
+                  android:layout_toRightOf="@+id/mine_qianbao_img"
+                  android:text="个性签名"
+                  android:layout_centerVertical="true"
+                  android:layout_marginLeft="8dp"
+                  android:layout_gravity="center_vertical"
+                  android:gravity="center_vertical"
+                  android:layout_height="wrap_content"/>
+        <EditText android:layout_width="match_parent"
+                  android:layout_marginLeft="100dp"
+                  android:hint="请输入个性签名"
+                  android:textSize="16sp"
+                  android:layout_centerVertical="true"
+                  android:layout_gravity="center_vertical"
+                  android:gravity="center_vertical"
+                  android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+    <RelativeLayout android:layout_width="match_parent"
+                    android:padding="8dp"
+                    android:id="@+id/liner_address"
+                    android:layout_marginTop="3dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:background="@color/white"
+                    android:layout_height="wrap_content">
+
+        <TextView android:layout_width="wrap_content"
+                  android:textColor="@color/textColor"
+                  android:layout_toRightOf="@+id/mine_qianbao_img"
+                  android:text="我的地址"
+                  android:layout_centerVertical="true"
+                  android:layout_marginLeft="8dp"
+                  android:layout_gravity="center_vertical"
+                  android:gravity="center_vertical"
+                  android:layout_height="wrap_content"/>
+        <EditText android:layout_width="match_parent"
+                  android:layout_marginLeft="100dp"
+                  android:hint="请输入我的地址"
+                  android:textSize="16sp"
+                  android:layout_centerVertical="true"
+                  android:layout_gravity="center_vertical"
+                  android:gravity="center_vertical"
+                  android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+    <RelativeLayout android:layout_width="match_parent"
+                    android:padding="8dp"
+                    android:id="@+id/liner_yewu"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:layout_height="wrap_content">
+
+        <TextView android:layout_width="wrap_content"
+                  android:textColor="@color/textColor"
+                  android:layout_toRightOf="@+id/mine_qianbao_img"
+                  android:text="主营业务"
+                  android:layout_centerVertical="true"
+                  android:layout_marginLeft="8dp"
+                  android:layout_gravity="center_vertical"
+                  android:gravity="center_vertical"
+                  android:layout_height="wrap_content"/>
+        <EditText android:layout_width="match_parent"
+                  android:layout_marginLeft="100dp"
+                  android:hint="请输入主营业务"
+                  android:textSize="16sp"
+                  android:layout_centerVertical="true"
+                  android:layout_gravity="center_vertical"
+                  android:gravity="center_vertical"
+                  android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+    <RelativeLayout android:layout_width="match_parent"
+                    android:padding="8dp"
+                    android:id="@+id/liner_xuqiu"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:layout_marginTop="3dp"
+                    android:background="@color/white"
+                    android:layout_height="wrap_content">
+
+        <TextView android:layout_width="wrap_content"
+                  android:textColor="@color/textColor"
+                  android:layout_toRightOf="@+id/mine_qianbao_img"
+                  android:text="我的需求"
+                  android:layout_centerVertical="true"
+                  android:layout_marginLeft="8dp"
+                  android:layout_gravity="center_vertical"
+                  android:gravity="center_vertical"
+                  android:layout_height="wrap_content"/>
+        <EditText android:layout_width="match_parent"
+                  android:layout_marginLeft="100dp"
+                  android:hint="请输入需求"
+                  android:textSize="16sp"
+                  android:layout_centerVertical="true"
+                  android:layout_gravity="center_vertical"
+                  android:gravity="center_vertical"
+                  android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+    <Button android:layout_width="match_parent"
+              android:text="保存"
+              android:textColor="@color/white"
+              android:padding="15dp"
+              android:layout_marginLeft="8dp"
+              android:layout_marginRight="8dp"
+              android:background="@color/red"
+              android:layout_gravity="center"
+              android:layout_marginTop="8dp"
+              android:layout_height="wrap_content"/>
+
+
+        </LinearLayout>
+    </com.xiaogang.yixiang.widget.ReboundScrollView>
+</LinearLayout>

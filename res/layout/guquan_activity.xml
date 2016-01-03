@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:background="@color/gray"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <RelativeLayout android:layout_width="match_parent"
+                    android:background="@drawable/top"
+                    android:layout_height="@dimen/height_top_bar">
+        <ImageView android:layout_width="wrap_content"
+                  android:src="@drawable/back"
+                  android:onClick="back"
+                  android:padding="8dp"
+                  android:layout_centerVertical="true"
+                  android:layout_height="wrap_content"/>
+        <TextView android:layout_width="wrap_content"
+                  android:text="我的股权"
+                  android:textColor="@color/white"
+                  android:textSize="18sp"
+                  android:layout_centerInParent="true"
+                  android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:padding="8dp"
+                    android:id="@+id/profile"
+                    android:background="@color/white"
+                    android:layout_height="wrap_content">
+        <ImageView android:layout_width="50dp"
+                   android:scaleType="centerCrop"
+                   android:id="@+id/mine_head"
+                   android:src="@drawable/head"
+                   android:layout_centerVertical="true"
+                   android:layout_height="50dp"/>
+        <TextView android:layout_width="wrap_content"
+                  android:text="张三"
+                  android:textColor="@color/textColor"
+                  android:layout_marginTop="5dp"
+                  android:id="@+id/mine_name"
+                  android:layout_marginLeft="8dp"
+                  android:layout_toRightOf="@+id/mine_head"
+                  android:layout_height="wrap_content"/>
+        <TextView android:layout_width="wrap_content"
+                  android:text="普通合伙人"
+                  android:layout_marginLeft="8dp"
+                  android:layout_marginTop="8dp"
+                  android:layout_toRightOf="@+id/mine_head"
+                  android:layout_below="@+id/mine_name"
+                  android:textColor="@color/textColortwo"
+                  android:id="@+id/mine_zhiye"
+                  android:layout_height="wrap_content"/>
+        <ImageView android:layout_width="wrap_content"
+                   android:layout_alignParentRight="true"
+                   android:layout_centerVertical="true"
+                   android:layout_marginRight="8dp"
+                   android:id="@+id/mine_erweima"
+                   android:src="@drawable/erweima"
+                   android:layout_height="wrap_content"/>
+    </RelativeLayout>
+    <RelativeLayout android:layout_width="match_parent"
+                    android:padding="8dp"
+                    android:id="@+id/liner_sex"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:layout_height="wrap_content">
+
+        <TextView android:layout_width="wrap_content"
+                  android:textColor="@color/textColor"
+                  android:text="我的股权"
+                  android:layout_centerVertical="true"
+                  android:layout_marginLeft="8dp"
+                  android:layout_gravity="center_vertical"
+                  android:gravity="center_vertical"
+                  android:layout_height="wrap_content"/>
+        <TextView android:layout_width="wrap_content"
+                  android:layout_marginLeft="100dp"
+                  android:text="0股"
+                  android:id="@+id/number"
+                  android:layout_centerVertical="true"
+                  android:layout_gravity="center_vertical"
+                  android:gravity="center_vertical"
+                  android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+    <RelativeLayout android:layout_width="match_parent"
+                    android:padding="8dp"
+                    android:id="@+id/liner_birth"
+                    android:layout_marginTop="3dp"
+                    android:background="@color/white"
+                    android:layout_height="wrap_content">
+
+        <TextView android:layout_width="wrap_content"
+                  android:textColor="@color/textColor"
+                  android:layout_toRightOf="@+id/mine_qianbao_img"
+                  android:text="股权性质"
+                  android:layout_centerVertical="true"
+                  android:layout_marginLeft="8dp"
+                  android:layout_gravity="center_vertical"
+                  android:gravity="center_vertical"
+                  android:layout_height="wrap_content"/>
+        <TextView android:layout_width="wrap_content"
+                  android:layout_marginLeft="100dp"
+                  android:text="赠送性股权"
+                  android:id="@+id/gq_nature_name"
+                  android:layout_centerVertical="true"
+                  android:layout_gravity="center_vertical"
+                  android:gravity="center_vertical"
+                  android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+    <RelativeLayout android:layout_width="match_parent"
+                    android:padding="8dp"
+                    android:id="@+id/liner_sign"
+                    android:layout_marginTop="3dp"
+                    android:background="@color/white"
+                    android:layout_height="wrap_content">
+
+        <TextView android:layout_width="match_parent"
+                  android:textColor="@color/textColor"
+                  android:layout_toRightOf="@+id/mine_qianbao_img"
+                  android:text="股权排名"
+                  android:layout_centerVertical="true"
+                  android:layout_marginLeft="8dp"
+                  android:layout_gravity="center_vertical"
+                  android:gravity="center_vertical"
+                  android:layout_height="wrap_content"
+                android:drawableRight="@drawable/in"
+                />
+
+    </RelativeLayout>
+    <TextView android:layout_width="match_parent"
+              android:text="最新合伙人"
+              android:layout_marginTop="8dp"
+              android:textColor="@color/textColor"
+              android:textSize="16sp"
+              android:layout_gravity="center"
+              android:gravity="center"
+              android:layout_height="wrap_content"/>
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="match_parent">
+
+    </LinearLayout>
+</LinearLayout>

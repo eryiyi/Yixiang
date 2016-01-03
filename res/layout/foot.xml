@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:background="@drawable/foot_background"
+              android:layout_height="65dp"
+              android:orientation="vertical">
+
+    <View android:layout_width="match_parent"
+          android:background="@color/transparent2"
+          android:layout_height="1px"/>
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="horizontal"
+                  android:layout_height="wrap_content">
+        <RelativeLayout android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content">
+            <ImageView android:layout_width="wrap_content"
+                       android:id="@+id/foot_one"
+                       android:src="@drawable/foot_one"
+                       android:layout_marginTop="5dp"
+                       android:layout_centerHorizontal="true"
+                       android:layout_height="40dp"/>
+
+            <TextView android:layout_width="wrap_content"
+                      android:text="沟通"
+                      android:layout_marginTop="3dp"
+                      android:textSize="14sp"
+                      android:layout_centerHorizontal="true"
+                      android:layout_below="@+id/foot_one"
+                      android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+        <RelativeLayout android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content">
+            <ImageView android:layout_width="wrap_content"
+                       android:id="@+id/foot_two"
+                       android:layout_marginTop="5dp"
+                       android:layout_centerHorizontal="true"
+                       android:src="@drawable/foot_two"
+                       android:layout_height="40dp"/>
+            <TextView android:layout_width="wrap_content"
+                      android:text="好友"
+                      android:textSize="14sp"
+                      android:layout_marginTop="3dp"
+                      android:layout_centerHorizontal="true"
+                      android:layout_below="@+id/foot_two"
+                      android:layout_height="wrap_content"/>
+        </RelativeLayout>
+        <RelativeLayout android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content">
+            <ImageView android:layout_width="wrap_content"
+                       android:layout_marginTop="5dp"
+                       android:onClick="onTopMenuPopupButtonClick"
+                       android:layout_centerHorizontal="true"
+                       android:id="@+id/foot_three"
+                       android:src="@drawable/foot_three"
+                       android:layout_height="40dp"/>
+            <TextView android:layout_width="wrap_content"
+                      android:text="搜索"
+                      android:textSize="14sp"
+                      android:layout_marginTop="3dp"
+                      android:layout_centerHorizontal="true"
+                      android:layout_below="@+id/foot_three"
+                      android:layout_height="wrap_content"/>
+        </RelativeLayout>
+
+        <RelativeLayout android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content">
+            <ImageView android:layout_width="wrap_content"
+                       android:layout_weight="1"
+                       android:id="@+id/foot_four"
+                       android:layout_marginTop="5dp"
+                       android:layout_centerHorizontal="true"
+                       android:src="@drawable/foot_four"
+                       android:layout_height="40dp"/>
+            <TextView android:layout_width="wrap_content"
+                      android:text="我"
+                      android:textSize="14sp"
+                      android:layout_marginTop="3dp"
+                      android:layout_centerHorizontal="true"
+                      android:layout_below="@+id/foot_four"
+                      android:layout_height="wrap_content"/>
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

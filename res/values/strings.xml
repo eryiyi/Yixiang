@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">移享</string>
+
+    <string name="Are_logged_out">正在退出登录..</string>
+    <string name="get_data_error">获得数据失败</string>
+    <string name="get_cart_error">"获得验证码失败"</string>
+    <string name="daojishi_one">"倒计时"</string>
+    <string name="daojishi_two">"秒"</string>
+    <string name="daojishi_three">"重新获取"</string>
+    <string name="please_wait">"请稍后"</string>
+
+
+</resources>
