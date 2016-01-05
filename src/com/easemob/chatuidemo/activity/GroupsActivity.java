@@ -39,6 +39,7 @@ import com.easemob.chat.EMGroupManager;
 import com.easemob.chatuidemo.adapter.GroupAdapter;
 import com.easemob.exceptions.EaseMobException;
 import com.easemob.util.EMLog;
+import com.xiaogang.yixiang.MainActivity;
 import com.xiaogang.yixiang.R;
 import com.xiaogang.yixiang.base.BaseActivity;
 
@@ -100,7 +101,7 @@ public class GroupsActivity extends BaseActivity {
 
 			@Override
 			public void onRefresh() {
-			    MainActivity.asyncFetchGroupsFromServer();
+//			    MainActivity.asyncFetchGroupsFromServer();
 			}
 		});
 		

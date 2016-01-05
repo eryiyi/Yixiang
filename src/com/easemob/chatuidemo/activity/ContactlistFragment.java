@@ -61,6 +61,7 @@ import com.easemob.chatuidemo.domain.User;
 import com.easemob.chatuidemo.widget.Sidebar;
 import com.easemob.exceptions.EaseMobException;
 import com.easemob.util.EMLog;
+import com.xiaogang.yixiang.MainActivity;
 import com.xiaogang.yixiang.R;
 
 /**
@@ -320,7 +321,6 @@ public class ContactlistFragment extends Fragment {
 	/**
 	 * 删除联系人
 	 * 
-	 * @param toDeleteUser
 	 */
 	public void deleteContact(final User tobeDeleteUser) {
 		String st1 = getResources().getString(R.string.deleting);

@@ -6,6 +6,7 @@
     <file url="file://$PROJECT_DIR$/libs/android-support-v4.jar" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/libs/armeabi-v7a" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/libs/bolts-android-1.2.0.jar" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/libs/core.jar" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/libs/gson-2.0.jar" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/libs/httpcore-4.3.2.jar" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/libs/httpmime-4.3.5.jar" charset="UTF-8" />
@@ -263,6 +264,7 @@
     <file url="file://$PROJECT_DIR$/res/drawable-xhdpi/unread_count_bg.9.png" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/drawable-xhdpi/unread_dot.9.png" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/drawable-xxhdpi/load.png" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/drawable/analyze_empty_bg.9.png" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/drawable/appitem_del_btn.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/drawable/bg_pop_item.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/drawable/bg_pop_pressed.9.png" charset="UTF-8" />
@@ -370,6 +372,7 @@
     <file url="file://$PROJECT_DIR$/res/layout/chat_neterror_item.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/layout/choose_griditem.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/layout/commom_back_btn.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/layout/common_datetime.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/layout/context_menu_for_image.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/layout/context_menu_for_location.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/layout/context_menu_for_text.xml" charset="UTF-8" />
@@ -387,9 +390,12 @@
     <file url="file://$PROJECT_DIR$/res/layout/grid.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/layout/image_grid_fragment.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/layout/item_article.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/layout/item_dialog_camera.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/layout/item_dialog_sex.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/layout/item_goutong.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/layout/item_main_viewpage_xml.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/layout/item_qiehuan.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/layout/item_rank.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/layout/listview_footer_view.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/layout/logout_actionsheet.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/layout/main_botton_tab.xml" charset="UTF-8" />
@@ -475,6 +481,7 @@
     <file url="file://$PROJECT_DIR$/src/com/xiaogang/yixiang/widget/ReboundScrollView.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/文档/文档1ANDROID-1223.doc" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/文档/移享接口文档(2015-12-13).pdf" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/文档/移享接口文档(2015-12-15).pdf" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/文档/給ANDROID端 1214.doc" charset="UTF-8" />
   </component>
 </project>

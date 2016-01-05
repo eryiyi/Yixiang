@@ -40,17 +40,17 @@ public class TwoFragment extends BaseFragment implements View.OnClickListener ,E
     // 未读通讯录textview
     private TextView unreadAddressLable;
 
-    private Button[] mTabs;
+    public static Button[] mTabs;
     private ContactlistFragment contactListFragment;
     // private ChatHistoryFragment chatHistoryFragment;
     private ChatAllHistoryFragment chatHistoryFragment;
     private SettingsFragment settingFragment;
-    private Fragment[] fragments;
-    private int index;
+    public static Fragment[] fragments;
+    public static int index;
     // 当前fragment的index
-    private int currentTabIndex;
+    public static int currentTabIndex;
     // 账号在别处登录
-    public boolean isConflict = false;
+    public static boolean isConflict = false;
     // 账号被移除
     private boolean isCurrentAccountRemoved = false;
 

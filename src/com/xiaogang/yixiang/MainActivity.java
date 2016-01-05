@@ -1,10 +1,7 @@
 package com.xiaogang.yixiang;
 
 import android.app.ProgressDialog;
-import android.content.ActivityNotFoundException;
-import android.content.ComponentName;
-import android.content.DialogInterface;
-import android.content.Intent;
+import android.content.*;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -23,6 +20,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
+import com.easemob.EMEventListener;
+import com.easemob.EMNotifierEvent;
+import com.easemob.applib.controller.HXSDKHelper;
+import com.easemob.chat.EMChatManager;
+import com.easemob.chat.EMMessage;
 import com.easemob.chatuidemo.Constant;
 import com.easemob.chatuidemo.DemoHXSDKHelper;
 import com.easemob.chatuidemo.activity.LoginActivity;
@@ -45,7 +47,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MainActivity extends BaseActivity implements View.OnClickListener ,MenuPopMenu.OnItemClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener ,MenuPopMenu.OnItemClickListener,EMEventListener {
     private FragmentTransaction fragmentTransaction;
     private FragmentManager fm;
 
@@ -79,7 +81,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     List<String> arrayMenu = new ArrayList<String>();
 
     protected static final String TAG = "MainActivity";
-
+    // 账号在别处登录
+    public boolean isConflict = false;
 
 
     @Override
@@ -104,6 +107,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         arrayMenu.add("业务供需");
         switchFragment(R.id.foot_three);
 
+        //上传地理位置
+        upLocation();
     }
 
     private void initLocation(){
@@ -421,7 +426,227 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         }
     }
 
+    // 账号被移除
+    private boolean isCurrentAccountRemoved = false;
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putBoolean("isConflict", isConflict);
+        outState.putBoolean(Constant.ACCOUNT_REMOVED, isCurrentAccountRemoved);
+        super.onSaveInstanceState(outState);
+    }
+    /**
+     * 检查当前用户是否被删除
+     */
+    public boolean getCurrentAccountRemoved() {
+        return isCurrentAccountRemoved;
+    }
 
 
+    private android.app.AlertDialog.Builder conflictBuilder;
+    private android.app.AlertDialog.Builder accountRemovedBuilder;
+    private boolean isConflictDialogShow;
+    private boolean isAccountRemovedDialogShow;
+    private BroadcastReceiver internalDebugReceiver;
+
+    /**
+     * 显示帐号在别处登录dialog
+     */
+    private void showConflictDialog() {
+        isConflictDialogShow = true;
+        DemoHXSDKHelper.getInstance().logout(false,null);
+        String st = getResources().getString(R.string.Logoff_notification);
+        if (!MainActivity.this.isFinishing()) {
+            // clear up global variables
+            try {
+                if (conflictBuilder == null)
+                    conflictBuilder = new android.app.AlertDialog.Builder(MainActivity.this);
+                conflictBuilder.setTitle(st);
+                conflictBuilder.setMessage(R.string.connect_conflict);
+                conflictBuilder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        conflictBuilder = null;
+                        finish();
+                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                    }
+                });
+                conflictBuilder.setCancelable(false);
+                conflictBuilder.create().show();
+                isConflict = true;
+            } catch (Exception e) {
+                EMLog.e(TAG, "---------color conflictBuilder error" + e.getMessage());
+            }
+
+        }
+
+    }
+
+    /**
+     * 帐号被移除的dialog
+     */
+    private void showAccountRemovedDialog() {
+        isAccountRemovedDialogShow = true;
+        DemoHXSDKHelper.getInstance().logout(true,null);
+        String st5 = getResources().getString(R.string.Remove_the_notification);
+        if (!MainActivity.this.isFinishing()) {
+            // clear up global variables
+            try {
+                if (accountRemovedBuilder == null)
+                    accountRemovedBuilder = new android.app.AlertDialog.Builder(MainActivity.this);
+                accountRemovedBuilder.setTitle(st5);
+                accountRemovedBuilder.setMessage(R.string.em_user_remove);
+                accountRemovedBuilder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        accountRemovedBuilder = null;
+                        finish();
+                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                    }
+                });
+                accountRemovedBuilder.setCancelable(false);
+                accountRemovedBuilder.create().show();
+
+            } catch (Exception e) {
+                EMLog.e(TAG, "---------color userRemovedBuilder error" + e.getMessage());
+            }
+
+        }
+
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        if (getIntent().getBooleanExtra("conflict", false) && !isConflictDialogShow) {
+            showConflictDialog();
+        } else if (getIntent().getBooleanExtra(Constant.ACCOUNT_REMOVED, false) && !isAccountRemovedDialogShow) {
+            showAccountRemovedDialog();
+        }
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // unregister this event listener when this activity enters the
+        // background
+        DemoHXSDKHelper sdkHelper = (DemoHXSDKHelper) DemoHXSDKHelper.getInstance();
+        sdkHelper.pushActivity(this);
+
+        // register the event listener when enter the foreground
+        EMChatManager.getInstance().registerEventListener(this,
+                new EMNotifierEvent.Event[] { EMNotifierEvent.Event.EventNewMessage ,EMNotifierEvent.Event.EventOfflineMessage, EMNotifierEvent.Event.EventConversationListChanged});
+    }
+
+    /**
+     * 监听事件
+     */
+    @Override
+    public void onEvent(EMNotifierEvent event) {
+        switch (event.getEvent()) {
+            case EventNewMessage: // 普通消息
+            {
+                EMMessage message = (EMMessage) event.getData();
+
+                // 提示新消息
+                HXSDKHelper.getInstance().getNotifier().onNewMsg(message);
+
+
+                break;
+            }
+
+            case EventOfflineMessage: {
+
+                break;
+            }
+
+            case EventConversationListChanged: {
+
+                break;
+            }
+
+            default:
+                break;
+        }
+    }
+
+
+
+    /**
+     * button点击事件
+     *
+     * @param view
+     */
+    public void onTabClicked(View view) {
+        switch (view.getId()) {
+            case R.id.btn_conversation:
+                TwoFragment.index = 0;
+                break;
+            case R.id.btn_address_list:
+                TwoFragment.index = 1;
+                break;
+            case R.id.btn_setting:
+                TwoFragment.index = 2;
+                break;
+        }
+        if (TwoFragment.currentTabIndex != TwoFragment.index) {
+            FragmentTransaction trx = getSupportFragmentManager().beginTransaction();
+            trx.hide(TwoFragment.fragments[TwoFragment.currentTabIndex]);
+            if (!TwoFragment.fragments[TwoFragment.index].isAdded()) {
+                trx.add(R.id.fragment_container, TwoFragment.fragments[TwoFragment.index]);
+            }
+            trx.show(TwoFragment.fragments[index]).commit();
+        }
+        TwoFragment.mTabs[TwoFragment.currentTabIndex].setSelected(false);
+        // 把当前tab设为选中状态
+        TwoFragment.mTabs[TwoFragment.index].setSelected(true);
+        TwoFragment.currentTabIndex = TwoFragment.index;
+    }
+
+
+    void upLocation(){
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                InternetURL.UP_LOCATION_URL ,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        if (StringUtil.isJson(s)) {
+
+                        } else {
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("access_token", getGson().fromJson(getSp().getString("access_token", ""), String.class));
+                params.put("user_id", getGson().fromJson(getSp().getString("user_id", ""), String.class));
+                params.put("lng", String.valueOf(UniversityApplication.lng));
+                params.put("lat", String.valueOf(UniversityApplication.lat));
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+        getRequestQueue().add(request);
+    }
 
 }

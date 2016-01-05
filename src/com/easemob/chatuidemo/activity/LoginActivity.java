@@ -36,6 +36,7 @@ import com.easemob.applib.controller.HXSDKHelper;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMGroupManager;
 import com.easemob.chatuidemo.Constant;
+import com.xiaogang.yixiang.MainActivity;
 import com.xiaogang.yixiang.UniversityApplication;
 import com.easemob.chatuidemo.DemoHXSDKHelper;
 import com.easemob.chatuidemo.db.UserDao;

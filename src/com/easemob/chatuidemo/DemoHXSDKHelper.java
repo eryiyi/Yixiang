@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.xiaogang.yixiang.MainActivity;
 import com.xiaogang.yixiang.R;
 import org.json.JSONObject;
 
@@ -45,7 +46,6 @@ import com.easemob.chat.EMMessage;
 import com.easemob.chat.EMMessage.ChatType;
 import com.easemob.chat.EMMessage.Type;
 import com.easemob.chatuidemo.activity.ChatActivity;
-import com.easemob.chatuidemo.activity.MainActivity;
 import com.easemob.chatuidemo.activity.VideoCallActivity;
 import com.easemob.chatuidemo.activity.VoiceCallActivity;
 import com.easemob.chatuidemo.domain.RobotUser;

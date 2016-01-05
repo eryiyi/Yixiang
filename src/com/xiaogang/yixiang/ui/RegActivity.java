@@ -22,6 +22,8 @@ import com.xiaogang.yixiang.R;
 import com.xiaogang.yixiang.UniversityApplication;
 import com.xiaogang.yixiang.base.BaseActivity;
 import com.xiaogang.yixiang.base.InternetURL;
+import com.xiaogang.yixiang.data.EmpData;
+import com.xiaogang.yixiang.module.Emp;
 import com.xiaogang.yixiang.util.StringUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -173,9 +175,11 @@ public class RegActivity extends BaseActivity implements View.OnClickListener {
                                 JSONObject jo = new JSONObject(s);
                                 String code =  jo.getString("code");
                                 if(Integer.parseInt(code) == 200) {
+                                    EmpData data = getGson().fromJson(s, EmpData.class);
+
                                     Toast.makeText(RegActivity.this, jo.getString("msg") , Toast.LENGTH_SHORT).show();
                                     //huanxin
-                                    register();
+                                    register(data.getData());
                                 }else {
                                     Toast.makeText(RegActivity.this, jo.getString("msg") , Toast.LENGTH_SHORT).show();
                                 }
@@ -218,8 +222,8 @@ public class RegActivity extends BaseActivity implements View.OnClickListener {
      * 注册
      *
      */
-    public void register() {
-        final String username = mobile.getText().toString().trim();
+    public void register(Emp emp) {
+        final String username = emp.getUser_id();
         if (TextUtils.isEmpty(username)) {
             Toast.makeText(this, getResources().getString(R.string.User_name_cannot_be_empty), Toast.LENGTH_SHORT).show();
             mobile.requestFocus();

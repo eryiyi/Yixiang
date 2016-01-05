@@ -53,6 +53,7 @@ import com.easemob.chat.EMConversation;
 import com.easemob.chat.EMGroup;
 import com.easemob.chat.EMGroupManager;
 import com.easemob.chat.EMMessage;
+import com.xiaogang.yixiang.MainActivity;
 import com.xiaogang.yixiang.UniversityApplication;
 import com.easemob.chatuidemo.DemoHXSDKHelper;
 import com.easemob.chatuidemo.adapter.ChatHistoryAdapter;
@@ -99,7 +100,7 @@ public class ChatHistoryFragment extends Fragment {
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				EMContact emContact = adapter.getItem(position);
 				if (adapter.getItem(position).getUsername().equals(UniversityApplication.getInstance().getUserName()))
-					Toast.makeText(getActivity(), st, 0).show();
+					Toast.makeText(getActivity(), st, Toast.LENGTH_SHORT).show();
 				else {
 					// 进入聊天页面
 					  Intent intent = new Intent(getActivity(), ChatActivity.class);
@@ -185,7 +186,7 @@ public class ChatHistoryFragment extends Fragment {
 			adapter.notifyDataSetChanged();
 
 			// 更新消息未读数
-			((MainActivity) getActivity()).updateUnreadLabel();
+//			((MainActivity) getActivity()).updateUnreadLabel();
 
 			return true;
 		}

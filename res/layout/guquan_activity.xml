@@ -120,6 +120,7 @@
                   android:textColor="@color/textColor"
                   android:layout_toRightOf="@+id/mine_qianbao_img"
                   android:text="股权排名"
+                  android:id="@+id/mineGuquanRank"
                   android:layout_centerVertical="true"
                   android:layout_marginLeft="8dp"
                   android:layout_gravity="center_vertical"

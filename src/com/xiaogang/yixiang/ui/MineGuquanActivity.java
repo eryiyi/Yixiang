@@ -1,5 +1,6 @@
 package com.xiaogang.yixiang.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -62,7 +63,9 @@ public class MineGuquanActivity extends BaseActivity implements View.OnClickList
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.liner_sign:
-                //
+                //股权排名
+                Intent rankView = new Intent(MineGuquanActivity.this, RankGuquanActivity.class);
+                startActivity(rankView);
                 break;
         }
     }

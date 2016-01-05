@@ -38,6 +38,7 @@ import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMConversation;
 import com.easemob.chat.EMConversation.EMConversationType;
 import com.easemob.chatuidemo.Constant;
+import com.xiaogang.yixiang.MainActivity;
 import com.xiaogang.yixiang.UniversityApplication;
 import com.easemob.chatuidemo.adapter.ChatAllHistoryAdapter;
 import com.easemob.chatuidemo.db.InviteMessgeDao;
@@ -89,7 +90,7 @@ public class ChatAllHistoryFragment extends Fragment implements OnClickListener 
 				EMConversation conversation = adapter.getItem(position);
 				String username = conversation.getUserName();
 				if (username.equals(UniversityApplication.getInstance().getUserName()))
-					Toast.makeText(getActivity(), st2, 0).show();
+					Toast.makeText(getActivity(), st2, Toast.LENGTH_SHORT).show();
 				else {
 				    // 进入聊天页面
 				    Intent intent = new Intent(getActivity(), ChatActivity.class);
@@ -192,7 +193,7 @@ public class ChatAllHistoryFragment extends Fragment implements OnClickListener 
 		adapter.notifyDataSetChanged();
 
 		// 更新消息未读数
-		((MainActivity) getActivity()).updateUnreadLabel();
+//		((MainActivity) getActivity()).updateUnreadLabel();
 		
 		return handled ? true : super.onContextItemSelected(item);
 	}
@@ -248,7 +249,6 @@ public class ChatAllHistoryFragment extends Fragment implements OnClickListener 
 	/**
 	 * 根据最后一条消息的时间排序
 	 * 
-	 * @param usernames
 	 */
 	private void sortConversationByLastChatTime(List<Pair<Long, EMConversation>> conversationList) {
 		Collections.sort(conversationList, new Comparator<Pair<Long, EMConversation>>() {

@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMGroupManager;
 import com.easemob.chatuidemo.DemoHXSDKHelper;
+import com.xiaogang.yixiang.MainActivity;
 import com.xiaogang.yixiang.R;
 import com.xiaogang.yixiang.base.BaseActivity;
 

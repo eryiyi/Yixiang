@@ -74,6 +74,7 @@
         <activity android:name=".ui.RegActivity"     android:launchMode="singleTask" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".ui.WebViewActivity"     android:launchMode="singleTask" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".ui.UpdatePwrActivity"    android:launchMode="singleTask" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".ui.RankGuquanActivity"    android:launchMode="singleTask" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
 
         <!-- 设置环信应用的appkey -->
         <meta-data

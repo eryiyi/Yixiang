@@ -37,7 +37,7 @@ public class InternetURL {
     // 、 更新 我的股权 (user.api- -
     public static final String UPDATE_GUQUAN_URL = INTERNAL + "user.api-updateMemberInfo";
     // 、 查看 文章( ( article .api- -
-    public static final String GET_NEWS_URL = INTERNAL + "user.api-news";
+    public static final String GET_NEWS_URL = INTERNAL + "article.api-news";
     // 、 上传地理位置( ( user .api- -
     public static final String UP_LOCATION_URL = INTERNAL + "user.api-saveLngLat";
     // 、 股权排名 (user.api- - guquanOrderBy
@@ -69,7 +69,7 @@ public class InternetURL {
     // 、提现
     public static final String DRAW_URL = INTERNAL + "withdraw.api-set";
     // 、上传图片
-    public static final String UPLOAD_PIC_URL = INTERNAL + "user.api-uploadfile";
+    public static final String UPLOAD_FILE_URL = INTERNAL + "user.api-uploadfile";
     // 、发布需求
     public static final String ADD_REQUIRE_URL = INTERNAL + "require.api-add";
     //需求列表

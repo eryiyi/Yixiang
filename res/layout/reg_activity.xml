@@ -29,7 +29,7 @@
     <RelativeLayout android:layout_width="match_parent"
                     android:focusable="true"
                     android:focusableInTouchMode="true"
-                    android:layout_height="wrap_content">
+                    android:layout_height="70dp">
         <EditText android:layout_width="match_parent"
                   android:padding="15dp"
                   android:hint="验证码"
@@ -41,9 +41,11 @@
         <Button android:layout_width="wrap_content"
                 android:text="点击获得验证码"
                 android:id="@+id/btn_code"
+                android:layout_marginRight="8dp"
+                android:layout_centerVertical="true"
                 android:gravity="center_vertical"
                 android:layout_alignParentRight="true"
-                android:layout_height="wrap_content"/>
+                android:layout_height="50dp"/>
     </RelativeLayout>
     <EditText android:layout_width="match_parent"
               android:padding="15dp"

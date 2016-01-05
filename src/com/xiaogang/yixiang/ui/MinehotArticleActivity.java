@@ -259,7 +259,6 @@ public class MinehotArticleActivity extends BaseActivity implements View.OnClick
         }
     }
 
-
     void getdata(){
         StringRequest request = new StringRequest(
                 Request.Method.POST,
@@ -311,5 +310,7 @@ public class MinehotArticleActivity extends BaseActivity implements View.OnClick
         };
         getRequestQueue().add(request);
     }
+
+    public void back(View view){finish();}
 
 }

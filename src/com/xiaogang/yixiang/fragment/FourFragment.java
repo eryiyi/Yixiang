@@ -1,6 +1,9 @@
 package com.xiaogang.yixiang.fragment;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +17,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.zxing.WriterException;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.xiaogang.yixiang.R;
@@ -54,6 +58,7 @@ public class FourFragment extends BaseFragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.four_fragment, null);
+        registerBoradcastReceiver();
         initView(view);
         getData();
         return view;
@@ -171,27 +176,67 @@ public class FourFragment extends BaseFragment implements View.OnClickListener {
     }
 
     void initData(){
-        //
-        imageLoader.displayImage(InternetURL.INTERNAL_PIC+ member.getCover(), mine_head, UniversityApplication.txOptions, animateFirstListener);
+        imageLoader.displayImage(InternetURL.INTERNAL_PIC + member.getCover(), mine_head, UniversityApplication.txOptions, animateFirstListener);
         mine_name.setText(member.getNick_name());
-        mine_zhiye.setText(member.getMajorBusinesses());
+        mine_zhiye.setText(member.getIdentity_name());
 
+        try {
+            mine_erweima.setImageBitmap(StringUtil.Create2DCode(member.getDownload_code()));
+        } catch (WriterException e) {
+            e.printStackTrace();
+        }
 
         save("user_id", member.getUser_id());
-        save("cover", member.getCover());
+        save("uid", member.getUid());
         save("nick_name", member.getNick_name());
         save("sex", member.getSex());
-        save("birth_year", member.getBirth_year());
-        save("birth_month", member.getBirth_month());
-        save("hobby", member.getHobby());
+        save("salt", member.getSalt());
+        save("money", member.getMoney());
+        save("money_freeze", member.getMoney_freeze());
+        save("gq_identity", member.getGq_identity());
+        save("gq_nature", member.getGq_nature());
+        save("gq_number", member.getGq_number());
+        save("truename", member.getTruename());
+        save("cover", member.getCover());
+        save("id_card_num", member.getId_card_num());
+        save("mobile", member.getMobile());
+        save("email", member.getEmail());
+        save("is_get_gufen", member.getIs_get_gufen());
+        save("download_code", member.getDownload_code());
+        save("birthday", member.getBirthday());
+        save("sign", member.getSign());
         save("address", member.getAddress());
-        save("employment", member.getEmployment());
-        save("jobHunting", member.getJobHunting());
-        save("majorBusinesses", member.getMajorBusinesses());
-        save("recentDemand", member.getRecentDemand());
+        save("major", member.getMajor());
+        save("requirement", member.getRequirement());
+        save("identity_name", member.getIdentity_name());
 
         UniversityApplication.member = member;
     }
+    //广播接收动作
+    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if (action.equals("updateSuccess")) {
+                //编辑信息成功
+                imageLoader.displayImage(getGson().fromJson(getSp().getString("cover", ""), String.class), mine_head, UniversityApplication.txOptions, animateFirstListener);
+                mine_name.setText(getGson().fromJson(getSp().getString("nick_name", ""), String.class));
+            }
+        }
+    };
 
+    //注册广播
+    public void registerBoradcastReceiver() {
+        IntentFilter myIntentFilter = new IntentFilter();
+        myIntentFilter.addAction("updateSuccess");
+        //注册广播
+        getActivity().registerReceiver(mBroadcastReceiver, myIntentFilter);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        getActivity().unregisterReceiver(mBroadcastReceiver);
+    }
 
 }
