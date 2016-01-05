@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:background="@color/gray"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <RelativeLayout android:layout_width="match_parent"
+                    android:background="@drawable/top"
+                    android:layout_height="@dimen/height_top_bar">
+        <ImageView android:layout_width="wrap_content"
+                   android:src="@drawable/back"
+                   android:onClick="back"
+                   android:padding="8dp"
+                   android:layout_centerVertical="true"
+                   android:layout_height="wrap_content"/>
+        <TextView android:layout_width="wrap_content"
+                  android:text="红包"
+                  android:textColor="@color/white"
+                  android:textSize="18sp"
+                  android:layout_centerInParent="true"
+                  android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+    <EditText android:layout_width="match_parent"
+              android:layout_marginTop="8dp"
+              android:id="@+id/redbag_num"
+              android:hint="红包个数"
+              android:inputType="number"
+              android:layout_marginLeft="15dp"
+              android:layout_marginRight="15dp"
+              android:layout_height="wrap_content"/>
+    <EditText android:layout_width="match_parent"
+              android:layout_marginTop="8dp"
+              android:id="@+id/jine"
+              android:numeric="decimal"
+              android:hint="单个红包金额"
+              android:layout_marginLeft="15dp"
+              android:layout_marginRight="15dp"
+              android:layout_height="wrap_content"/>
+    <EditText android:layout_width="match_parent"
+              android:layout_marginTop="8dp"
+              android:id="@+id/liuyan"
+              android:hint="留言"
+              android:layout_marginLeft="15dp"
+              android:layout_marginRight="15dp"
+              android:layout_height="wrap_content"/>
+
+    <TextView android:layout_width="match_parent"
+              android:padding="15dp"
+              android:text="￥100.00"
+              android:id="@+id/money"
+              android:textColor="@color/textColor"
+              android:textSize="18sp"
+              android:gravity="center"
+              android:layout_height="wrap_content"/>
+
+    <Button android:layout_width="match_parent"
+            android:textColor="@color/white"
+            android:background="@color/red"
+            android:layout_marginTop="25dp"
+            android:padding="15dp"
+            android:onClick="addSure"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:text="塞钱进红包"
+            android:layout_height="wrap_content"/>
+
+    <TextView android:layout_width="match_parent"
+              android:textSize="14sp"
+              android:layout_marginTop="8dp"
+              android:padding="8dp"
+              android:textColor="@color/textColortwo"
+              android:text="该红包为广告红包，塞入后无法退款，只能被其他用户领取。"
+              android:layout_height="wrap_content"/>
+
+</LinearLayout>

@@ -95,6 +95,18 @@
                   android:layout_height="wrap_content"/>
 
     </RelativeLayout>
+            <TextView android:layout_width="match_parent"
+                      android:text="  我的公司"
+                      android:padding="8dp"
+                      android:id="@+id/mineCompany"
+                      android:drawableRight="@drawable/in"
+                      android:layout_marginTop="5dp"
+                      android:textColor="@color/textColor"
+                      android:textSize="14sp"
+                      android:layout_marginBottom="5dp"
+                      android:background="@color/white"
+                      android:layout_height="wrap_content"/>
+
     <RelativeLayout android:layout_width="match_parent"
                     android:padding="8dp"
                     android:id="@+id/liner_birth"

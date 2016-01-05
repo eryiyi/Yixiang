@@ -39,5 +39,36 @@
                    android:id="@+id/mine_location"
                    android:src="@drawable/location"
                    android:layout_height="wrap_content"/>
+        <LinearLayout android:layout_width="100dp"
+                      android:id="@+id/bottomLiner"
+                      android:orientation="vertical"
+                      android:layout_alignParentRight="true"
+                      android:layout_alignParentBottom="true"
+                      android:layout_marginRight="120dp"
+                      android:background="@color/gray"
+                      android:layout_height="wrap_content">
+            <TextView android:layout_width="match_parent"
+                      android:text="供应"
+                      android:id="@+id/gongying"
+                      android:padding="15dp"
+                      android:gravity="center"
+                      android:layout_gravity="center"
+                      android:textColor="@color/textColortwo"
+                      android:textSize="16sp"
+                      android:layout_height="wrap_content"/>
+            <View android:layout_width="match_parent"
+                  android:background="@color/white"
+                  android:layout_height="5dp"></View>
+            <TextView android:layout_width="match_parent"
+                      android:text="需求"
+                      android:id="@+id/xuqiu"
+                      android:padding="15dp"
+                      android:gravity="center"
+                      android:layout_gravity="center"
+                      android:textColor="@color/textColortwo"
+                      android:textSize="16sp"
+                      android:layout_height="wrap_content"/>
+        </LinearLayout>
+
     </RelativeLayout>
 </LinearLayout>

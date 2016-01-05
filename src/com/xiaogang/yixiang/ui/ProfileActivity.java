@@ -31,6 +31,7 @@ import com.xiaogang.yixiang.upload.CommonUtil;
 import com.xiaogang.yixiang.util.CompressPhotoUtil;
 import com.xiaogang.yixiang.util.FileUtils;
 import com.xiaogang.yixiang.util.StringUtil;
+import com.xiaogang.yixiang.util.TimeUtils;
 import com.xiaogang.yixiang.widget.DateTimePickDialogUtil;
 import com.xiaogang.yixiang.widget.SelectPhoPopWindow;
 import com.xiaogang.yixiang.widget.SexPopWindow;
@@ -38,6 +39,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -93,11 +95,11 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         this.findViewById(R.id.liner_sex).setOnClickListener(this);
         this.findViewById(R.id.liner_birth).setOnClickListener(this);
         this.findViewById(R.id.mine_head).setOnClickListener(this);
+        this.findViewById(R.id.mineCompany).setOnClickListener(this);
 
     }
 
     void initData(){
-
         imageLoader.displayImage(InternetURL.INTERNAL_PIC+ getGson().fromJson(getSp().getString("cover", ""), String.class), mine_head, UniversityApplication.txOptions, animateFirstListener);
         mine_name.setText(getGson().fromJson(getSp().getString("nick_name", ""), String.class));
         mine_birth.setText(getGson().fromJson(getSp().getString("birthday", ""), String.class));
@@ -141,6 +143,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
             }
         });
 //        dateline.setText(df.format(new Date()));
+        this.findViewById(R.id.mineCompany).setOnClickListener(this);
     }
 
     // 性别选择
@@ -183,6 +186,11 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
             case R.id.liner_sex:
                 //性别
                 ShowSexDialog();
+                break;
+            case R.id.mineCompany:
+                //我的公司
+                Intent mineView = new Intent(ProfileActivity.this, MineCompanyActivity.class);
+                startActivity(mineView);
                 break;
 
         }
@@ -266,7 +274,13 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                 if(!StringUtil.isNullOrEmpty(sex)){
                     params.put("sex ", sex );
                 }
-                params.put("birthday ", mine_birth.getText().toString() );
+                if(!StringUtil.isNullOrEmpty(mine_birth.getText().toString())){
+                    try {
+                        params.put("birthday ", TimeUtils.getCurrentMillion(mine_birth.getText().toString()));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                }
                 params.put("sign ", mine_sign.getText().toString() );
                 params.put("address ", mine_address.getText().toString() );
                 params.put("major ", mine_yewu.getText().toString());

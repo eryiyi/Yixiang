@@ -84,6 +84,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     // 账号在别处登录
     public boolean isConflict = false;
 
+    public static  int tmpVisible = 0;
+
 
     @Override
     public void onStop() {
@@ -160,7 +162,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                 foot_two.setImageResource(R.drawable.foot_two);
                 foot_three.setImageResource(R.drawable.foot_three);
                 foot_four.setImageResource(R.drawable.foot_four);
-
+                threeFragment.bottomLiner.setVisibility(View.GONE);
                 break;
             case R.id.foot_two:
                 if (twoFragment == null) {
@@ -175,6 +177,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                 foot_two.setImageResource(R.drawable.foot_two);
                 foot_three.setImageResource(R.drawable.foot_three);
                 foot_four.setImageResource(R.drawable.foot_four);
+                threeFragment.bottomLiner.setVisibility(View.GONE);
                 break;
             case R.id.foot_three:
                 if (threeFragment == null) {
@@ -188,6 +191,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                 foot_two.setImageResource(R.drawable.foot_two);
                 foot_three.setImageResource(R.drawable.foot_three);
                 foot_four.setImageResource(R.drawable.foot_four);
+                if(tmpVisible == 0 && threeFragment.bottomLiner!= null){
+                    tmpVisible = 1;
+                    threeFragment.bottomLiner.setVisibility(View.GONE);
+                }else if(tmpVisible == 1 &&threeFragment.bottomLiner!= null) {
+                    tmpVisible = 0;
+                    threeFragment.bottomLiner.setVisibility(View.VISIBLE);
+                }
                 break;
             case R.id.foot_four:
                 if (fourFragment == null) {
@@ -201,6 +211,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                 foot_two.setImageResource(R.drawable.foot_two);
                 foot_three.setImageResource(R.drawable.foot_three);
                 foot_four.setImageResource(R.drawable.foot_four);
+                threeFragment.bottomLiner.setVisibility(View.GONE);
                 break;
 
         }
@@ -553,30 +564,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
             case EventNewMessage: // 普通消息
             {
                 EMMessage message = (EMMessage) event.getData();
-
                 // 提示新消息
                 HXSDKHelper.getInstance().getNotifier().onNewMsg(message);
-
-
                 break;
             }
-
             case EventOfflineMessage: {
-
                 break;
             }
-
             case EventConversationListChanged: {
-
                 break;
             }
-
             default:
                 break;
         }
     }
-
-
 
     /**
      * button点击事件
@@ -608,7 +609,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         TwoFragment.mTabs[TwoFragment.index].setSelected(true);
         TwoFragment.currentTabIndex = TwoFragment.index;
     }
-
 
     void upLocation(){
         StringRequest request = new StringRequest(
@@ -648,5 +648,4 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         };
         getRequestQueue().add(request);
     }
-
 }

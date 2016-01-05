@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -41,6 +42,7 @@ import com.xiaogang.yixiang.base.InternetURL;
 import com.xiaogang.yixiang.data.EmpData;
 import com.xiaogang.yixiang.data.TalentsData;
 import com.xiaogang.yixiang.module.Talents;
+import com.xiaogang.yixiang.ui.GXActivtiy;
 import com.xiaogang.yixiang.ui.QiehuanListActivity;
 import com.xiaogang.yixiang.util.StringUtil;
 import com.xiaogang.yixiang.widget.CircleImageView;
@@ -75,6 +77,8 @@ public class ThreeFragment extends BaseFragment implements View.OnClickListener,
     private ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();
     ImageLoader imageLoader = ImageLoader.getInstance();//图片加载类
 
+    public LinearLayout bottomLiner;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,7 +91,6 @@ public class ThreeFragment extends BaseFragment implements View.OnClickListener,
         mMapView = (MapView) view.findViewById(R.id.bmapView);
         mBaiduMap = mMapView.getMap();
         mUiSettings = mBaiduMap.getUiSettings();
-
 
         java.text.DecimalFormat   df   =new   java.text.DecimalFormat("#.");
         //设定中心点坐标
@@ -105,6 +108,12 @@ public class ThreeFragment extends BaseFragment implements View.OnClickListener,
         view.findViewById(R.id.mine_location).setOnClickListener(this);
 
         getData();
+
+        bottomLiner = (LinearLayout) view.findViewById(R.id.bottomLiner);
+        bottomLiner.setVisibility(View.GONE);
+
+        view.findViewById(R.id.gongying).setOnClickListener(this);
+        view.findViewById(R.id.xuqiu).setOnClickListener(this);
 
         return view;
     }
@@ -144,6 +153,16 @@ public class ThreeFragment extends BaseFragment implements View.OnClickListener,
                 mBaiduMap.animateMapStatus(mMapStatusUpdate, 50000);
                 // 启动一个线程
                 new Thread(this).start();
+                break;
+            case R.id.gongying:
+                Intent gy = new Intent(getActivity(), GXActivtiy.class);
+                gy.putExtra("titleStr", "供应");
+                startActivity(gy);
+                break;
+            case R.id.xuqiu:
+                Intent xq = new Intent(getActivity(), GXActivtiy.class);
+                xq.putExtra("titleStr", "需求");
+                startActivity(xq);
                 break;
         }
     }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:background="@color/white"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <RelativeLayout android:layout_width="match_parent"
+                    android:background="@drawable/top"
+                    android:layout_height="@dimen/height_top_bar">
+        <ImageView android:layout_width="wrap_content"
+                   android:src="@drawable/back"
+                   android:padding="8dp"
+                   android:id="@+id/back"
+                   android:layout_centerVertical="true"
+                   android:layout_height="wrap_content"/>
+        <TextView android:layout_width="wrap_content"
+                  android:text="需求"
+                  android:id="@+id/title"
+                  android:layout_toRightOf="@+id/back"
+                  android:textSize="18sp"
+                  android:layout_marginLeft="8dp"
+                  android:layout_centerVertical="true"
+                  android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+    <ListView android:layout_width="match_parent"
+                  android:id="@+id/lstv"
+                  android:layout_height="match_parent">
+
+    </ListView>
+</LinearLayout>
