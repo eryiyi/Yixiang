@@ -15,7 +15,6 @@ package com.easemob.chatuidemo.task;
 
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
-
 import com.easemob.chat.EMMessage;
 import com.easemob.util.EMLog;
 

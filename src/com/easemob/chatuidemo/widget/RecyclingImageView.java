@@ -21,7 +21,6 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
-
 import com.easemob.chatuidemo.video.util.RecyclingBitmapDrawable;
 
 /**

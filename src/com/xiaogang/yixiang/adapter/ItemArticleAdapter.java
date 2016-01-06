@@ -12,9 +12,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.xiaogang.yixiang.R;
 import com.xiaogang.yixiang.UniversityApplication;
-import com.xiaogang.yixiang.base.InternetURL;
 import com.xiaogang.yixiang.module.ArticleObj;
-import com.xiaogang.yixiang.module.Talents;
 
 import java.util.List;
 
@@ -68,7 +66,7 @@ public class ItemArticleAdapter extends BaseAdapter {
         }
         final ArticleObj cell = findEmps.get(position);
         if (findEmps != null) {
-            imageLoader.displayImage(InternetURL.INTERNAL_PIC + cell.getPicture(), holder.pic, UniversityApplication.options, animateFirstListener);
+            imageLoader.displayImage(cell.getPicture(), holder.pic, UniversityApplication.options, animateFirstListener);
             holder.title.setText(cell.getTitle());
             holder.content.setText(cell.getSummary());
             holder.dateline.setText((cell.getHit()==null?"0":cell.getHit())+"阅读");

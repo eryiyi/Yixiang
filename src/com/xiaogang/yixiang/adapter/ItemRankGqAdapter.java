@@ -13,10 +13,10 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.xiaogang.yixiang.R;
 import com.xiaogang.yixiang.UniversityApplication;
 import com.xiaogang.yixiang.base.InternetURL;
-import com.xiaogang.yixiang.module.ArticleObj;
 import com.xiaogang.yixiang.module.RankGqObj;
 import com.xiaogang.yixiang.util.StringUtil;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -71,21 +71,24 @@ public class ItemRankGqAdapter extends BaseAdapter {
         }
         final RankGqObj cell = findEmps.get(position);
         if (findEmps != null) {
-            imageLoader.displayImage( cell.getCover(), holder.pic, UniversityApplication.options, animateFirstListener);
+            imageLoader.displayImage(InternetURL.INTERNAL_PIC+ cell.getCover(), holder.pic, UniversityApplication.options, animateFirstListener);
             holder.title.setText(cell.getTruename());
             holder.content.setText(cell.getGq_identity_name());
-            holder.dateline.setText((cell.getGq_number()==null?"0":cell.getGq_number()));
+            holder.dateline.setText((cell.getGq_number()==null?"0":cell.getGq_number())+"股");
             if("-1".equals(cell.getSex())){
-                holder.sex.setText("未设置");
+                holder.sex.setText("性别：未设置");
             }
             if("0".equals(cell.getSex())){
-                holder.sex.setText("男");
+                holder.sex.setText("性别：男");
             }
             if("1".equals(cell.getSex())){
-                holder.sex.setText("女");
+                holder.sex.setText("性别：女");
             }
             if(UniversityApplication.lat != null && UniversityApplication.lng != null  && !StringUtil.isNullOrEmpty(cell.getLng()) && !StringUtil.isNullOrEmpty(cell.getLat())){
-                holder.address.setText(String.valueOf(StringUtil.GetShortDistance(Double.valueOf(cell.getLng()),Double.valueOf(cell.getLat()), UniversityApplication.lng, UniversityApplication.lat)));
+                Double d = StringUtil.GetShortDistance(Double.valueOf(cell.getLng()),Double.valueOf(cell.getLat()), UniversityApplication.lng, UniversityApplication.lat)/1000;
+                DecimalFormat df=new DecimalFormat(".##");
+                String st=df.format(d);
+                holder.address.setText(String.valueOf(st) +"KM");
             }
 
         }

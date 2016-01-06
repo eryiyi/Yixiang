@@ -13,10 +13,6 @@
  */
 package com.easemob.chatuidemo.activity;
 
-import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
-
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.graphics.Bitmap;
@@ -26,9 +22,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.ProgressBar;
-
 import com.easemob.EMCallBack;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chatuidemo.task.LoadLocalBigImgTask;
@@ -40,6 +34,10 @@ import com.easemob.util.ImageUtils;
 import com.easemob.util.PathUtil;
 import com.xiaogang.yixiang.R;
 import com.xiaogang.yixiang.base.BaseActivity;
+
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 下载显示大图

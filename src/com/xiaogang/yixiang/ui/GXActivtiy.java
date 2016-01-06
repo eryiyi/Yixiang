@@ -1,5 +1,6 @@
 package com.xiaogang.yixiang.ui;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,14 +14,13 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.xiaogang.yixiang.R;
-import com.xiaogang.yixiang.UniversityApplication;
 import com.xiaogang.yixiang.adapter.ItemGxAdapter;
 import com.xiaogang.yixiang.base.BaseActivity;
 import com.xiaogang.yixiang.base.InternetURL;
 import com.xiaogang.yixiang.data.GxObjData;
-import com.xiaogang.yixiang.data.TalentsData;
 import com.xiaogang.yixiang.module.GxObj;
 import com.xiaogang.yixiang.util.StringUtil;
+import com.xiaogang.yixiang.widget.CustomProgressDialog;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -55,11 +55,15 @@ public class GXActivtiy extends BaseActivity implements View.OnClickListener {
                 //
                 Intent detail = new Intent(GXActivtiy.this, DetailMemberActivity.class);
                 GxObj gxObj = lists.get(position);
-                detail.putExtra("gxObj", gxObj);
+                detail.putExtra("userid", gxObj.getUser_id());
                 startActivity(detail);
             }
         });
-
+        progressDialog = new CustomProgressDialog(GXActivtiy.this , "请稍后", R.anim.frame_paopao);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setCancelable(false);
+        progressDialog.setIndeterminate(true);
+        progressDialog.show();
         getData();
     }
 

@@ -13,19 +13,6 @@
  */
 package com.easemob.chatuidemo.adapter;
 
-import java.io.File;
-import java.util.Date;
-import java.util.Hashtable;
-import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import com.xiaogang.yixiang.R;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.xmlpull.v1.XmlPullParser;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -43,54 +30,33 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
+import android.widget.*;
 import android.widget.TextView.BufferType;
-import android.widget.Toast;
-
 import com.easemob.EMCallBack;
 import com.easemob.EMError;
 import com.easemob.applib.controller.HXSDKHelper;
-import com.easemob.chat.EMChatManager;
-import com.easemob.chat.EMConversation;
-import com.easemob.chat.EMMessage;
+import com.easemob.chat.*;
 import com.easemob.chat.EMMessage.ChatType;
 import com.easemob.chat.EMMessage.Direct;
 import com.easemob.chat.EMMessage.Type;
-import com.easemob.chat.FileMessageBody;
-import com.easemob.chat.ImageMessageBody;
-import com.easemob.chat.LocationMessageBody;
-import com.easemob.chat.NormalFileMessageBody;
-import com.easemob.chat.TextMessageBody;
-import com.easemob.chat.VideoMessageBody;
-import com.easemob.chat.VoiceMessageBody;
 import com.easemob.chatuidemo.Constant;
 import com.easemob.chatuidemo.DemoHXSDKHelper;
-import com.easemob.chatuidemo.activity.AlertDialog;
-import com.easemob.chatuidemo.activity.BaiduMapActivity;
-import com.easemob.chatuidemo.activity.ChatActivity;
-import com.easemob.chatuidemo.activity.ContextMenu;
-import com.easemob.chatuidemo.activity.ShowBigImage;
-import com.easemob.chatuidemo.activity.ShowNormalFileActivity;
-import com.easemob.chatuidemo.activity.ShowVideoActivity;
-import com.easemob.chatuidemo.activity.UserProfileActivity;
+import com.easemob.chatuidemo.activity.*;
 import com.easemob.chatuidemo.task.LoadImageTask;
 import com.easemob.chatuidemo.task.LoadVideoImageTask;
 import com.easemob.chatuidemo.utils.DateUtils;
-import com.easemob.chatuidemo.utils.ImageCache;
+import com.easemob.chatuidemo.utils.*;
 import com.easemob.chatuidemo.utils.ImageUtils;
-import com.easemob.chatuidemo.utils.SmileUtils;
-import com.easemob.chatuidemo.utils.UserUtils;
 import com.easemob.exceptions.EaseMobException;
-import com.easemob.util.DensityUtil;
-import com.easemob.util.EMLog;
-import com.easemob.util.FileUtils;
-import com.easemob.util.LatLng;
-import com.easemob.util.TextFormater;
+import com.easemob.util.*;
+import com.xiaogang.yixiang.R;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.xmlpull.v1.XmlPullParser;
+
+import java.io.File;
+import java.util.*;
 
 public class MessageAdapter extends BaseAdapter{
 

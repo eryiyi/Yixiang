@@ -5,7 +5,6 @@ import android.media.AudioManager;
 import android.media.Ringtone;
 import android.media.SoundPool;
 import android.os.Bundle;
-
 import com.easemob.chat.EMCallStateChangeListener;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMMessage;

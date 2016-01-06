@@ -34,7 +34,6 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.AttributeSet;
 import android.widget.ImageView;
-
 import com.easemob.chatuidemo.widget.photoview.PhotoViewAttacher.OnMatrixChangedListener;
 import com.easemob.chatuidemo.widget.photoview.PhotoViewAttacher.OnPhotoTapListener;
 import com.easemob.chatuidemo.widget.photoview.PhotoViewAttacher.OnViewTapListener;

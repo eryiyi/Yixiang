@@ -129,7 +129,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
 
     @Override
     public void onClick(View v) {
-        switchFragment(v.getId());
+        if("1".equals(getGson().fromJson(getSp().getString("isLogin", ""), String.class))){
+            //如果已经登录了
+            switchFragment(v.getId());
+        }else {
+            Intent loginView = new Intent(MainActivity.this, com.xiaogang.yixiang.ui.LoginActivity.class);
+            startActivity(loginView);
+        }
+
     }
 
     private void initView() {
@@ -542,7 +549,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
 
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
 
         // unregister this event listener when this activity enters the

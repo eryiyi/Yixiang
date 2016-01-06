@@ -19,6 +19,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.zxing.WriterException;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.xiaogang.yixiang.R;
@@ -26,7 +27,6 @@ import com.xiaogang.yixiang.UniversityApplication;
 import com.xiaogang.yixiang.adapter.AnimateFirstDisplayListener;
 import com.xiaogang.yixiang.base.BaseActivity;
 import com.xiaogang.yixiang.base.InternetURL;
-import com.xiaogang.yixiang.data.MemberData;
 import com.xiaogang.yixiang.upload.CommonUtil;
 import com.xiaogang.yixiang.util.CompressPhotoUtil;
 import com.xiaogang.yixiang.util.FileUtils;
@@ -41,7 +41,6 @@ import org.json.JSONObject;
 import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -100,6 +99,11 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     }
 
     void initData(){
+        try {
+            mine_erweima.setImageBitmap(StringUtil.Create2DCode(getGson().fromJson(getSp().getString("download_code", ""), String.class)));
+        } catch (WriterException e) {
+            e.printStackTrace();
+        }
         imageLoader.displayImage(InternetURL.INTERNAL_PIC+ getGson().fromJson(getSp().getString("cover", ""), String.class), mine_head, UniversityApplication.txOptions, animateFirstListener);
         mine_name.setText(getGson().fromJson(getSp().getString("nick_name", ""), String.class));
         mine_birth.setText(getGson().fromJson(getSp().getString("birthday", ""), String.class));

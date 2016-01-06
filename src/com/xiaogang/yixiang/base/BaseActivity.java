@@ -1,32 +1,25 @@
 package com.xiaogang.yixiang.base;
 
-import android.app.Dialog;
-import android.app.Notification;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v4.app.FragmentActivity;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.easemob.applib.controller.HXSDKHelper;
 import com.google.gson.Gson;
+import com.umeng.analytics.MobclickAgent;
 import com.xiaogang.yixiang.UniversityApplication;
 import com.xiaogang.yixiang.upload.MultiPartStringRequest;
 import com.xiaogang.yixiang.widget.CustomProgressDialog;
 
 import java.io.File;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 
@@ -154,12 +147,6 @@ public class BaseActivity extends FragmentActivity{
         getRequestQueue().add(multiPartRequest);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        // onresume时，取消notification显示
-        HXSDKHelper.getInstance().getNotifier().reset();
-    }
 
     protected void onDestroy() {
         ActivityTack.getInstanse().removeActivity(this);
@@ -177,4 +164,16 @@ public class BaseActivity extends FragmentActivity{
         toast.setGravity(Gravity.CENTER_HORIZONTAL,0,0);//设置居中
         toast.show();//显示,(缺了这句不显示)
     }
+
+    public void onResume() {
+        super.onResume();
+        // onresume时，取消notification显示
+        HXSDKHelper.getInstance().getNotifier().reset();
+        MobclickAgent.onResume(this);
+    }
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
+
 }

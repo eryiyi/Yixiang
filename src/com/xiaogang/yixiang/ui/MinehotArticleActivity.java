@@ -1,6 +1,7 @@
 package com.xiaogang.yixiang.ui;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -24,6 +25,7 @@ import com.xiaogang.yixiang.data.ArticleObjData;
 import com.xiaogang.yixiang.module.AdSlide;
 import com.xiaogang.yixiang.module.ArticleObj;
 import com.xiaogang.yixiang.util.StringUtil;
+import com.xiaogang.yixiang.widget.CustomProgressDialog;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -54,13 +56,14 @@ public class MinehotArticleActivity extends BaseActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hot_activity);
-
-
-
         initViewPager();
         initView();
+        progressDialog = new CustomProgressDialog(MinehotArticleActivity.this , "请稍后", R.anim.frame_paopao);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setCancelable(false);
+        progressDialog.setIndeterminate(true);
+        progressDialog.show();
         getAd();
-
         getdata();
     }
 
@@ -73,6 +76,10 @@ public class MinehotArticleActivity extends BaseActivity implements View.OnClick
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 //
+                Intent detailView = new Intent(MinehotArticleActivity.this, DetailArticleActivity.class);
+                ArticleObj articleObj = articleObjs.get(i);
+                detailView.putExtra("articleObj", articleObj);
+                startActivity(detailView);
             }
         });
     }
@@ -102,11 +109,17 @@ public class MinehotArticleActivity extends BaseActivity implements View.OnClick
                         } else {
                             Toast.makeText(MinehotArticleActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
                         }
+                        if(progressDialog != null){
+                            progressDialog.dismiss();
+                        }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
+                        if(progressDialog != null){
+                            progressDialog.dismiss();
+                        }
                         Toast.makeText(MinehotArticleActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -284,11 +297,17 @@ public class MinehotArticleActivity extends BaseActivity implements View.OnClick
                         } else {
                             Toast.makeText(MinehotArticleActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
                         }
+                        if(progressDialog != null){
+                            progressDialog.dismiss();
+                        }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
+                        if(progressDialog != null){
+                            progressDialog.dismiss();
+                        }
                         Toast.makeText(MinehotArticleActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
                     }
                 }

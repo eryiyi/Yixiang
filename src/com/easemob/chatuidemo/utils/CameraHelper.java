@@ -22,7 +22,6 @@ import android.hardware.Camera.PreviewCallback;
 import android.os.Build;
 import android.util.Log;
 import android.view.SurfaceHolder;
-
 import com.easemob.chat.EMVideoCallHelper;
 import com.xiaogang.yixiang.UniversityApplication;
 

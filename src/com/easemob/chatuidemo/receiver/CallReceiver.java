@@ -17,7 +17,6 @@ package com.easemob.chatuidemo.receiver;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-
 import com.easemob.chatuidemo.DemoHXSDKHelper;
 import com.easemob.chatuidemo.activity.VideoCallActivity;
 import com.easemob.chatuidemo.activity.VoiceCallActivity;

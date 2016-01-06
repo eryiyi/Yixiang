@@ -1,5 +1,6 @@
 package com.xiaogang.yixiang.ui;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -11,6 +12,7 @@ import android.provider.MediaStore;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -20,11 +22,13 @@ import com.android.volley.toolbox.StringRequest;
 import com.xiaogang.yixiang.R;
 import com.xiaogang.yixiang.base.BaseActivity;
 import com.xiaogang.yixiang.base.InternetURL;
-import com.xiaogang.yixiang.data.GxObjData;
+import com.xiaogang.yixiang.data.CompanyObjData;
+import com.xiaogang.yixiang.module.CompanyObj;
 import com.xiaogang.yixiang.upload.CommonUtil;
 import com.xiaogang.yixiang.util.CompressPhotoUtil;
 import com.xiaogang.yixiang.util.FileUtils;
 import com.xiaogang.yixiang.util.StringUtil;
+import com.xiaogang.yixiang.widget.CustomProgressDialog;
 import com.xiaogang.yixiang.widget.SelectPhoPopWindow;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -54,6 +58,12 @@ public class MineCompanyActivity extends BaseActivity implements View.OnClickLis
     private String picurl5;
 
     private String is_add;
+    private CompanyObj companyObj;
+    private LinearLayout line_one;
+    private LinearLayout line_two;
+    private LinearLayout line_three;
+    private LinearLayout line_four;
+    private LinearLayout line_five;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +85,16 @@ public class MineCompanyActivity extends BaseActivity implements View.OnClickLis
         this.findViewById(R.id.btnFour).setOnClickListener(this);
         this.findViewById(R.id.btnFive).setOnClickListener(this);
 
+        line_one = (LinearLayout) this.findViewById(R.id.line_one);
+        line_two = (LinearLayout) this.findViewById(R.id.line_two);
+        line_three = (LinearLayout) this.findViewById(R.id.line_three);
+        line_four = (LinearLayout) this.findViewById(R.id.line_four);
+        line_five = (LinearLayout) this.findViewById(R.id.line_five);
+        progressDialog = new CustomProgressDialog(MineCompanyActivity.this , "请稍后", R.anim.frame_paopao);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setCancelable(false);
+        progressDialog.setIndeterminate(true);
+        progressDialog.show();
         getVa();
     }
 
@@ -90,7 +110,20 @@ public class MineCompanyActivity extends BaseActivity implements View.OnClickLis
                                 JSONObject jo = new JSONObject(s);
                                 String code =  jo.getString("code");
                                 is_add = code;
-                                if(Integer.parseInt(code) == 200){
+                                if("200".equals(code)){
+                                    //如果成功
+                                    CompanyObjData data = getGson().fromJson(s, CompanyObjData.class);
+                                    companyObj = data.getData();
+                                    name.setText(companyObj.getCompany_name());
+                                    tel.setText(companyObj.getCompany_phone());
+                                    address.setText(companyObj.getCompany_address());
+                                    jieshao.setText(companyObj.getCompany_introduce());
+                                    //说明已经添加过了
+                                    line_one.setVisibility(View.GONE);
+                                    line_two.setVisibility(View.GONE);
+                                    line_three.setVisibility(View.GONE);
+                                    line_four.setVisibility(View.GONE);
+                                    line_five.setVisibility(View.GONE);
                                 }
                                 else{
                                     Toast.makeText(MineCompanyActivity.this, jo.getString("msg"), Toast.LENGTH_SHORT).show();
@@ -363,36 +396,71 @@ public class MineCompanyActivity extends BaseActivity implements View.OnClickLis
     }
 
     public void addSave(View view){
-        if(StringUtil.isNullOrEmpty(name.getText().toString())){
-            showMsg(MineCompanyActivity.this, "请输入公司名称");
-            return;
-        }
-        if(StringUtil.isNullOrEmpty(tel.getText().toString())){
-            showMsg(MineCompanyActivity.this, "请输入公司电话");
-            return;
-        }
-        if(StringUtil.isNullOrEmpty(address.getText().toString())){
-            showMsg(MineCompanyActivity.this, "请输入公司地址");
-            return;
-        }
-        if(StringUtil.isNullOrEmpty(jieshao.getText().toString())){
-            showMsg(MineCompanyActivity.this, "请输入公司介绍");
-            return;
-        }
-        if(StringUtil.isNullOrEmpty(textOne.getText().toString())
-                || StringUtil.isNullOrEmpty(textTwo.getText().toString())
-                ||StringUtil.isNullOrEmpty(textThree.getText().toString()) ||
-                StringUtil.isNullOrEmpty(textFour.getText().toString()) ||
-                StringUtil.isNullOrEmpty(textFive.getText().toString()) ){
-            showMsg(MineCompanyActivity.this, "请输入图片介绍");
-            return;
-        }
 
+        if("200".equals(is_add)){
+            //说明是编辑
+            if(StringUtil.isNullOrEmpty(name.getText().toString())){
+                showMsg(MineCompanyActivity.this, "请输入公司名称");
+                return;
+            }
+            if(StringUtil.isNullOrEmpty(tel.getText().toString())){
+                showMsg(MineCompanyActivity.this, "请输入公司电话");
+                return;
+            }
+            if(StringUtil.isNullOrEmpty(address.getText().toString())){
+                showMsg(MineCompanyActivity.this, "请输入公司地址");
+                return;
+            }
+            if(StringUtil.isNullOrEmpty(jieshao.getText().toString())){
+                showMsg(MineCompanyActivity.this, "请输入公司介绍");
+                return;
+            }
+            progressDialog = new CustomProgressDialog(MineCompanyActivity.this , "请稍后", R.anim.frame_paopao);
+            progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+            progressDialog.setCancelable(false);
+            progressDialog.setIndeterminate(true);
+            progressDialog.show();
+            getDataEdit();
+        }else {
+            //说明是新增
+            if(StringUtil.isNullOrEmpty(name.getText().toString())){
+                showMsg(MineCompanyActivity.this, "请输入公司名称");
+                return;
+            }
+            if(StringUtil.isNullOrEmpty(tel.getText().toString())){
+                showMsg(MineCompanyActivity.this, "请输入公司电话");
+                return;
+            }
+            if(StringUtil.isNullOrEmpty(address.getText().toString())){
+                showMsg(MineCompanyActivity.this, "请输入公司地址");
+                return;
+            }
+            if(StringUtil.isNullOrEmpty(jieshao.getText().toString())){
+                showMsg(MineCompanyActivity.this, "请输入公司介绍");
+                return;
+            }
+            if(StringUtil.isNullOrEmpty(textOne.getText().toString())
+                    || StringUtil.isNullOrEmpty(textTwo.getText().toString())
+                    ||StringUtil.isNullOrEmpty(textThree.getText().toString()) ||
+                    StringUtil.isNullOrEmpty(textFour.getText().toString()) ||
+                    StringUtil.isNullOrEmpty(textFive.getText().toString()) ){
+                showMsg(MineCompanyActivity.this, "请输入图片介绍");
+                return;
+            }
+            progressDialog = new CustomProgressDialog(MineCompanyActivity.this , "请稍后", R.anim.frame_paopao);
+            progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+            progressDialog.setCancelable(false);
+            progressDialog.setIndeterminate(true);
+            progressDialog.show();
+
+            getData();
+        }
 
     }
     public void back(View view){
         finish();
     }
+
     void getData(){
         StringRequest request = new StringRequest(
                 Request.Method.POST,
@@ -460,5 +528,64 @@ public class MineCompanyActivity extends BaseActivity implements View.OnClickLis
         };
         getRequestQueue().add(request);
     }
+
+    void getDataEdit(){
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                InternetURL.COMPANY_INFO_EDIT_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        if (StringUtil.isJson(s)) {
+                            try {
+                                JSONObject jo = new JSONObject(s);
+                                String code =  jo.getString("code");
+                                if(Integer.parseInt(code) == 200){
+                                    Toast.makeText(MineCompanyActivity.this, "新增公司成立", Toast.LENGTH_SHORT).show();
+                                    finish();
+                                }
+                                else{
+                                    Toast.makeText(MineCompanyActivity.this, jo.getString("msg"), Toast.LENGTH_SHORT).show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        if (progressDialog != null) {
+                            progressDialog.dismiss();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        if (progressDialog != null) {
+                            progressDialog.dismiss();
+                        }
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("access_token", getGson().fromJson(getSp().getString("access_token", ""), String.class));
+                params.put("user_id", getGson().fromJson(getSp().getString("user_id", ""), String.class));
+                params.put("company_name", name.getText().toString());
+                params.put("company_phpne", tel.getText().toString());
+                params.put("company_address", address.getText().toString());
+                params.put("company_introduce", jieshao.getText().toString());
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+        getRequestQueue().add(request);
+    }
+
 
 }

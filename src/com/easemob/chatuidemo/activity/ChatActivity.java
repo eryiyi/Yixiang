@@ -13,14 +13,6 @@
  */
 package com.easemob.chatuidemo.activity;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -52,42 +44,15 @@ import android.view.View.OnFocusChangeListener;
 import android.view.View.OnTouchListener;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AbsListView;
+import android.widget.*;
 import android.widget.AbsListView.OnScrollListener;
-import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.easemob.EMChatRoomChangeListener;
-import com.easemob.EMError;
-import com.easemob.EMEventListener;
-import com.easemob.EMNotifierEvent;
-import com.easemob.EMValueCallBack;
+import com.easemob.*;
 import com.easemob.applib.controller.HXSDKHelper;
 import com.easemob.applib.model.GroupRemoveListener;
-import com.easemob.chat.EMChatManager;
-import com.easemob.chat.EMChatRoom;
-import com.easemob.chat.EMContactManager;
-import com.easemob.chat.EMConversation;
+import com.easemob.chat.*;
 import com.easemob.chat.EMConversation.EMConversationType;
-import com.easemob.chat.EMGroup;
-import com.easemob.chat.EMGroupManager;
-import com.easemob.chat.EMMessage;
 import com.easemob.chat.EMMessage.ChatType;
-import com.easemob.chat.ImageMessageBody;
-import com.easemob.chat.LocationMessageBody;
-import com.easemob.chat.NormalFileMessageBody;
-import com.easemob.chat.TextMessageBody;
-import com.easemob.chat.VideoMessageBody;
-import com.easemob.chat.VoiceMessageBody;
-import com.xiaogang.yixiang.UniversityApplication;
 import com.easemob.chatuidemo.DemoHXSDKHelper;
 import com.easemob.chatuidemo.adapter.ExpressionAdapter;
 import com.easemob.chatuidemo.adapter.ExpressionPagerAdapter;
@@ -105,7 +70,16 @@ import com.easemob.util.EMLog;
 import com.easemob.util.PathUtil;
 import com.easemob.util.VoiceRecorder;
 import com.xiaogang.yixiang.R;
+import com.xiaogang.yixiang.UniversityApplication;
 import com.xiaogang.yixiang.base.BaseActivity;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 聊天页面
@@ -1473,7 +1447,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener, EMEve
 	}
 
 	@Override
-	protected void onResume() {
+	public void onResume() {
 		super.onResume();
 		if (group != null)
 			((TextView) findViewById(R.id.name)).setText(group.getGroupName());
@@ -1508,7 +1482,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener, EMEve
 	}
 
 	@Override
-	protected void onPause() {
+	public void onPause() {
 		super.onPause();
 		if (wakeLock.isHeld())
 			wakeLock.release();

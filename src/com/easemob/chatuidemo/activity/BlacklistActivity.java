@@ -1,9 +1,5 @@
 package com.easemob.chatuidemo.activity;
 
-import java.util.Collections;
-import java.util.List;
-
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -17,11 +13,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.easemob.chat.EMContactManager;
 import com.easemob.exceptions.EaseMobException;
 import com.xiaogang.yixiang.R;
 import com.xiaogang.yixiang.base.BaseActivity;
+
+import java.util.Collections;
+import java.util.List;
 
 /**
  * 黑名单列表页面

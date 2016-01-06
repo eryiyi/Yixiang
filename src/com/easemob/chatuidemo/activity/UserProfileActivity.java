@@ -1,8 +1,5 @@
 package com.easemob.chatuidemo.activity;
 
-import java.io.ByteArrayOutputStream;
-
-import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -16,12 +13,7 @@ import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
+import android.widget.*;
 import com.easemob.EMValueCallBack;
 import com.easemob.applib.controller.HXSDKHelper;
 import com.easemob.chat.EMChatManager;
@@ -31,6 +23,8 @@ import com.easemob.chatuidemo.utils.UserUtils;
 import com.squareup.picasso.Picasso;
 import com.xiaogang.yixiang.R;
 import com.xiaogang.yixiang.base.BaseActivity;
+
+import java.io.ByteArrayOutputStream;
 
 public class UserProfileActivity extends BaseActivity implements OnClickListener{
 	

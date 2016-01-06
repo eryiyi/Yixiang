@@ -13,19 +13,18 @@
  */
 package com.easemob.chatuidemo.utils;
 
-import java.util.List;
-
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningTaskInfo;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-
 import com.easemob.chat.EMMessage;
 import com.easemob.chat.TextMessageBody;
 import com.easemob.chatuidemo.Constant;
 import com.easemob.util.EMLog;
 import com.xiaogang.yixiang.R;
+
+import java.util.List;
 
 public class CommonUtils {
 	private static final String TAG = "CommonUtils";

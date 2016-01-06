@@ -1,5 +1,6 @@
 package com.xiaogang.yixiang.fragment;
 
+import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -9,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.android.volley.AuthFailureError;
@@ -26,10 +26,10 @@ import com.xiaogang.yixiang.adapter.AnimateFirstDisplayListener;
 import com.xiaogang.yixiang.base.BaseFragment;
 import com.xiaogang.yixiang.base.InternetURL;
 import com.xiaogang.yixiang.data.MemberData;
-import com.xiaogang.yixiang.data.TalentsData;
 import com.xiaogang.yixiang.module.Member;
 import com.xiaogang.yixiang.ui.*;
 import com.xiaogang.yixiang.util.StringUtil;
+import com.xiaogang.yixiang.widget.CustomProgressDialog;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -60,6 +60,11 @@ public class FourFragment extends BaseFragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.four_fragment, null);
         registerBoradcastReceiver();
         initView(view);
+        progressDialog = new CustomProgressDialog(getActivity() , "请稍后", R.anim.frame_paopao);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setCancelable(false);
+        progressDialog.setIndeterminate(true);
+        progressDialog.show();
         getData();
         return view;
     }

@@ -19,12 +19,11 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.easemob.EMError;
 import com.easemob.chat.EMChatManager;
-import com.xiaogang.yixiang.UniversityApplication;
 import com.easemob.exceptions.EaseMobException;
 import com.xiaogang.yixiang.R;
+import com.xiaogang.yixiang.UniversityApplication;
 import com.xiaogang.yixiang.base.BaseActivity;
 
 /**

@@ -13,17 +13,10 @@
  */
 package com.easemob.applib.controller;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-import android.R.bool;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.util.Log;
-import android.widget.Toast;
-
 import com.easemob.EMCallBack;
 import com.easemob.EMConnectionListener;
 import com.easemob.EMError;
@@ -32,13 +25,13 @@ import com.easemob.applib.model.DefaultHXSDKModel;
 import com.easemob.applib.model.HXNotifier;
 import com.easemob.applib.model.HXNotifier.HXNotificationInfoProvider;
 import com.easemob.applib.model.HXSDKModel;
-import com.easemob.chat.EMChat;
+import com.easemob.chat.*;
 import com.easemob.chat.EMChatConfig.EMEnvMode;
-import com.easemob.chat.EMChatManager;
-import com.easemob.chat.EMChatOptions;
-import com.easemob.chat.EMContactManager;
-import com.easemob.chat.EMGroupManager;
 import com.easemob.exceptions.EaseMobException;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * The developer can derive from this class to talk with HuanXin SDK

@@ -25,8 +25,6 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
-import com.parse.ParseInstallation;
-import com.parse.SaveCallback;
 import com.xiaogang.yixiang.module.Member;
 
 import java.util.LinkedList;

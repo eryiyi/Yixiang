@@ -13,9 +13,6 @@
  */
 package com.easemob.chatuidemo.adapter;
 
-import java.util.Date;
-import java.util.List;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,19 +22,14 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TextView.BufferType;
-
-import com.easemob.chat.EMChatManager;
-import com.easemob.chat.EMContact;
-import com.easemob.chat.EMConversation;
-import com.easemob.chat.EMGroup;
-import com.easemob.chat.EMMessage;
-import com.easemob.chat.ImageMessageBody;
-import com.easemob.chat.TextMessageBody;
-import com.easemob.chatuidemo.Constant;
+import com.easemob.chat.*;
 import com.easemob.chatuidemo.utils.CommonUtils;
 import com.easemob.chatuidemo.utils.SmileUtils;
 import com.easemob.util.DateUtils;
 import com.xiaogang.yixiang.R;
+
+import java.util.Date;
+import java.util.List;
 
 /**
  * 聊天记录adpater

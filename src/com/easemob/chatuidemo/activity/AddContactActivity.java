@@ -20,18 +20,12 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
+import android.widget.*;
 import com.easemob.applib.controller.HXSDKHelper;
 import com.easemob.chat.EMContactManager;
-import com.xiaogang.yixiang.UniversityApplication;
 import com.easemob.chatuidemo.DemoHXSDKHelper;
 import com.xiaogang.yixiang.R;
+import com.xiaogang.yixiang.UniversityApplication;
 import com.xiaogang.yixiang.base.BaseActivity;
 
 public class AddContactActivity extends BaseActivity {

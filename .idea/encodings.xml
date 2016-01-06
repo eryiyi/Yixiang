@@ -2,6 +2,17 @@
 <project version="4">
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
     <file url="file://$PROJECT_DIR$/libs/Parse-1.9.4.jar" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/libs/SocialSDK_QQZone_1.jar" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/libs/SocialSDK_QQZone_2.jar" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/libs/SocialSDK_QQZone_3.jar" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/libs/SocialSDK_Sina.jar" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/libs/SocialSDK_WeiXin_1.jar" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/libs/SocialSDK_WeiXin_2.jar" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/libs/SocialSDK_scrshot.jar" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/libs/SocialSDK_shake.jar" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/libs/SocialSDK_tencentWB_1.jar" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/libs/SocialSDK_tencentWB_2.jar" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/libs/SocialSDK_tencentWB_3.jar" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/libs/android-support-v13.jar" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/libs/android-support-v4.jar" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/libs/armeabi-v7a" charset="UTF-8" />
@@ -11,6 +22,7 @@
     <file url="file://$PROJECT_DIR$/libs/httpcore-4.3.2.jar" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/libs/httpmime-4.3.5.jar" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/libs/picasso-2.4.0.jar" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/libs/umeng_social_sdk.jar" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/libs/universal-image-loader-1.9.2.jar" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/libs/volley.jar" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/anim/fade_in.xml" charset="UTF-8" />

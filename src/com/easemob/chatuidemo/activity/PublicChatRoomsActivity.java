@@ -14,9 +14,6 @@
 
 package com.easemob.chatuidemo.activity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,24 +21,13 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.View.OnClickListener;
-import android.view.inputmethod.InputMethodManager;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.*;
 import android.widget.AbsListView.OnScrollListener;
-import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AbsListView;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.Filter;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.easemob.EMChatRoomChangeListener;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMChatRoom;
@@ -49,6 +35,9 @@ import com.easemob.chat.EMCursorResult;
 import com.easemob.exceptions.EaseMobException;
 import com.xiaogang.yixiang.R;
 import com.xiaogang.yixiang.base.BaseActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PublicChatRoomsActivity extends BaseActivity {
 	private ProgressBar pb;

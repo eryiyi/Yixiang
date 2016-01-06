@@ -1,27 +1,17 @@
 package com.easemob.chatuidemo.parse;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.content.Context;
 import android.text.TextUtils;
-
 import com.easemob.EMValueCallBack;
-import com.easemob.applib.utils.HXPreferenceUtils;
 import com.easemob.chat.EMChatManager;
-import com.easemob.chatuidemo.Constant;
 import com.easemob.chatuidemo.domain.User;
 import com.easemob.chatuidemo.utils.UserUtils;
 import com.easemob.util.EMLog;
 import com.easemob.util.HanziToPinyin;
-import com.parse.FindCallback;
-import com.parse.GetCallback;
-import com.parse.Parse;
-import com.parse.ParseException;
-import com.parse.ParseFile;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
-import com.parse.SaveCallback;
+import com.parse.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ParseManager {
 

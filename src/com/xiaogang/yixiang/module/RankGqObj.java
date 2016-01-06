@@ -1,7 +1,16 @@
 package com.xiaogang.yixiang.module;
 
 /**
- * Created by Administrator on 2016/1/5.
+ * Created by Administrator on 2016/1/5. "user_id": "1153994563",
+ "truename": "程庆",
+ "gq_identity_name": "核心合伙人",
+ "gq_number": "3000",
+ "id_card_num": "124124124",
+ "sex": "1",
+ "lng": "106.576281",
+ "lat": "29.644727",
+ "cover": "/Uploads/member/cover/2015-08-17/55d1773ec4d3c.jpg"
+ *
  */
 public class RankGqObj {
     private String user_id ;

@@ -3,7 +3,6 @@ package com.xiaogang.yixiang.util;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
 import com.google.zxing.BarcodeFormat;

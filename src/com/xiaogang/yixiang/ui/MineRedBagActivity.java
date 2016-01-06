@@ -1,6 +1,6 @@
 package com.xiaogang.yixiang.ui;
 
-import android.content.Intent;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -16,8 +16,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.xiaogang.yixiang.R;
 import com.xiaogang.yixiang.base.BaseActivity;
 import com.xiaogang.yixiang.base.InternetURL;
-import com.xiaogang.yixiang.data.MemberData;
 import com.xiaogang.yixiang.util.StringUtil;
+import com.xiaogang.yixiang.widget.CustomProgressDialog;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -101,10 +101,15 @@ public class MineRedBagActivity extends BaseActivity implements View.OnClickList
             showMsg(MineRedBagActivity.this, "留言不能为空");
             return;
         }
-        if("￥0.00".equals(money.getText().toString())){
+        if("￥0.0".equals(money.getText().toString())){
             showMsg(MineRedBagActivity.this, "红包不能为空");
             return;
         }
+        progressDialog = new CustomProgressDialog(MineRedBagActivity.this , "请稍后", R.anim.frame_paopao);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setCancelable(false);
+        progressDialog.setIndeterminate(true);
+        progressDialog.show();
         getData();
     }
 

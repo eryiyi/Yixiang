@@ -1,5 +1,6 @@
 package com.xiaogang.yixiang.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,13 +12,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.xiaogang.yixiang.R;
-import com.xiaogang.yixiang.adapter.ItemArticleAdapter;
 import com.xiaogang.yixiang.adapter.ItemRankGqAdapter;
 import com.xiaogang.yixiang.base.BaseActivity;
 import com.xiaogang.yixiang.base.InternetURL;
-import com.xiaogang.yixiang.data.ArticleObjData;
 import com.xiaogang.yixiang.data.RankGqObjData;
-import com.xiaogang.yixiang.module.ArticleObj;
 import com.xiaogang.yixiang.module.RankGqObj;
 import com.xiaogang.yixiang.util.StringUtil;
 import org.json.JSONException;
@@ -55,6 +53,10 @@ public class RankGuquanActivity extends BaseActivity implements View.OnClickList
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 //
+                RankGqObj rankGqObj = articleObjs.get(i);
+                Intent detailView = new Intent(RankGuquanActivity.this, DetailMemberActivity.class);
+                detailView.putExtra("userid", rankGqObj.getUser_id());
+                startActivity(detailView);
             }
         });
     }

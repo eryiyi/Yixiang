@@ -10,7 +10,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.easemob.EMCallBack;
 import com.easemob.chat.EMChat;
 import com.easemob.util.EMLog;

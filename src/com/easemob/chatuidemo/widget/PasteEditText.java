@@ -19,14 +19,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.text.ClipboardManager;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.widget.EditText;
-import android.widget.TextView.BufferType;
-
 import com.easemob.chatuidemo.activity.AlertDialog;
 import com.easemob.chatuidemo.activity.ChatActivity;
-import com.easemob.chatuidemo.utils.SmileUtils;
 import com.xiaogang.yixiang.R;
 
 /**

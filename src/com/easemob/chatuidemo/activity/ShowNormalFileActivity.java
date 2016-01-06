@@ -1,20 +1,19 @@
 package com.easemob.chatuidemo.activity;
 
-import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
-
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import com.easemob.EMCallBack;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.FileMessageBody;
 import com.easemob.util.FileUtils;
 import com.xiaogang.yixiang.R;
 import com.xiaogang.yixiang.base.BaseActivity;
+
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ShowNormalFileActivity extends BaseActivity {
 	private ProgressBar progressBar;

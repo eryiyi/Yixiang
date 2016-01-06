@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:background="@color/white"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <RelativeLayout android:layout_width="match_parent"
+                    android:background="@drawable/top"
+                    android:layout_height="@dimen/height_top_bar">
+        <ImageView android:layout_width="wrap_content"
+                   android:src="@drawable/back"
+                   android:onClick="back"
+                   android:padding="8dp"
+                   android:layout_centerVertical="true"
+                   android:layout_height="wrap_content"/>
+        <TextView android:layout_width="wrap_content"
+                  android:text="文章详情"
+                  android:textColor="@color/white"
+                  android:textSize="18sp"
+                  android:layout_centerInParent="true"
+                  android:layout_height="wrap_content"/>
+    </RelativeLayout>
+    <com.xiaogang.yixiang.widget.ReboundScrollView android:layout_width="match_parent"
+                                                   android:layout_height="match_parent">
+        <LinearLayout android:layout_width="match_parent"
+                      android:orientation="vertical"
+                      android:layout_height="match_parent">
+            <ImageView android:layout_width="match_parent"
+                       android:src="@drawable/head"
+                       android:id="@+id/pic"
+                       android:scaleType="center"
+                       android:maxHeight="200dp"
+                       android:layout_height="wrap_content"/>
+            <TextView android:layout_width="match_parent"
+                      android:text="sfasdf"
+                      android:textColor="@color/textColor"
+                      android:textSize="16sp"
+                      android:padding="8dp"
+                      android:id="@+id/title"
+                      android:layout_height="wrap_content"/>
+            <LinearLayout android:layout_width="match_parent"
+                          android:orientation="horizontal"
+                          android:layout_height="wrap_content">
+                <TextView android:layout_width="wrap_content"
+                          android:text="20150102"
+                          android:textColor="@color/textColortwo"
+                          android:textSize="14sp"
+                          android:padding="8dp"
+                          android:id="@+id/dateline"
+                          android:layout_height="wrap_content"/>
+                <TextView android:layout_width="match_parent"
+                          android:text="1ssfasdaf0"
+                          android:layout_marginLeft="8dp"
+                          android:textColor="@color/textColortwo"
+                          android:textSize="14sp"
+                          android:visibility="gone"
+                          android:padding="8dp"
+                          android:id="@+id/hit"
+                          android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <WebView android:layout_width="match_parent"
+                     android:id="@+id/wvHtml"
+                     android:layout_below="@+id/liner_three"
+                     android:layout_height="wrap_content">
+
+            </WebView>
+        </LinearLayout>
+    </com.xiaogang.yixiang.widget.ReboundScrollView>
+
+</LinearLayout>

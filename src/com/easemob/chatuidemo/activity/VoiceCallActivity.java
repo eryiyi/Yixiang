@@ -14,8 +14,6 @@
 
 package com.easemob.chatuidemo.activity;
 
-import java.util.UUID;
-
 import android.media.AudioManager;
 import android.media.RingtoneManager;
 import android.media.SoundPool;
@@ -28,18 +26,14 @@ import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.widget.Button;
-import android.widget.Chronometer;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
+import android.widget.*;
 import com.easemob.applib.controller.HXSDKHelper;
 import com.easemob.chat.EMCallStateChangeListener;
 import com.easemob.chat.EMChatManager;
 import com.easemob.exceptions.EMServiceNotReadyException;
 import com.xiaogang.yixiang.R;
+
+import java.util.UUID;
 
 /**
  * 语音通话页面

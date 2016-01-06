@@ -8,8 +8,6 @@ import com.xiaogang.yixiang.R;
 import com.xiaogang.yixiang.base.ActivityTack;
 import com.xiaogang.yixiang.base.BaseActivity;
 
-import java.awt.font.TextAttribute;
-
 /**
  * Created by Administrator on 2015/12/23.
  */

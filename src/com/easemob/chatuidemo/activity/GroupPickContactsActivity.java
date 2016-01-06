@@ -13,11 +13,6 @@
  */
 package com.easemob.chatuidemo.activity;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,7 +24,6 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ListView;
-
 import com.easemob.applib.controller.HXSDKHelper;
 import com.easemob.chat.EMGroup;
 import com.easemob.chat.EMGroupManager;
@@ -40,6 +34,11 @@ import com.easemob.chatuidemo.domain.User;
 import com.easemob.chatuidemo.widget.Sidebar;
 import com.xiaogang.yixiang.R;
 import com.xiaogang.yixiang.base.BaseActivity;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public class GroupPickContactsActivity extends BaseActivity {
 	private ListView listView;

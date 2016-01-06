@@ -5,7 +5,7 @@ package com.xiaogang.yixiang.base;
  */
 public class InternetURL {
     public static final String INTERNAL = "http://yixiang.apptech.space/mobile.php/";
-    public static final String INTERNAL_PIC = "http://letchar.sinaapp.com/";
+    public static final String INTERNAL_PIC = "http://yixiang.apptech.space/";
 
     public static final String GET_TOKEN = INTERNAL + "user.api-authkey";
     //2 2、 发送验证码

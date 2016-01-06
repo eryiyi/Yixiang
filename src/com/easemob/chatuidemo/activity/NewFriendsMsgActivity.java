@@ -13,12 +13,9 @@
  */
 package com.easemob.chatuidemo.activity;
 
-import java.util.List;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
-
 import com.easemob.applib.controller.HXSDKHelper;
 import com.easemob.chatuidemo.Constant;
 import com.easemob.chatuidemo.DemoHXSDKHelper;
@@ -27,6 +24,8 @@ import com.easemob.chatuidemo.db.InviteMessgeDao;
 import com.easemob.chatuidemo.domain.InviteMessage;
 import com.xiaogang.yixiang.R;
 import com.xiaogang.yixiang.base.BaseActivity;
+
+import java.util.List;
 
 /**
  * 申请与通知

@@ -12,9 +12,7 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.xiaogang.yixiang.R;
 import com.xiaogang.yixiang.UniversityApplication;
 import com.xiaogang.yixiang.base.InternetURL;
-import com.xiaogang.yixiang.data.GxObjData;
 import com.xiaogang.yixiang.module.GxObj;
-import com.xiaogang.yixiang.module.Talents;
 
 import java.util.List;
 

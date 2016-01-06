@@ -13,14 +13,12 @@
  */
 package com.easemob.chatuidemo.db;
 
-import java.util.List;
-import java.util.Map;
-
 import android.content.Context;
-
-
 import com.easemob.chatuidemo.domain.RobotUser;
 import com.easemob.chatuidemo.domain.User;
+
+import java.util.List;
+import java.util.Map;
 
 public class UserDao {
 	public static final String TABLE_NAME = "uers";

@@ -15,7 +15,6 @@ package com.easemob.chatuidemo.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import com.easemob.chatuidemo.domain.User;
 import com.xiaogang.yixiang.R;
 

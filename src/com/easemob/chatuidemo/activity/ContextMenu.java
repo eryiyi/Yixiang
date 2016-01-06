@@ -13,12 +13,10 @@
  */
 package com.easemob.chatuidemo.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
-
 import com.easemob.chat.EMMessage;
 import com.xiaogang.yixiang.R;
 import com.xiaogang.yixiang.base.BaseActivity;

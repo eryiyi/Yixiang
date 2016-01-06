@@ -92,8 +92,10 @@
             </LinearLayout>
 
 
-            <ImageView android:layout_width="match_parent"
+            <ImageView android:layout_width="80dp"
                        android:src="@drawable/erweima"
+                       android:layout_gravity="center"
+                       android:id="@+id/mineImg"
                        android:layout_marginTop="20dp"
                        android:layout_height="80dp"/>
             <TextView android:layout_width="match_parent"
@@ -114,6 +116,7 @@
                           android:textColor="@color/textColor"
                           android:textSize="12sp"
                           android:gravity="center"
+                          android:id="@+id/shareBtnOne"
                           android:paddingLeft="22dp"
                           android:background="@drawable/left_one"
                           android:layout_height="35dp"/>
@@ -122,6 +125,7 @@
                           android:text="图片分享"
                           android:textColor="@color/textColor"
                           android:textSize="12sp"
+                          android:id="@+id/shareBtnTwo"
                           android:gravity="center"
                           android:paddingLeft="22dp"
                           android:background="@drawable/left_one"

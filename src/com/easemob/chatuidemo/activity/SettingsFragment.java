@@ -22,23 +22,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
+import android.widget.*;
 import com.easemob.EMCallBack;
 import com.easemob.applib.controller.HXSDKHelper;
-import com.easemob.applib.model.HXSDKModel;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMChatOptions;
 import com.easemob.chatuidemo.Constant;
-import com.xiaogang.yixiang.MainActivity;
-import com.xiaogang.yixiang.UniversityApplication;
 import com.easemob.chatuidemo.DemoHXSDKHelper;
 import com.easemob.chatuidemo.DemoHXSDKModel;
+import com.xiaogang.yixiang.MainActivity;
 import com.xiaogang.yixiang.R;
 
 /**

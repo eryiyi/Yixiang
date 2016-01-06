@@ -1,7 +1,5 @@
 package com.easemob.chatuidemo.task;
 
-import java.io.File;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -9,7 +7,6 @@ import android.os.AsyncTask;
 import android.view.View;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMMessage;
 import com.easemob.chat.VideoMessageBody;
@@ -17,6 +14,8 @@ import com.easemob.chatuidemo.activity.ShowVideoActivity;
 import com.easemob.chatuidemo.utils.CommonUtils;
 import com.easemob.chatuidemo.utils.ImageCache;
 import com.easemob.util.ImageUtils;
+
+import java.io.File;
 
 public class LoadVideoImageTask extends AsyncTask<Object, Void, Bitmap> {
 

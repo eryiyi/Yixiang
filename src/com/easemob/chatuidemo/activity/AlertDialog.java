@@ -13,8 +13,6 @@
  */
 package com.easemob.chatuidemo.activity;
 
-import java.io.File;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -24,12 +22,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.easemob.chatuidemo.task.DownloadImageTask;
 import com.easemob.chatuidemo.utils.ImageCache;
 import com.easemob.util.ImageUtils;
 import com.xiaogang.yixiang.R;
 import com.xiaogang.yixiang.base.BaseActivity;
+
+import java.io.File;
 
 public class AlertDialog extends BaseActivity {
 	private TextView mTextView;

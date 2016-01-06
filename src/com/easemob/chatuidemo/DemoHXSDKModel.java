@@ -13,16 +13,15 @@
  */
 package com.easemob.chatuidemo;
 
-import java.util.List;
-import java.util.Map;
-
 import android.content.Context;
-
 import com.easemob.applib.model.DefaultHXSDKModel;
 import com.easemob.chatuidemo.db.DemoDBManager;
 import com.easemob.chatuidemo.db.UserDao;
 import com.easemob.chatuidemo.domain.RobotUser;
 import com.easemob.chatuidemo.domain.User;
+
+import java.util.List;
+import java.util.Map;
 
 public class DemoHXSDKModel extends DefaultHXSDKModel{
 

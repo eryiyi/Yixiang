@@ -1,5 +1,6 @@
 package com.xiaogang.yixiang.ui;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -13,6 +14,7 @@ import com.xiaogang.yixiang.R;
 import com.xiaogang.yixiang.base.BaseActivity;
 import com.xiaogang.yixiang.base.InternetURL;
 import com.xiaogang.yixiang.util.StringUtil;
+import com.xiaogang.yixiang.widget.CustomProgressDialog;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -81,6 +83,12 @@ public class TixianActivity extends BaseActivity implements View.OnClickListener
             }
 
         }
+
+        progressDialog = new CustomProgressDialog(TixianActivity.this , "请稍后", R.anim.frame_paopao);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setCancelable(false);
+        progressDialog.setIndeterminate(true);
+        progressDialog.show();
         getData();
 
     }

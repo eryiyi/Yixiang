@@ -1,7 +1,6 @@
 package com.xiaogang.yixiang.ui;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.CountDownTimer;

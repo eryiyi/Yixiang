@@ -26,7 +26,6 @@ import com.easemob.chatuidemo.DemoHXSDKHelper;
 import com.easemob.chatuidemo.db.UserDao;
 import com.easemob.chatuidemo.domain.User;
 import com.easemob.chatuidemo.utils.CommonUtils;
-import com.xiaogang.yixiang.MainActivity;
 import com.xiaogang.yixiang.R;
 import com.xiaogang.yixiang.UniversityApplication;
 import com.xiaogang.yixiang.base.BaseActivity;
@@ -34,6 +33,7 @@ import com.xiaogang.yixiang.base.InternetURL;
 import com.xiaogang.yixiang.data.EmpData;
 import com.xiaogang.yixiang.module.Emp;
 import com.xiaogang.yixiang.util.StringUtil;
+import com.xiaogang.yixiang.widget.CustomProgressDialog;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -72,7 +72,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         initLocation();
         mLocationClient.start();//定位SDK start之后会默认发起一次定位请求，开发者无须判断isstart并主动调用request
         mLocationClient.requestLocation();
-        initLocation();
+
         if(!StringUtil.isNullOrEmpty(getGson().fromJson(getSp().getString("mobile", ""), String.class))){
             mobile.setText(getGson().fromJson(getSp().getString("mobile", ""), String.class));
         }
@@ -131,6 +131,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             showMsg(LoginActivity.this, "请输入密码");
             return;
         }
+
+        progressDialog = new CustomProgressDialog(LoginActivity.this , "请稍后", R.anim.frame_paopao);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setCancelable(false);
+        progressDialog.setIndeterminate(true);
+        progressDialog.show();
         loginData();
     }
 
@@ -222,6 +228,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         save("cover", emp.getCover());
         save("is_admin", emp.getIs_admin());
         save("is_superadmin", emp.getIs_superadmin());
+        save("isLogin", "1");//1已经登录了  0未登录
 
         //登录
     }
@@ -303,8 +310,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 //                        com.easemob.chatuidemo.activity.MainActivity.class);
 //                startActivity(intent);
 
-                Intent mainView = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(mainView);
+//                Intent mainView = new Intent(LoginActivity.this, MainActivity.class);
+//                startActivity(mainView);
                 finish();
             }
 

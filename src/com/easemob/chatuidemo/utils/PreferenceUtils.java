@@ -13,10 +13,8 @@
  */
 package com.easemob.chatuidemo.utils;
 
-import com.easemob.applib.utils.HXPreferenceUtils;
-
 import android.content.Context;
-import android.content.SharedPreferences;
+import com.easemob.applib.utils.HXPreferenceUtils;
 
 /**
  * 

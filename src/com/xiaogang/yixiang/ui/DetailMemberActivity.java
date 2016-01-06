@@ -1,5 +1,6 @@
 package com.xiaogang.yixiang.ui;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -17,13 +18,11 @@ import com.xiaogang.yixiang.UniversityApplication;
 import com.xiaogang.yixiang.adapter.AnimateFirstDisplayListener;
 import com.xiaogang.yixiang.base.BaseActivity;
 import com.xiaogang.yixiang.base.InternetURL;
-import com.xiaogang.yixiang.data.MemberData;
-import com.xiaogang.yixiang.module.GxObj;
 import com.xiaogang.yixiang.module.Member;
 import com.xiaogang.yixiang.util.StringUtil;
+import com.xiaogang.yixiang.widget.CustomProgressDialog;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,7 +31,7 @@ import java.util.Map;
  * Created by Administrator on 2016/1/5.
  */
 public class DetailMemberActivity extends BaseActivity implements View.OnClickListener {
-    private GxObj gxObj;
+    private String userid;
     private ImageView cover;
     private TextView name;
     private TextView location;
@@ -44,7 +43,7 @@ public class DetailMemberActivity extends BaseActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_member_activity);
-        gxObj = (GxObj) getIntent().getExtras().get("gxObj");
+        userid =  getIntent().getExtras().getString("userid");
 
         this.findViewById(R.id.back).setOnClickListener(this);
         cover = (ImageView) this.findViewById(R.id.cover);
@@ -54,6 +53,12 @@ public class DetailMemberActivity extends BaseActivity implements View.OnClickLi
         mobile = (TextView) this.findViewById(R.id.mobile);
         address = (TextView) this.findViewById(R.id.address);
         cont = (TextView) this.findViewById(R.id.cont);
+
+        progressDialog = new CustomProgressDialog(DetailMemberActivity.this , "请稍后", R.anim.frame_paopao);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setCancelable(false);
+        progressDialog.setIndeterminate(true);
+        progressDialog.show();
         getData();
     }
 
@@ -111,7 +116,7 @@ public class DetailMemberActivity extends BaseActivity implements View.OnClickLi
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("access_token", getGson().fromJson(getSp().getString("access_token", ""), String.class));
-                params.put("user_id", gxObj.getUser_id());
+                params.put("user_id", userid);
                 return params;
             }
 

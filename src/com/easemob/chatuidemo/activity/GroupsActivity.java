@@ -13,8 +13,6 @@
  */
 package com.easemob.chatuidemo.activity;
 
-import java.util.List;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,18 +28,15 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import com.easemob.applib.controller.HXSDKHelper;
-import com.easemob.applib.utils.HXPreferenceUtils;
-import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMGroup;
 import com.easemob.chat.EMGroupManager;
 import com.easemob.chatuidemo.adapter.GroupAdapter;
-import com.easemob.exceptions.EaseMobException;
 import com.easemob.util.EMLog;
-import com.xiaogang.yixiang.MainActivity;
 import com.xiaogang.yixiang.R;
 import com.xiaogang.yixiang.base.BaseActivity;
+
+import java.util.List;
 
 public class GroupsActivity extends BaseActivity {
 	public static final String TAG = "GroupsActivity";

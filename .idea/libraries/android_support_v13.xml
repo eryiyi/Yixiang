@@ -19,6 +19,13 @@
       <root url="jar://$PROJECT_DIR$/libs/Parse-1.9.4.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/bolts-android-1.2.0.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/core.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/umeng-analytics-v5.6.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/umeng_social_sdk.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/open_sdk_r5509.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/mta-sdk-1.6.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/SocialSDK_QQZone_3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/SocialSDK_WeiXin_1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/SocialSDK_WeiXin_2.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

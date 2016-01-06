@@ -1,7 +1,5 @@
 package com.easemob.chatuidemo.activity;
 
-import com.easemob.chat.EMChatManager;
-
 import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -13,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.easemob.chat.EMChatManager;
 import com.xiaogang.yixiang.R;
 import com.xiaogang.yixiang.base.BaseActivity;
 

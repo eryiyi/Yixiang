@@ -40,6 +40,12 @@
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
+
+    <meta-data android:value="568cb46667e58e9227001daa" android:name="UMENG_APPKEY"></meta-data>
+    <meta-data android:value="wandoujia" android:name="UMENG_CHANNEL"/>
+
+
+
     <supports-screens
             android:anyDensity="true"
             android:largeScreens="true"
@@ -80,6 +86,7 @@
         <activity android:name=".ui.TixianActivity"    android:launchMode="singleTask" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".ui.MineRedBagActivity"    android:launchMode="singleTask" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".ui.MineCompanyActivity"    android:launchMode="singleTask" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".ui.DetailArticleActivity"    android:launchMode="singleTask" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
 
         <!-- 设置环信应用的appkey -->
         <meta-data
@@ -98,14 +105,6 @@
                 <action android:name="android.intent.action.USER_PRESENT" />
             </intent-filter>
         </receiver>
-
-        <!-- umeng appkey，可忽略 -->
-        <meta-data
-                android:name="UMENG_APPKEY"
-                android:value="53912a3156240b01a7075ed1" >
-        </meta-data>
-
-
 
         <activity
                 android:name="com.easemob.chatuidemo.activity.MainActivity"
@@ -409,6 +408,37 @@
                 android:enabled="true"
                 android:process=":remote" >
         </service>
+
+
+        <!-- ###################注册SDK使用的Activity###################### -->
+        <!--分享编辑页-->
+        <activity
+                android:name="com.umeng.socialize.view.ShareActivity"
+                android:configChanges="orientation|keyboard"
+                android:launchMode="singleTask"
+                android:noHistory="true"
+                android:theme="@style/Theme.UMDialog"
+                android:windowSoftInputMode="stateVisible|adjustResize" >
+        </activity>
+
+        <!-- ############ QQ空间和QQ SSO授权的Activity注册 ############ -->
+        <activity
+                android:name="com.tencent.tauth.AuthActivity"
+                android:launchMode="singleTask"
+                android:noHistory="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- 100424468，如果你使用的公用账号，则不需要修改；否则修改成你在QQ开放平台申请的 APP ID-->
+                <data android:scheme="tencent100424468" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.tencent.connect.common.AssistActivity"
+                  android:theme="@android:style/Theme.Translucent.NoTitleBar"
+                  android:screenOrientation="portrait">
+        </activity>
 
     </application>
 </manifest>

@@ -13,8 +13,6 @@
  */
 package com.easemob.chatuidemo.adapter;
 
-import java.io.File;
-
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
@@ -25,7 +23,6 @@ import android.view.View;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import com.easemob.applib.controller.HXSDKHelper;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMMessage;
@@ -34,6 +31,8 @@ import com.easemob.chat.VoiceMessageBody;
 import com.easemob.chatuidemo.activity.ChatActivity;
 import com.easemob.util.EMLog;
 import com.xiaogang.yixiang.R;
+
+import java.io.File;
 
 public class VoicePlayClickListener implements View.OnClickListener {
 	private static final String TAG = "VoicePlayClickListener";

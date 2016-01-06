@@ -62,13 +62,13 @@
                   android:textColor="@color/textColortwo"
                   android:id="@+id/mine_zhiye"
                   android:layout_height="wrap_content"/>
-        <ImageView android:layout_width="wrap_content"
+        <ImageView android:layout_width="35dp"
                    android:layout_alignParentRight="true"
                    android:layout_centerVertical="true"
                    android:layout_marginRight="8dp"
                    android:id="@+id/mine_erweima"
                    android:src="@drawable/erweima"
-                   android:layout_height="wrap_content"/>
+                   android:layout_height="35dp"/>
     </RelativeLayout>
     <RelativeLayout android:layout_width="match_parent"
                     android:padding="8dp"
