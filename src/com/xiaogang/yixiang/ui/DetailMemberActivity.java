@@ -18,13 +18,18 @@ import com.xiaogang.yixiang.UniversityApplication;
 import com.xiaogang.yixiang.adapter.AnimateFirstDisplayListener;
 import com.xiaogang.yixiang.base.BaseActivity;
 import com.xiaogang.yixiang.base.InternetURL;
+import com.xiaogang.yixiang.data.MemberData;
+import com.xiaogang.yixiang.data.RedBagObjData;
 import com.xiaogang.yixiang.module.Member;
+import com.xiaogang.yixiang.module.RedBagObj;
 import com.xiaogang.yixiang.util.StringUtil;
 import com.xiaogang.yixiang.widget.CustomProgressDialog;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -60,6 +65,7 @@ public class DetailMemberActivity extends BaseActivity implements View.OnClickLi
         progressDialog.setIndeterminate(true);
         progressDialog.show();
         getData();
+        getred();
     }
 
     @Override
@@ -73,7 +79,7 @@ public class DetailMemberActivity extends BaseActivity implements View.OnClickLi
 
     private ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();
     ImageLoader imageLoader = ImageLoader.getInstance();//图片加载类
-
+    Member member;
     void getData(){
         StringRequest request = new StringRequest(
                 Request.Method.POST,
@@ -87,7 +93,7 @@ public class DetailMemberActivity extends BaseActivity implements View.OnClickLi
                                 String code =  jo.getString("code");
                                 if(Integer.parseInt(code) == 200){
 //                                    MemberData data = getGson().fromJson(s, MemberData.class);
-//                                    Member member = data.getData();
+//                                    member = data.getData();
 //                                    initData(member);
                                 }
                                 else{
@@ -139,14 +145,146 @@ public class DetailMemberActivity extends BaseActivity implements View.OnClickLi
             location.setText(String.valueOf(StringUtil.GetShortDistance(Double.valueOf(member.getLng()), Double.valueOf(member.getLat()), UniversityApplication.lng, UniversityApplication.lat)));
         }
         mobile.setText("手机号："+member.getMobile());
-        address.setText(member.getAddress());
+        address.setText("地址："+member.getAddress());
         cont.setText("需求："+member.getRequirement());
     }
 
     public void addHongbao(View view){
         //
+        RedBagObj redBagObj = null ;
+        if(listsRedBags != null && listsRedBags.size() > 0){
+            for(RedBagObj redBagObj1:listsRedBags){
+                if(redBagObj1.getUser_id().equals(member.getUser_id())){
+                    //是对方的红包
+                    redBagObj = redBagObj1;
+                    break;
+                }
+            }
+        }else {
+            showMsg(DetailMemberActivity.this, "暂无红包");
+        }
+        if(redBagObj != null){
+            //说明对方有红包
+            lingqu(redBagObj);
+        }else {
+            showMsg(DetailMemberActivity.this, "对方暂无红包");
+        }
     }
     public void addFriend(View view){
         //
     }
+
+    List<RedBagObj> listsRedBags = new ArrayList<>();
+    void getred(){
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                InternetURL.LIST_RED_SEND_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        if (StringUtil.isJson(s)) {
+                            try {
+                                JSONObject jo = new JSONObject(s);
+                                String code =  jo.getString("code");
+                                if(Integer.parseInt(code) == 200){
+                                    RedBagObjData data = getGson().fromJson(s, RedBagObjData.class);
+                                    listsRedBags.clear();
+                                    listsRedBags.addAll(data.getData());
+                                }
+                                else{
+                                    Toast.makeText(DetailMemberActivity.this, jo.getString("msg"), Toast.LENGTH_SHORT).show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        if (progressDialog != null) {
+                            progressDialog.dismiss();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        if (progressDialog != null) {
+                            progressDialog.dismiss();
+                        }
+                        Toast.makeText(DetailMemberActivity.this, "获得数据失败", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("access_token", getGson().fromJson(getSp().getString("access_token", ""), String.class));
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+        getRequestQueue().add(request);
+    }
+
+    void lingqu(final RedBagObj redBagObj){
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                InternetURL.PACK_RED_SEND_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        if (StringUtil.isJson(s)) {
+                            try {
+                                JSONObject jo = new JSONObject(s);
+                                String code =  jo.getString("code");
+                                if(Integer.parseInt(code) == 200){
+                                    Toast.makeText(DetailMemberActivity.this, "领取红包成功", Toast.LENGTH_SHORT).show();
+                                }
+                                else{
+                                    Toast.makeText(DetailMemberActivity.this, jo.getString("msg"), Toast.LENGTH_SHORT).show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        if (progressDialog != null) {
+                            progressDialog.dismiss();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        if (progressDialog != null) {
+                            progressDialog.dismiss();
+                        }
+                        Toast.makeText(DetailMemberActivity.this, "获得数据失败", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("access_token", getGson().fromJson(getSp().getString("access_token", ""), String.class));
+                params.put("user_id", getGson().fromJson(getSp().getString("user_id", ""), String.class));
+                params.put("pack_id", redBagObj.getId());
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+        getRequestQueue().add(request);
+    }
+
+
+
 }

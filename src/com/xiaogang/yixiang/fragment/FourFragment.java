@@ -79,6 +79,7 @@ public class FourFragment extends BaseFragment implements View.OnClickListener {
         mine_head = (ImageView) view.findViewById(R.id.mine_head);
         mine_erweima = (ImageView) view.findViewById(R.id.mine_erweima);
         mine_lingqu = (ImageView) view.findViewById(R.id.mine_lingqu);
+        mine_lingqu.setOnClickListener(this);
         mine_name = (TextView) view.findViewById(R.id.mine_name);
         mine_zhiye = (TextView) view.findViewById(R.id.mine_zhiye);
         mine_head.setOnClickListener(this);
@@ -119,6 +120,10 @@ public class FourFragment extends BaseFragment implements View.OnClickListener {
             case R.id.liner_tuijian:
                 Intent tuijianView = new Intent(getActivity(), MineTuijianActivity.class);
                 startActivity(tuijianView);
+                break;
+            case R.id.mine_lingqu:
+                //领取
+                lq();
                 break;
         }
     }
@@ -224,8 +229,9 @@ public class FourFragment extends BaseFragment implements View.OnClickListener {
             String action = intent.getAction();
             if (action.equals("updateSuccess")) {
                 //编辑信息成功
-                imageLoader.displayImage(getGson().fromJson(getSp().getString("cover", ""), String.class), mine_head, UniversityApplication.txOptions, animateFirstListener);
-                mine_name.setText(getGson().fromJson(getSp().getString("nick_name", ""), String.class));
+                getData();
+//                imageLoader.displayImage(getGson().fromJson(getSp().getString("cover", ""), String.class), mine_head, UniversityApplication.txOptions, animateFirstListener);
+//                mine_name.setText(getGson().fromJson(getSp().getString("nick_name", ""), String.class));
             }
         }
     };
@@ -244,4 +250,57 @@ public class FourFragment extends BaseFragment implements View.OnClickListener {
         getActivity().unregisterReceiver(mBroadcastReceiver);
     }
 
+    void lq(){
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                InternetURL.GET_EQUYLITY_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        if (StringUtil.isJson(s)) {
+                            try {
+                                JSONObject jo = new JSONObject(s);
+                                String code =  jo.getString("code");
+                                if(Integer.parseInt(code) == 200){
+                                    Toast.makeText(getActivity(), "领取股份成功", Toast.LENGTH_SHORT).show();
+                                }
+                                else{
+                                    Toast.makeText(getActivity(), jo.getString("msg"), Toast.LENGTH_SHORT).show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        if (progressDialog != null) {
+                            progressDialog.dismiss();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        if (progressDialog != null) {
+                            progressDialog.dismiss();
+                        }
+                        Toast.makeText(getActivity(), "获得数据失败", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("access_token", getGson().fromJson(getSp().getString("access_token", ""), String.class));
+                params.put("user_id", getGson().fromJson(getSp().getString("user_id", ""), String.class));
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+        getRequestQueue().add(request);
+    }
 }

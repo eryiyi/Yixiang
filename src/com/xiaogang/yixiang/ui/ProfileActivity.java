@@ -211,11 +211,86 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
             sendCover();
         }else {
             //没有头像
-            saveNoPic("");
+            saveNoPic();
         }
     }
 
-    void saveNoPic(final String url){
+    public void sendCover(){
+        File file = new File(pics);
+        Map<String, File> files = new HashMap<String, File>();
+        files.put("cover", file);
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("access_token", getGson().fromJson(getSp().getString("access_token", ""), String.class));
+        params.put("user_id", getGson().fromJson(getSp().getString("user_id", ""), String.class));
+        params.put("nick_name",mine_name.getText().toString() );
+        if(!StringUtil.isNullOrEmpty(sex)){
+            params.put("sex", sex );
+        }
+        if(!StringUtil.isNullOrEmpty(mine_birth.getText().toString())){
+            try {
+                params.put("birthday", TimeUtils.getCurrentMillion(mine_birth.getText().toString()));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        params.put("sign", mine_sign.getText().toString() );
+        params.put("address", mine_address.getText().toString() );
+        params.put("major", mine_yewu.getText().toString());
+        params.put("requirement", mine_xq.getText().toString());
+
+        CommonUtil.addPutUploadFileRequest(
+                this,
+                InternetURL.UPDATE_MEMBER_INFO_URL,
+                files,
+                params,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        if (StringUtil.isJson(s)) {
+                            try {
+                                JSONObject jo = new JSONObject(s);
+                                String code1 = jo.getString("code");
+                                if (Integer.parseInt(code1) == 200) {
+                                    Toast.makeText(ProfileActivity.this, jo.getString("msg"), Toast.LENGTH_SHORT).show();
+//                                    if(!StringUtil.isNullOrEmpty(pics)){
+//                                        save("cover", pics);
+//                                    }
+                                    if(!StringUtil.isNullOrEmpty(sex)){
+                                        save("sex", sex);
+                                    }
+                                    save("birthday", mine_birth.getText().toString());
+                                    save("sign", mine_sign.getText().toString());
+                                    save("address", mine_address.getText().toString());
+                                    save("major", mine_yewu.getText().toString());
+                                    save("nick_name", mine_name.getText().toString());
+                                    save("requirement", mine_xq.getText().toString());
+                                    Intent intent = new Intent("updateSuccess");
+                                    sendBroadcast(intent);
+                                    finish();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            if (progressDialog != null) {
+                                progressDialog.dismiss();
+                            }
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        if (progressDialog != null) {
+                            progressDialog.dismiss();
+                        }
+                    }
+                },
+                null);
+    }
+
+
+
+    void saveNoPic(){
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 InternetURL.UPDATE_MEMBER_INFO_URL,
@@ -271,24 +346,24 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("access_token", getGson().fromJson(getSp().getString("access_token", ""), String.class));
                 params.put("user_id", getGson().fromJson(getSp().getString("user_id", ""), String.class));
-                if(!StringUtil.isNullOrEmpty(url)){
-                    params.put("cover",url );
-                }
-                params.put("nick_name ",mine_name.getText().toString() );
+//                if(!StringUtil.isNullOrEmpty(url)){
+//                    params.put("cover",url );
+//                }
+                params.put("nick_name",mine_name.getText().toString() );
                 if(!StringUtil.isNullOrEmpty(sex)){
-                    params.put("sex ", sex );
+                    params.put("sex", sex );
                 }
                 if(!StringUtil.isNullOrEmpty(mine_birth.getText().toString())){
                     try {
-                        params.put("birthday ", TimeUtils.getCurrentMillion(mine_birth.getText().toString()));
+                        params.put("birthday", TimeUtils.getCurrentMillion(mine_birth.getText().toString()));
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
                 }
-                params.put("sign ", mine_sign.getText().toString() );
-                params.put("address ", mine_address.getText().toString() );
-                params.put("major ", mine_yewu.getText().toString());
-                params.put("requirement ", mine_xq.getText().toString());
+                params.put("sign", mine_sign.getText().toString() );
+                params.put("address", mine_address.getText().toString() );
+                params.put("major", mine_yewu.getText().toString());
+                params.put("requirement", mine_xq.getText().toString());
                 return params;
             }
 
@@ -408,48 +483,48 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     }
 
 
-    public void sendCover(){
-            Bitmap bm = FileUtils.getSmallBitmap(pics);
-            String cameraImagePath = FileUtils.saveBitToSD(bm, System.currentTimeMillis() + ".jpg");
-            File f = new File(cameraImagePath);
-            Map<String, File> files = new HashMap<String, File>();
-            files.put("file", f);
-            Map<String, String> params = new HashMap<String, String>();
-            CommonUtil.addPutUploadFileRequest(
-                    this,
-                    InternetURL.UPLOAD_FILE_URL,    //http://115.29.200.169/api/test/uploadfile
-                    files,
-                    params,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String s) {
-                            if (StringUtil.isJson(s)) {
-                                try {
-                                    JSONObject jo = new JSONObject(s);
-                                    String code1 = jo.getString("code");
-                                    if (Integer.parseInt(code1) == 200) {
-                                        String url = jo.getString("url");
-                                        saveNoPic(url);
-                                    }
-                                } catch (JSONException e) {
-                                    if (progressDialog != null) {
-                                        progressDialog.dismiss();
-                                    }
-                                    e.printStackTrace();
-                                }
-                            }
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError volleyError) {
-                            if (progressDialog != null) {
-                                progressDialog.dismiss();
-                            }
-                        }
-                    },
-                    null);
-    }
+//    public void sendCover(){
+//            Bitmap bm = FileUtils.getSmallBitmap(pics);
+//            String cameraImagePath = FileUtils.saveBitToSD(bm, System.currentTimeMillis() + ".jpg");
+//            File f = new File(cameraImagePath);
+//            Map<String, File> files = new HashMap<String, File>();
+//            files.put("file", f);
+//            Map<String, String> params = new HashMap<String, String>();
+//            CommonUtil.addPutUploadFileRequest(
+//                    this,
+//                    InternetURL.UPLOAD_FILE_URL,    //http://115.29.200.169/api/test/uploadfile
+//                    files,
+//                    params,
+//                    new Response.Listener<String>() {
+//                        @Override
+//                        public void onResponse(String s) {
+//                            if (StringUtil.isJson(s)) {
+//                                try {
+//                                    JSONObject jo = new JSONObject(s);
+//                                    String code1 = jo.getString("code");
+//                                    if (Integer.parseInt(code1) == 200) {
+//                                        String url = jo.getString("url");
+//                                        saveNoPic(url);
+//                                    }
+//                                } catch (JSONException e) {
+//                                    if (progressDialog != null) {
+//                                        progressDialog.dismiss();
+//                                    }
+//                                    e.printStackTrace();
+//                                }
+//                            }
+//                        }
+//                    },
+//                    new Response.ErrorListener() {
+//                        @Override
+//                        public void onErrorResponse(VolleyError volleyError) {
+//                            if (progressDialog != null) {
+//                                progressDialog.dismiss();
+//                            }
+//                        }
+//                    },
+//                    null);
+//    }
 
 
 }

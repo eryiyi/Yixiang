@@ -28,6 +28,7 @@ import com.xiaogang.yixiang.module.Talents;
 import com.xiaogang.yixiang.ui.GXActivtiy;
 import com.xiaogang.yixiang.ui.QiehuanListActivity;
 import com.xiaogang.yixiang.util.StringUtil;
+import com.xiaogang.yixiang.widget.CircleImageView;
 import com.xiaogang.yixiang.widget.CustomProgressDialog;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -249,25 +250,18 @@ public class ThreeFragment extends BaseFragment implements View.OnClickListener,
         //定义Maker坐标点
         LatLng point = new LatLng(lat,lng);
         String pic = talents.getCover();
-
-//        if(!StringUtil.isNullOrEmpty(pic)){
-            ImageView imageView = new ImageView(getActivity());
-
-            imageView.setMaxWidth(StringUtil.px2dp(getActivity(), 30));
-            imageView.setMaxHeight(StringUtil.px2dp(getActivity(), 30));
-
-            imageLoader.displayImage(InternetURL.INTERNAL_PIC+pic, imageView, UniversityApplication.txOptions, animateFirstListener);
-
-            //构建Marker图标
-            BitmapDescriptor bitmap = BitmapDescriptorFactory
-                    .fromView(imageView);
-            //构建MarkerOption，用于在地图上添加Marker
-            OverlayOptions option = new MarkerOptions()
-                    .position(point)
-                    .icon(bitmap);
-            //在地图上添加Marker，并显示
-            mBaiduMap.addOverlay(option);
-//        }
+        View convertView = LayoutInflater.from(getActivity()).inflate(R.layout.item_pic, null);
+        ImageView imageView = (ImageView) convertView.findViewById(R.id.head);
+        imageLoader.displayImage(InternetURL.INTERNAL_PIC+pic, imageView, UniversityApplication.txOptions, animateFirstListener);
+        //构建Marker图标
+        BitmapDescriptor bitmap = BitmapDescriptorFactory
+                .fromView(imageView);
+        //构建MarkerOption，用于在地图上添加Marker
+        OverlayOptions option = new MarkerOptions()
+                .position(point)
+                .icon(bitmap);
+        //在地图上添加Marker，并显示
+        mBaiduMap.addOverlay(option);
     }
 
 

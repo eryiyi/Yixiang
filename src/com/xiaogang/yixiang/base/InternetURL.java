@@ -38,6 +38,7 @@ public class InternetURL {
     public static final String UPDATE_GUQUAN_URL = INTERNAL + "user.api-updateMemberInfo";
     // 、 查看 文章( ( article .api- -
     public static final String GET_NEWS_URL = INTERNAL + "article.api-news";
+    public static final String GET_NEWS_DETAIL_URL = INTERNAL + "article.api-detail";
     // 、 上传地理位置( ( user .api- -
     public static final String UP_LOCATION_URL = INTERNAL + "user.api-saveLngLat";
     // 、 股权排名 (user.api- - guquanOrderBy
@@ -57,7 +58,7 @@ public class InternetURL {
     //22 、发 红包 (redPack.api- -send) )
     public static final String RED_SEND_URL = INTERNAL + "redPack.api-send";
     // 、拆 红包
-    public static final String PACK_RED_SEND_URL = INTERNAL + "redPack.api-send";
+    public static final String PACK_RED_SEND_URL = INTERNAL + "redPack.api-get";
     // 、 红包列表
     public static final String LIST_RED_SEND_URL = INTERNAL + "redPack.api-lists";
     // 、 领取股份 (equity.api- -ge
@@ -76,4 +77,10 @@ public class InternetURL {
     public static final String LIST_REQUIRE_URL = INTERNAL + "require.api-lists";
     //轮播图
     public static final String AD_LUNBO_URL = INTERNAL + "adv.api-lists";
+    // 、设置银行卡
+    public static final String YINHANG_SET_URL = INTERNAL + "bank.api-set";
+    //获取银行卡
+    public static final String YINHANG_GET_URL = INTERNAL + "bank.api-get";
+    //删除银行卡
+    public static final String YINHANG_DELETE_URL = INTERNAL + "bank.api-del";
 }

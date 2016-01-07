@@ -44,6 +44,8 @@ public class MineQianbaoActivity extends BaseActivity implements View.OnClickLis
             case R.id.yinhangka_one:
             case R.id.yinhangka_two:
             case R.id.yinhangka_three:
+                Intent cardView = new Intent(MineQianbaoActivity.this, CardListActivity.class);
+                startActivity(cardView);
                 break;
         }
     }

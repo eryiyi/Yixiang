@@ -13,7 +13,6 @@
     <file url="file://$PROJECT_DIR$/libs/SocialSDK_tencentWB_1.jar" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/libs/SocialSDK_tencentWB_2.jar" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/libs/SocialSDK_tencentWB_3.jar" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/libs/android-support-v13.jar" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/libs/android-support-v4.jar" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/libs/armeabi-v7a" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/libs/bolts-android-1.2.0.jar" charset="UTF-8" />
@@ -402,6 +401,7 @@
     <file url="file://$PROJECT_DIR$/res/layout/grid.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/layout/image_grid_fragment.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/layout/item_article.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/layout/item_card.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/layout/item_dialog_camera.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/layout/item_dialog_sex.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/layout/item_goutong.xml" charset="UTF-8" />

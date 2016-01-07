@@ -316,7 +316,7 @@ public class MinehotArticleActivity extends BaseActivity implements View.OnClick
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("access_token", getGson().fromJson(getSp().getString("access_token", ""), String.class));
-                params.put("type_id", "1");
+//                params.put("type_id", "1");
                 return params;
             }
 
