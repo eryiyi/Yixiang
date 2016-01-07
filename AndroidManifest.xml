@@ -250,6 +250,16 @@
                 android:screenOrientation="portrait"
                 android:theme="@style/horizontal_slide" >
         </activity>
+        <activity
+                android:name="com.easemob.chatuidemo.activity.HxAlertYanzheng"
+                android:screenOrientation="portrait"
+                android:theme="@style/horizontal_slide" >
+        </activity>
+        <activity
+                android:name="com.easemob.chatuidemo.activity.HxAlertDialog"
+                android:screenOrientation="portrait"
+                android:theme="@style/horizontal_slide" >
+        </activity>
 
         <!-- 公开的群聊列表 -->
         <activity

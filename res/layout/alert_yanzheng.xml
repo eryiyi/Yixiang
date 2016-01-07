@@ -17,38 +17,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:text="@string/prompt"
+                android:text="@string/yanzheng_xinxi"
                 android:textColor="#333"
                 android:visibility="visible"
-                android:textSize="20sp"/>
-
-        <TextView
-                android:id="@+id/alert_message"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="20dp"
-                android:gravity="center_horizontal"
-                android:padding="5dp"
-                android:textColor="#333"
                 android:textSize="18sp"/>
 
         <EditText
                 android:id="@+id/edit"
+                android:minLines="2"
+                android:maxLines="4"
+                android:background="@drawable/et_bule_bg"
+                android:text="我是张三，加个好友吧"
+                android:paddingLeft="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:singleLine="true"
+                android:singleLine="false"
                 android:textColor="#444"
                 android:textSize="16sp"
-                android:visibility="gone"/>
+                />
 
-        <ImageView
-                android:id="@+id/image"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:scaleType="fitCenter"
-                android:visibility="gone"/>
     </LinearLayout>
 
     <LinearLayout
@@ -61,7 +49,7 @@
         <Button
                 android:id="@+id/btn_cancel"
                 android:layout_width="match_parent"
-                android:layout_height="47dp"
+                android:layout_height="30dp"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/btn_cancel_bj"
@@ -70,11 +58,11 @@
                 android:text="@string/cancel"
                 android:textColor="#666666"
                 android:textSize="16sp"
-                android:visibility="gone"/>
+                />
 
         <Button
                 android:layout_width="match_parent"
-                android:layout_height="47dp"
+                android:layout_height="30dp"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/btn_blue_selector"

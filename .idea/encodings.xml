@@ -330,6 +330,7 @@
     <file url="file://$PROJECT_DIR$/res/drawable/dotc.png" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/drawable/dotn.png" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/drawable/edit_text_bg.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/drawable/et_bule_bg.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/drawable/main_bottom_item_bg.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/drawable/menu_msg_text_color.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/drawable/mm_listitem.xml" charset="UTF-8" />
@@ -380,6 +381,8 @@
     <file url="file://$PROJECT_DIR$/res/layout/activity_video_call.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/layout/activity_voice_call.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/layout/alert_dialog.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/layout/alert_dialog.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/layout/alert_yanzheng.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/layout/chat_neterror_item.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/layout/choose_griditem.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/layout/commom_back_btn.xml" charset="UTF-8" />

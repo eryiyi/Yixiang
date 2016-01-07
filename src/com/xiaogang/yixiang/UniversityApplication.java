@@ -18,6 +18,7 @@ import com.baidu.location.LocationClient;
 import com.baidu.mapapi.SDKInitializer;
 import com.easemob.EMCallBack;
 import com.easemob.chatuidemo.DemoHXSDKHelper;
+import com.easemob.chatuidemo.domain.User;
 import com.google.gson.Gson;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -29,6 +30,7 @@ import com.xiaogang.yixiang.module.Member;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -385,5 +387,14 @@ public class UniversityApplication extends Application {
         // 先调用sdk logout，在清理app中自己的数据
         hxSDKHelper.logout(isGCM,emCallBack);
     }
+    /**
+     * 获取内存中好友user list
+     *
+     * @return
+     */
+    public Map<String, User> getContactList() {
+        return hxSDKHelper.getContactList();
+    }
+
 }
 

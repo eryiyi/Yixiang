@@ -27,6 +27,8 @@ import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMMessage;
 import com.easemob.chatuidemo.Constant;
 import com.easemob.chatuidemo.DemoHXSDKHelper;
+import com.easemob.chatuidemo.activity.ChatAllHistoryFragment;
+import com.easemob.chatuidemo.activity.ContactlistFragment;
 import com.easemob.chatuidemo.activity.LoginActivity;
 import com.easemob.util.EMLog;
 import com.xiaogang.yixiang.base.BaseActivity;
@@ -51,8 +53,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     private FragmentTransaction fragmentTransaction;
     private FragmentManager fm;
 
-    private OneFragment oneFragment;
-    private TwoFragment twoFragment;
+    private ChatAllHistoryFragment oneFragment;
+    private ContactlistFragment twoFragment;
     private ThreeFragment threeFragment;
     private FourFragment fourFragment;
 
@@ -159,7 +161,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         switch (id) {
             case R.id.foot_one:
                 if (oneFragment == null) {
-                    oneFragment = new OneFragment();
+                    oneFragment = new ChatAllHistoryFragment();
                     fragmentTransaction.add(R.id.content_frame, oneFragment);
                 } else {
                     fragmentTransaction.show(oneFragment);
@@ -173,7 +175,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                 break;
             case R.id.foot_two:
                 if (twoFragment == null) {
-                    twoFragment = new TwoFragment();
+                    twoFragment = new ContactlistFragment();
                     fragmentTransaction.add(R.id.content_frame, twoFragment);
                 } else {
                     fragmentTransaction.show(twoFragment);
@@ -279,151 +281,151 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         finish();
     }
 
-    void getToken(){
-        StringRequest request = new StringRequest(
-                Request.Method.POST,
-//                InternetURL.GET_TOKEN+"?user_id="+"13266816551" +"&password="+"123456",
-                InternetURL.GET_TOKEN,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String s) {
-                        if (StringUtil.isJson(s)) {
-                            try {
-                                JSONObject jo = new JSONObject(s);
-                                String code =  jo.getString("code");
-                                if(Integer.parseInt(code) == 200){
-                                    String access_token =  jo.getString("access_token");
-                                    save("access_token", access_token);
-                                    login();
-                                }
-                                else{
-                                    Toast.makeText(MainActivity.this, jo.getString("msg"), Toast.LENGTH_SHORT).show();
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                        if (progressDialog != null) {
-                            progressDialog.dismiss();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError volleyError) {
-                        if (progressDialog != null) {
-                            progressDialog.dismiss();
-                        }
-                        Toast.makeText(MainActivity.this, "登陆失败", Toast.LENGTH_SHORT).show();
-                    }
-                }
-        ) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("user_id", "13266816551");
-                params.put("password", "123456");
-                return params;
-            }
+//    void getToken(){
+//        StringRequest request = new StringRequest(
+//                Request.Method.POST,
+////                InternetURL.GET_TOKEN+"?user_id="+"13266816551" +"&password="+"123456",
+//                InternetURL.GET_TOKEN,
+//                new Response.Listener<String>() {
+//                    @Override
+//                    public void onResponse(String s) {
+//                        if (StringUtil.isJson(s)) {
+//                            try {
+//                                JSONObject jo = new JSONObject(s);
+//                                String code =  jo.getString("code");
+//                                if(Integer.parseInt(code) == 200){
+//                                    String access_token =  jo.getString("access_token");
+//                                    save("access_token", access_token);
+//                                    login();
+//                                }
+//                                else{
+//                                    Toast.makeText(MainActivity.this, jo.getString("msg"), Toast.LENGTH_SHORT).show();
+//                                }
+//                            } catch (JSONException e) {
+//                                e.printStackTrace();
+//                            }
+//                        }
+//                        if (progressDialog != null) {
+//                            progressDialog.dismiss();
+//                        }
+//                    }
+//                },
+//                new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError volleyError) {
+//                        if (progressDialog != null) {
+//                            progressDialog.dismiss();
+//                        }
+//                        Toast.makeText(MainActivity.this, "登陆失败", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//        ) {
+//            @Override
+//            protected Map<String, String> getParams() throws AuthFailureError {
+//                Map<String, String> params = new HashMap<String, String>();
+//                params.put("user_id", "13266816551");
+//                params.put("password", "123456");
+//                return params;
+//            }
+//
+//            @Override
+//            public Map<String, String> getHeaders() throws AuthFailureError {
+//                Map<String, String> params = new HashMap<String, String>();
+//                params.put("Content-Type", "application/x-www-form-urlencoded");
+//                return params;
+//            }
+//        };
+//        getRequestQueue().add(request);
+//    }
 
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("Content-Type", "application/x-www-form-urlencoded");
-                return params;
-            }
-        };
-        getRequestQueue().add(request);
-    }
 
+//    void login(){
+//        StringRequest request = new StringRequest(
+//                Request.Method.POST,
+//                InternetURL.LOGIN_URL,
+//                new Response.Listener<String>() {
+//                    @Override
+//                    public void onResponse(String s) {
+//                        if (StringUtil.isJson(s)) {
+//                            try {
+//                                JSONObject jo = new JSONObject(s);
+//                                String code =  jo.getString("code");
+//                                if(Integer.parseInt(code) == 200){
+//                                    EmpData data = getGson().fromJson(s, EmpData.class);
+//                                    saveAccount(data.getData());
+//                                }
+//                                else{
+//                                    Toast.makeText(MainActivity.this, jo.getString("msg"), Toast.LENGTH_SHORT).show();
+//                                }
+//                            } catch (JSONException e) {
+//                                e.printStackTrace();
+//                            }
+//                        }
+//                        if (progressDialog != null) {
+//                            progressDialog.dismiss();
+//                        }
+//                    }
+//                },
+//                new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError volleyError) {
+//                        if (progressDialog != null) {
+//                            progressDialog.dismiss();
+//                        }
+//                        Toast.makeText(MainActivity.this, "登陆失败", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//        ) {
+//            @Override
+//            protected Map<String, String> getParams() throws AuthFailureError {
+//                Map<String, String> params = new HashMap<String, String>();
+//                params.put("user_id", "13266816551");
+//                params.put("password", "123456");
+//                return params;
+//            }
+//
+//            @Override
+//            public Map<String, String> getHeaders() throws AuthFailureError {
+//                Map<String, String> params = new HashMap<String, String>();
+//                params.put("Content-Type", "application/x-www-form-urlencoded");
+//                return params;
+//            }
+//        };
+//        getRequestQueue().add(request);
+//    }
 
-    void login(){
-        StringRequest request = new StringRequest(
-                Request.Method.POST,
-                InternetURL.LOGIN_URL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String s) {
-                        if (StringUtil.isJson(s)) {
-                            try {
-                                JSONObject jo = new JSONObject(s);
-                                String code =  jo.getString("code");
-                                if(Integer.parseInt(code) == 200){
-                                    EmpData data = getGson().fromJson(s, EmpData.class);
-                                    saveAccount(data.getData());
-                                }
-                                else{
-                                    Toast.makeText(MainActivity.this, jo.getString("msg"), Toast.LENGTH_SHORT).show();
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                        if (progressDialog != null) {
-                            progressDialog.dismiss();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError volleyError) {
-                        if (progressDialog != null) {
-                            progressDialog.dismiss();
-                        }
-                        Toast.makeText(MainActivity.this, "登陆失败", Toast.LENGTH_SHORT).show();
-                    }
-                }
-        ) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("user_id", "13266816551");
-                params.put("password", "123456");
-                return params;
-            }
-
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("Content-Type", "application/x-www-form-urlencoded");
-                return params;
-            }
-        };
-        getRequestQueue().add(request);
-    }
-
-    public void saveAccount(Emp emp) {
-        // 登陆成功，保存用户名密码
-        save("uid", emp.getUid());
-        save("access_token", emp.getAccess_token());
-        save("user_id", emp.getUser_id());
-        save("truename", emp.getTruename());
-        save("mobile", emp.getMobile());
-        save("salt", emp.getSalt());
-//        save("password", emp.getPassword());
-        save("lng", emp.getLng());
-        save("lat", emp.getLat());
-        save("reg_time", emp.getReg_time());
-        save("birth", emp.getBirth());
-        save("id_card_num", emp.getId_card_num());
-        save("email", emp.getEmail());
-        save("birth_place", emp.getBirth_place());
-        save("interest", emp.getInterest());
-        save("sex", emp.getSex());
-        save("skill", emp.getSkill());
-        save("job_intension", emp.getJob_intension());
-        save("job_experience", emp.getJob_experience());
-        save("edu_experience", emp.getEdu_experience());
-        save("gq_nature", emp.getGq_nature());
-        save("gq_identity", emp.getGq_identity());
-        save("gq_number", emp.getGq_number());
-        save("nick_name", emp.getNick_name());
-        save("cover", emp.getCover());
-        save("is_admin", emp.getIs_admin());
-        save("is_superadmin", emp.getIs_superadmin());
-
-        switchFragment(R.id.foot_three);
-    }
+//    public void saveAccount(Emp emp) {
+//        // 登陆成功，保存用户名密码
+//        save("uid", emp.getUid());
+//        save("access_token", emp.getAccess_token());
+//        save("user_id", emp.getUser_id());
+//        save("truename", emp.getTruename());
+//        save("mobile", emp.getMobile());
+//        save("salt", emp.getSalt());
+////        save("password", emp.getPassword());
+//        save("lng", emp.getLng());
+//        save("lat", emp.getLat());
+//        save("reg_time", emp.getReg_time());
+//        save("birth", emp.getBirth());
+//        save("id_card_num", emp.getId_card_num());
+//        save("email", emp.getEmail());
+//        save("birth_place", emp.getBirth_place());
+//        save("interest", emp.getInterest());
+//        save("sex", emp.getSex());
+//        save("skill", emp.getSkill());
+//        save("job_intension", emp.getJob_intension());
+//        save("job_experience", emp.getJob_experience());
+//        save("edu_experience", emp.getEdu_experience());
+//        save("gq_nature", emp.getGq_nature());
+//        save("gq_identity", emp.getGq_identity());
+//        save("gq_number", emp.getGq_number());
+//        save("nick_name", emp.getNick_name());
+//        save("cover", emp.getCover());
+//        save("is_admin", emp.getIs_admin());
+//        save("is_superadmin", emp.getIs_superadmin());
+//
+//        switchFragment(R.id.foot_three);
+//    }
 
     //弹出顶部主菜单
     public void onTopMenuPopupButtonClick(View view) {

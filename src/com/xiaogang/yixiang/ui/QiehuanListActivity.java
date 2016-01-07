@@ -1,7 +1,9 @@
 package com.xiaogang.yixiang.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.xiaogang.yixiang.R;
@@ -31,7 +33,16 @@ public class QiehuanListActivity extends BaseActivity implements View.OnClickLis
         lstv = (ListView) this.findViewById(R.id.lstv);
         adapter = new ItemCityAdapter(arrayList, QiehuanListActivity.this);
         lstv.setAdapter(adapter);
-
+        lstv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //
+                Intent detailV = new Intent(QiehuanListActivity.this, DetailMemberActivity.class);
+                Talents talents = arrayList.get(position);
+                detailV.putExtra("userid", talents.getUser_id());
+                startActivity(detailV);
+            }
+        });
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.xiaogang.yixiang.ui;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,6 +12,8 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.easemob.chatuidemo.activity.HxAlertDialog;
+import com.easemob.chatuidemo.activity.HxAlertYanzheng;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.xiaogang.yixiang.R;
@@ -171,9 +174,6 @@ public class DetailMemberActivity extends BaseActivity implements View.OnClickLi
             showMsg(DetailMemberActivity.this, "对方暂无红包");
         }
     }
-    public void addFriend(View view){
-        //
-    }
 
     List<RedBagObj> listsRedBags = new ArrayList<>();
     void getred(){
@@ -287,5 +287,23 @@ public class DetailMemberActivity extends BaseActivity implements View.OnClickLi
     }
 
 
+
+    public void addFriend(View v) {
+        if ((getGson().fromJson(getSp().getString("user_id", ""), String.class)).equals(member.getUser_id())) {
+            String str = getResources().getString(R.string.not_add_myself);
+            startActivity(new Intent(this, HxAlertDialog.class).putExtra("msg", str));
+            return;
+        }
+
+        if (getMyApp().getContactList().containsKey(member.getUser_id())) {
+            String strin = getResources().getString(R.string.This_user_is_already_your_friend);
+            startActivity(new Intent(this, HxAlertDialog.class).putExtra("msg", strin));
+            return;
+        }
+
+        Intent intent = new Intent(this, HxAlertYanzheng.class);
+        intent.putExtra("hxUserName", member.getUser_id());
+        startActivity(intent);
+    }
 
 }

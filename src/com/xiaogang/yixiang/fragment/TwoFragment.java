@@ -121,7 +121,6 @@ public class TwoFragment extends BaseFragment implements View.OnClickListener ,E
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-
         }
     }
 
@@ -205,12 +204,12 @@ public class TwoFragment extends BaseFragment implements View.OnClickListener ,E
                 userlist.put(Constant.CHAT_ROOM, chatRoomItem);
 
                 // 添加"Robot"
-                User robotUser = new User();
-                String strRobot = context.getString(R.string.robot_chat);
-                robotUser.setUsername(Constant.CHAT_ROBOT);
-                robotUser.setNick(strRobot);
-                robotUser.setHeader("");
-                userlist.put(Constant.CHAT_ROBOT, robotUser);
+//                User robotUser = new User();
+//                String strRobot = context.getString(R.string.robot_chat);
+//                robotUser.setUsername(Constant.CHAT_ROBOT);
+//                robotUser.setNick(strRobot);
+//                robotUser.setHeader("");
+//                userlist.put(Constant.CHAT_ROBOT, robotUser);
 
                 // 存入内存
                 ((DemoHXSDKHelper)HXSDKHelper.getInstance()).setContactList(userlist);
