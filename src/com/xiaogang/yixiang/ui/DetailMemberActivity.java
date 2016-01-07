@@ -92,12 +92,13 @@ public class DetailMemberActivity extends BaseActivity implements View.OnClickLi
                                 JSONObject jo = new JSONObject(s);
                                 String code =  jo.getString("code");
                                 if(Integer.parseInt(code) == 200){
-//                                    MemberData data = getGson().fromJson(s, MemberData.class);
-//                                    member = data.getData();
-//                                    initData(member);
+                                    MemberData data = getGson().fromJson(s, MemberData.class);
+                                    member = data.getData();
+                                    initData(member);
                                 }
                                 else{
                                     Toast.makeText(DetailMemberActivity.this, jo.getString("msg"), Toast.LENGTH_SHORT).show();
+                                    finish();
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();

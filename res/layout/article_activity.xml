@@ -32,7 +32,6 @@
                        android:maxHeight="200dp"
                        android:layout_height="wrap_content"/>
             <TextView android:layout_width="match_parent"
-                      android:text="sfasdf"
                       android:textColor="@color/textColor"
                       android:textSize="16sp"
                       android:padding="8dp"
@@ -42,18 +41,15 @@
                           android:orientation="horizontal"
                           android:layout_height="wrap_content">
                 <TextView android:layout_width="wrap_content"
-                          android:text="20150102"
                           android:textColor="@color/textColortwo"
                           android:textSize="14sp"
                           android:padding="8dp"
                           android:id="@+id/dateline"
                           android:layout_height="wrap_content"/>
                 <TextView android:layout_width="match_parent"
-                          android:text="1ssfasdaf0"
                           android:layout_marginLeft="8dp"
                           android:textColor="@color/textColortwo"
                           android:textSize="14sp"
-                          android:visibility="gone"
                           android:padding="8dp"
                           android:id="@+id/hit"
                           android:layout_height="wrap_content"/>

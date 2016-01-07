@@ -39,7 +39,6 @@
                 <TextView android:layout_width="wrap_content"
                            android:id="@+id/name"
                            android:textColor="@color/btn_blue_normal"
-                           android:text="张三"
                            android:padding="8dp"
                            android:textSize="16sp"
                            android:layout_toRightOf="@+id/cover"
@@ -78,7 +77,6 @@
                       android:textSize="14sp"
                       android:id="@+id/address"
                       android:padding="15dp"
-                      android:text="地址：广东广州市...."
                       android:layout_height="wrap_content"/>
             <View android:layout_width="match_parent"
                   android:background="@color/gray"
@@ -90,7 +88,6 @@
 
             </GridView>
             <TextView android:layout_width="wrap_content"
-                      android:text="供应：说发大水发大水"
                       android:textSize="14sp"
                       android:id="@+id/cont"
                       android:textColor="@color/textColor"

@@ -54,7 +54,7 @@ public class DetailArticleActivity extends BaseActivity implements View.OnClickL
         imageLoader.displayImage(articleObj.getPicture(), pic, UniversityApplication.options, animateFirstListener);
         title.setText(articleObj.getTitle());
         dateline.setText(articleObj.getDateline());
-//        hit.setText("点击量:"+articleObj.getHit());
+        hit.setText("点击量:"+articleObj.getHit());
 
         WebView wv = (WebView) findViewById(R.id.wvHtml);
         String htmlData = articleObj.getContent()==null?"":articleObj.getContent();

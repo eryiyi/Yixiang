@@ -1,5 +1,6 @@
 package com.xiaogang.yixiang.ui;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.xiaogang.yixiang.base.InternetURL;
 import com.xiaogang.yixiang.data.RankGqObjData;
 import com.xiaogang.yixiang.module.RankGqObj;
 import com.xiaogang.yixiang.util.StringUtil;
+import com.xiaogang.yixiang.widget.CustomProgressDialog;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -38,14 +40,16 @@ public class RankGuquanActivity extends BaseActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.rank_activity);
-
         initView();
+        progressDialog = new CustomProgressDialog(RankGuquanActivity.this , "请稍后", R.anim.frame_paopao);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setCancelable(false);
+        progressDialog.setIndeterminate(true);
+        progressDialog.show();
         getdata();
-
     }
 
     void initView(){
-        //
         adapterHot = new ItemRankGqAdapter(articleObjs, RankGuquanActivity.this);
         lstv = (ListView) this.findViewById(R.id.lstv);
         lstv.setAdapter(adapterHot);
@@ -93,11 +97,17 @@ public class RankGuquanActivity extends BaseActivity implements View.OnClickList
                         } else {
                             Toast.makeText(RankGuquanActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
                         }
+                        if (progressDialog != null) {
+                            progressDialog.dismiss();
+                        }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
+                        if (progressDialog != null) {
+                            progressDialog.dismiss();
+                        }
                         Toast.makeText(RankGuquanActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -105,6 +115,7 @@ public class RankGuquanActivity extends BaseActivity implements View.OnClickList
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
+
                 params.put("access_token", getGson().fromJson(getSp().getString("access_token", ""), String.class));
                 return params;
             }

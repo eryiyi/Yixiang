@@ -56,7 +56,8 @@ public class MineTuijianActivity extends BaseActivity implements View.OnClickLis
 
 
         mine_name.setText("我是"+ getGson().fromJson(getSp().getString("nick_name", ""), String.class));
-        imageLoader.displayImage( UniversityApplication.member.getCover(), mine_head, UniversityApplication.txOptions, animateFirstListener);
+        imageLoader.displayImage(InternetURL.INTERNAL_PIC + getGson().fromJson(getSp().getString("cover", ""), String.class), mine_head, UniversityApplication.txOptions, animateFirstListener);
+
         try {
             mineImg.setImageBitmap(StringUtil.Create2DCode(getGson().fromJson(getSp().getString("download_code", ""), String.class)));
         } catch (WriterException e) {

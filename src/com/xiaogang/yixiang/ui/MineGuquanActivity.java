@@ -1,5 +1,6 @@
 package com.xiaogang.yixiang.ui;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.xiaogang.yixiang.base.InternetURL;
 import com.xiaogang.yixiang.data.MineGuquanObjData;
 import com.xiaogang.yixiang.module.MineGuquanObj;
 import com.xiaogang.yixiang.util.StringUtil;
+import com.xiaogang.yixiang.widget.CustomProgressDialog;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -55,8 +57,14 @@ public class MineGuquanActivity extends BaseActivity implements View.OnClickList
         mine_name = (TextView) this.findViewById(R.id.mine_name);
         mine_head = (ImageView) this.findViewById(R.id.mine_head);
 
-        mine_name.setText("我是"+ getGson().fromJson(getSp().getString("nick_name", ""), String.class));
-        imageLoader.displayImage( UniversityApplication.member.getCover(), mine_head, UniversityApplication.txOptions, animateFirstListener);
+        mine_name.setText("我是" + getGson().fromJson(getSp().getString("nick_name", ""), String.class));
+        imageLoader.displayImage(InternetURL.INTERNAL_PIC + getGson().fromJson(getSp().getString("cover", ""), String.class), mine_head, UniversityApplication.txOptions, animateFirstListener);
+
+        progressDialog = new CustomProgressDialog(MineGuquanActivity.this , "请稍后", R.anim.frame_paopao);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setCancelable(false);
+        progressDialog.setIndeterminate(true);
+        progressDialog.show();
         getdata();
 
         this.findViewById(R.id.liner_sign).setOnClickListener(this);
@@ -105,11 +113,17 @@ public class MineGuquanActivity extends BaseActivity implements View.OnClickList
                         } else {
                             Toast.makeText(MineGuquanActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
                         }
+                        if (progressDialog != null) {
+                            progressDialog.dismiss();
+                        }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
+                        if (progressDialog != null) {
+                            progressDialog.dismiss();
+                        }
                         Toast.makeText(MineGuquanActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -151,7 +165,11 @@ public class MineGuquanActivity extends BaseActivity implements View.OnClickList
             showMsg(MineGuquanActivity.this, "请勾选协议");
             return;
         }
-
+        progressDialog = new CustomProgressDialog(MineGuquanActivity.this , "请稍后", R.anim.frame_paopao);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setCancelable(false);
+        progressDialog.setIndeterminate(true);
+        progressDialog.show();
         getData();
     }
 
