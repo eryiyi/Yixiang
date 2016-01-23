@@ -176,7 +176,9 @@ public class RegActivity extends BaseActivity implements View.OnClickListener {
                                 if(Integer.parseInt(code) == 200) {
                                     EmpData data = getGson().fromJson(s, EmpData.class);
 
-                                    Toast.makeText(RegActivity.this, jo.getString("msg") , Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(RegActivity.this, "注册成功" , Toast.LENGTH_SHORT).show();
+                                    save("mobile", mobile.getText().toString());
+                                    save("password", password.getText().toString());
                                     //huanxin
                                     register(data.getData());
                                 }else {

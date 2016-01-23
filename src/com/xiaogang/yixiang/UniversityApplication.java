@@ -42,15 +42,6 @@ import java.util.concurrent.Executors;
  */
 public class UniversityApplication extends Application {
     public static Member member;
-    // 运用list来保存们每一个activity是关键
-    private List<Activity> mList = new LinkedList<Activity>();
-    private ExecutorService lxThread;
-    private Gson gson;
-    private RequestQueue requestQueue;
-    private SharedPreferences sp;
-
-    private static UniversityApplication application;
-
     public LocationClient mLocationClient;
     public MyLocationListener mMyLocationListener;
 
@@ -61,7 +52,15 @@ public class UniversityApplication extends Application {
     public static  Double lat;
     public static  Double lng;
 
+    // 运用list来保存们每一个activity是关键
+    private List<Activity> mList = new LinkedList<Activity>();
+    private ExecutorService lxThread;
+    private Gson gson;
+    private RequestQueue requestQueue;
+    private SharedPreferences sp;
     private static UniversityApplication instance;
+    private static UniversityApplication application;
+
     public static Context applicationContext;
     // login user name
     public final String PREF_USERNAME = "username";
@@ -70,7 +69,6 @@ public class UniversityApplication extends Application {
      */
     public static String currentUserNick = "";
     public static DemoHXSDKHelper hxSDKHelper = new DemoHXSDKHelper();
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -85,6 +83,7 @@ public class UniversityApplication extends Application {
         sp = getSharedPreferences("university_manage", Context.MODE_PRIVATE);
         imageLoader = new com.android.volley.toolbox.ImageLoader(requestQueue, new BitmapCache());
         initImageLoader(this);
+        hxSDKHelper.onInit(applicationContext);
 
         // 在使用 SDK 各组间之前初始化 context 信息，传入 ApplicationContext
         SDKInitializer.initialize(this);
@@ -94,9 +93,6 @@ public class UniversityApplication extends Application {
         mMyLocationListener = new MyLocationListener();
         mLocationClient.registerLocationListener(mMyLocationListener);
         mVibrator =(Vibrator)getApplicationContext().getSystemService(Service.VIBRATOR_SERVICE);
-
-        hxSDKHelper.onInit(applicationContext);
-
 
     }
 

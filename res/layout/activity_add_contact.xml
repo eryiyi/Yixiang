@@ -47,54 +47,8 @@
         android:singleLine="true"
         android:textColorHint="#b3b3b3"
         android:textSize="18sp" />
-
-    <LinearLayout
-        android:id="@+id/ll_user"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/mm_listitem"
-        android:visibility="gone" >
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="@drawable/mm_listitem"
-            android:duplicateParentState="true" >
-
-            <ImageView
-                android:id="@+id/avatar"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="11dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/default_avatar" />
-
-            <TextView
-                android:id="@+id/name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="18dp"
-                android:layout_toRightOf="@id/avatar"
-                android:textColor="#0F0F0F"
-                android:textSize="16sp" />
-
-
-            <Button
-                android:id="@+id/indicator"
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="11dp"
-                android:background="@drawable/button_bg"
-                android:onClick="addContact"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp"
-                android:text="@string/button_add"
-                android:textSize="14sp" />
-        </RelativeLayout>
-    </LinearLayout>
-
+    <ListView android:layout_width="match_parent"
+              android:id="@+id/lstv"
+              android:layout_height="match_parent">
+    </ListView>
 </LinearLayout>

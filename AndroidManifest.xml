@@ -138,6 +138,7 @@
                 android:theme="@style/horizontal_slide"
                 android:windowSoftInputMode="adjustResize|stateVisible">
         </activity>
+
         <!-- 聊天页面 -->
         <activity
                 android:name="com.easemob.chatuidemo.activity.ChatActivity"

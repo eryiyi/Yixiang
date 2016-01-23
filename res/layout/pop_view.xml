@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:padding="3dp"
+              android:background="@color/white"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <com.xiaogang.yixiang.widget.CircleImageView
+                android:layout_width="45dp"
+                android:src="@drawable/head"
+                android:id="@+id/head"
+                android:scaleType="centerCrop"
+                android:layout_height="45dp"/>
+    <TextView android:layout_width="wrap_content"
+              android:text="张三"
+              android:layout_marginTop="8dp"
+              android:layout_marginLeft="8dp"
+              android:layout_toRightOf="@+id/head"
+              android:id="@+id/nickname"
+              android:textColor="@color/textColor"
+              android:textSize="13sp"
+              android:layout_height="wrap_content"/>
+    <ImageView android:layout_width="15dp"
+               android:id="@+id/sex"
+               android:layout_toRightOf="@+id/nickname"
+               android:layout_marginTop="8dp"
+               android:src="@drawable/meal"
+               android:layout_height="15dp"/>
+    <ImageView android:layout_width="15dp"
+               android:id="@+id/redbag"
+               android:visibility="gone"
+               android:layout_toRightOf="@+id/sex"
+               android:layout_marginTop="8dp"
+               android:src="@drawable/meal"
+               android:layout_height="15dp"/>
+    <TextView android:layout_width="wrap_content"
+              android:id="@+id/content"
+              android:text="需求"
+              android:layout_marginLeft="8dp"
+              android:layout_toRightOf="@+id/head"
+              android:layout_marginTop="3dp"
+              android:textColor="@color/textColortwo"
+              android:textSize="12sp"
+              android:layout_below="@+id/nickname"
+              android:lineSpacingMultiplier="1.2"
+              android:layout_height="wrap_content"/>
+</RelativeLayout>

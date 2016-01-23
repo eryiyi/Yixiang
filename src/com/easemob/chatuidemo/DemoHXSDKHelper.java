@@ -57,7 +57,7 @@ import java.util.Map;
  * @author easemob
  *
  */
-public class DemoHXSDKHelper extends HXSDKHelper{
+public class DemoHXSDKHelper extends HXSDKHelper {
 
     private static final String TAG = "DemoHXSDKHelper";
     
@@ -174,7 +174,7 @@ public class DemoHXSDKHelper extends HXSDKHelper{
                     
                     //获取扩展属性 此处省略
                     //message.getStringAttribute("");
-                    EMLog.d(TAG, String.format("透传消息：action:%s,message:%s", action,message.toString()));
+                    EMLog.d(TAG, String.format("透传消息：action:%s,message:%s", action, message.toString()));
                     final String str = appContext.getString(R.string.receive_the_passthrough);
                     
                     final String CMD_TOAST_BROADCAST = "easemob.demo.cmd.toast";
@@ -301,7 +301,7 @@ public class DemoHXSDKHelper extends HXSDKHelper{
                 if(message.getType() == Type.TXT){
                     ticker = ticker.replaceAll("\\[.{2,3}\\]", "[表情]");
                 }
-                Map<String,RobotUser> robotMap=((DemoHXSDKHelper)HXSDKHelper.getInstance()).getRobotList();
+                Map<String,RobotUser> robotMap=((DemoHXSDKHelper) HXSDKHelper.getInstance()).getRobotList();
     			if(robotMap!=null&&robotMap.containsKey(message.getFrom())){
     				String nick = robotMap.get(message.getFrom()).getNick();
     				if(!TextUtils.isEmpty(nick)){

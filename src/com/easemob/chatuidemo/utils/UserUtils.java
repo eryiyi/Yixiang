@@ -17,7 +17,7 @@ public class UserUtils {
      * @return
      */
     public static User getUserInfo(String username){
-        User user = ((DemoHXSDKHelper)HXSDKHelper.getInstance()).getContactList().get(username);
+        User user = ((DemoHXSDKHelper) HXSDKHelper.getInstance()).getContactList().get(username);
         if(user == null){
             user = new User(username);
         }
@@ -47,7 +47,7 @@ public class UserUtils {
      * 设置当前用户头像
      */
 	public static void setCurrentUserAvatar(Context context, ImageView imageView) {
-		User user = ((DemoHXSDKHelper)HXSDKHelper.getInstance()).getUserProfileManager().getCurrentUserInfo();
+		User user = ((DemoHXSDKHelper) HXSDKHelper.getInstance()).getUserProfileManager().getCurrentUserInfo();
 		if (user != null && user.getAvatar() != null) {
 			Picasso.with(context).load(user.getAvatar()).placeholder(R.drawable.default_avatar).into(imageView);
 		} else {
@@ -71,7 +71,7 @@ public class UserUtils {
      * 设置当前用户昵称
      */
     public static void setCurrentUserNick(TextView textView){
-    	User user = ((DemoHXSDKHelper)HXSDKHelper.getInstance()).getUserProfileManager().getCurrentUserInfo();
+    	User user = ((DemoHXSDKHelper) HXSDKHelper.getInstance()).getUserProfileManager().getCurrentUserInfo();
     	if(textView != null){
     		textView.setText(user.getNick());
     	}
@@ -79,6 +79,7 @@ public class UserUtils {
     
     /**
      * 保存或更新某个用户
+     * @param user
      */
 	public static void saveUserInfo(User newUser) {
 		if (newUser == null || newUser.getUsername() == null) {

@@ -29,7 +29,6 @@ public class WelcomeActivity extends BaseActivity implements View.OnClickListene
         mLocationClient.start();//定位SDK start之后会默认发起一次定位请求，开发者无须判断isstart并主动调用request
         mLocationClient.requestLocation();
 
-
         save("isLogin", "0");
         // 启动一个线程
         new Thread(WelcomeActivity.this).start();

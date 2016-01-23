@@ -55,7 +55,7 @@ public class ParseManager {
 			pUser.save();
 			return true;
 		} catch (ParseException e) {
-			if(e.getCode()==ParseException.OBJECT_NOT_FOUND){
+			if(e.getCode()== ParseException.OBJECT_NOT_FOUND){
 				pUser = new ParseObject(CONFIG_TABLE_NAME);
 				pUser.put(CONFIG_USERNAME, username);
 				pUser.put(CONFIG_NICK, nickname);

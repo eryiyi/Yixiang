@@ -26,6 +26,7 @@ import com.easemob.chatuidemo.DemoHXSDKHelper;
 import com.easemob.chatuidemo.db.UserDao;
 import com.easemob.chatuidemo.domain.User;
 import com.easemob.chatuidemo.utils.CommonUtils;
+import com.xiaogang.yixiang.MainActivity;
 import com.xiaogang.yixiang.R;
 import com.xiaogang.yixiang.UniversityApplication;
 import com.xiaogang.yixiang.base.BaseActivity;
@@ -79,6 +80,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         if(!StringUtil.isNullOrEmpty(getGson().fromJson(getSp().getString("password", ""), String.class))){
             password.setText(getGson().fromJson(getSp().getString("password", ""), String.class));
         }
+//        if(!StringUtil.isNullOrEmpty(getGson().fromJson(getSp().getString("mobile", ""), String.class)) && !StringUtil.isNullOrEmpty(getGson().fromJson(getSp().getString("password", ""), String.class))){
+//            //
+//            progressDialog = new CustomProgressDialog(LoginActivity.this , "请稍后", R.anim.frame_paopao);
+//            progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+//            progressDialog.setCancelable(false);
+//            progressDialog.setIndeterminate(true);
+//            progressDialog.show();
+//            loginData();
+//        }
     }
     private void initLocation(){
         LocationClientOption option = new LocationClientOption();
@@ -154,6 +164,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                                 if(Integer.parseInt(code) == 200){
                                     EmpData data = getGson().fromJson(s, EmpData.class);
                                     saveAccount(data.getData());
+                                    //上传地理位置
+                                    upLocation();
                                     login(data.getData().getUser_id(), "123456");
 //                                    Intent mainView = new Intent(LoginActivity.this, MainActivity.class);
 //                                    startActivity(mainView);
@@ -230,7 +242,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         save("is_superadmin", emp.getIs_superadmin());
         save("isLogin", "1");//1已经登录了  0未登录
 
-        //登录
+        //
+        Intent intent = new Intent("login_success");
+        LoginActivity.this.sendBroadcast(intent);
     }
 
 
@@ -367,6 +381,51 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         UserDao dao = new UserDao(LoginActivity.this);
         List<User> users = new ArrayList<User>(userlist.values());
         dao.saveContactList(users);
+
+        if("1".equals(getGson().fromJson(getSp().getString("isLogin", ""), String.class))){
+            //如果已经登录了
+            ((DemoHXSDKHelper)HXSDKHelper.getInstance()).getUserProfileManager().asyncGetCurrentUserInfo();
+        }
+    }
+
+
+    void upLocation(){
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                InternetURL.UP_LOCATION_URL ,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        if (StringUtil.isJson(s)) {
+
+                        } else {
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("access_token", getGson().fromJson(getSp().getString("access_token", ""), String.class));
+                params.put("user_id", getGson().fromJson(getSp().getString("user_id", ""), String.class));
+                params.put("lng", String.valueOf(UniversityApplication.lng));
+                params.put("lat", String.valueOf(UniversityApplication.lat));
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+        getRequestQueue().add(request);
     }
 
 }

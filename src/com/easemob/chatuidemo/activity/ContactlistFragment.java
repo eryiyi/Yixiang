@@ -86,7 +86,7 @@ public class ContactlistFragment extends Fragment {
                                 refresh();
 		                    }else{
 		                        String s1 = getResources().getString(R.string.get_failed_please_check);
-		                        Toast.makeText(getActivity(), s1, 1).show();
+		                        Toast.makeText(getActivity(), s1, Toast.LENGTH_SHORT).show();
 		                        progressBar.setVisibility(View.GONE);
 		                    }
 		                }
@@ -203,10 +203,12 @@ public class ContactlistFragment extends Fragment {
 				} else if(Constant.CHAT_ROOM.equals(username)){
 					//进入聊天室列表页面
 				    startActivity(new Intent(getActivity(), PublicChatRoomsActivity.class));
-				}else if(Constant.CHAT_ROBOT.equals(username)){
-					//进入Robot列表页面
-					startActivity(new Intent(getActivity(), RobotsActivity.class));
-				}else {
+				}
+//				else if(Constant.CHAT_ROBOT.equals(username)){
+//					//进入Robot列表页面
+//					startActivity(new Intent(getActivity(), RobotsActivity.class));
+//				}
+				else {
 					// demo中直接进入聊天页面，实际一般是进入用户详情页
 					startActivity(new Intent(getActivity(), ChatActivity.class).putExtra("userId", adapter.getItem(position).getUsername()));
 				}
@@ -333,7 +335,7 @@ public class ContactlistFragment extends Fragment {
 					getActivity().runOnUiThread(new Runnable() {
 						public void run() {
 							pd.dismiss();
-							Toast.makeText(getActivity(), st2 + e.getMessage(), 1).show();
+							Toast.makeText(getActivity(), st2 + e.getMessage(), Toast.LENGTH_SHORT).show();
 						}
 					});
 
@@ -363,7 +365,7 @@ public class ContactlistFragment extends Fragment {
 					getActivity().runOnUiThread(new Runnable() {
 						public void run() {
 							pd.dismiss();
-							Toast.makeText(getActivity(), st2, 0).show();
+							Toast.makeText(getActivity(), st2, Toast.LENGTH_SHORT).show();
 							refresh();
 						}
 					});
@@ -372,7 +374,7 @@ public class ContactlistFragment extends Fragment {
 					getActivity().runOnUiThread(new Runnable() {
 						public void run() {
 							pd.dismiss();
-							Toast.makeText(getActivity(), st3, 0).show();
+							Toast.makeText(getActivity(), st3, Toast.LENGTH_SHORT).show();
 						}
 					});
 				}
@@ -436,7 +438,7 @@ public class ContactlistFragment extends Fragment {
 			if (!entry.getKey().equals(Constant.NEW_FRIENDS_USERNAME)
 			        && !entry.getKey().equals(Constant.GROUP_USERNAME)
 			        && !entry.getKey().equals(Constant.CHAT_ROOM)
-					&& !entry.getKey().equals(Constant.CHAT_ROBOT)
+//					&& !entry.getKey().equals(Constant.CHAT_ROBOT)
 					&& !blackList.contains(entry.getKey()))
 				contactList.add(entry.getValue());
 		}

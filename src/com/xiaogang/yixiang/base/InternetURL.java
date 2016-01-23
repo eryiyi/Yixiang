@@ -83,4 +83,6 @@ public class InternetURL {
     public static final String YINHANG_GET_URL = INTERNAL + "bank.api-get";
     //删除银行卡
     public static final String YINHANG_DELETE_URL = INTERNAL + "bank.api-del";
+    //查询用户 根据昵称和手机号
+    public static final String FIND_MEMBER_URL = INTERNAL + "user.api-findMember";
 }

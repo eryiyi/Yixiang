@@ -23,7 +23,7 @@ import com.easemob.chatuidemo.domain.User;
 import java.util.List;
 import java.util.Map;
 
-public class DemoHXSDKModel extends DefaultHXSDKModel{
+public class DemoHXSDKModel extends DefaultHXSDKModel {
 
     public DemoHXSDKModel(Context ctx) {
         super(ctx);

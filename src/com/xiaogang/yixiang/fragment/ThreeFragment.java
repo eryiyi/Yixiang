@@ -6,9 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.Toast;
+import android.widget.*;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -25,6 +23,7 @@ import com.xiaogang.yixiang.base.BaseFragment;
 import com.xiaogang.yixiang.base.InternetURL;
 import com.xiaogang.yixiang.data.TalentsData;
 import com.xiaogang.yixiang.module.Talents;
+import com.xiaogang.yixiang.ui.DetailMemberActivity;
 import com.xiaogang.yixiang.ui.GXActivtiy;
 import com.xiaogang.yixiang.ui.QiehuanListActivity;
 import com.xiaogang.yixiang.util.StringUtil;
@@ -50,7 +49,7 @@ public class ThreeFragment extends BaseFragment implements View.OnClickListener,
     private UiSettings mUiSettings;
 
     private List<Talents> talentses = new ArrayList<Talents>();
-
+    private InfoWindow mInfoWindow;
 
     private ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();
     ImageLoader imageLoader = ImageLoader.getInstance();//图片加载类
@@ -102,13 +101,20 @@ public class ThreeFragment extends BaseFragment implements View.OnClickListener,
         switch (v.getId()) {
             case R.id.mine_qiehuan:
                 //
-                Intent mineQiehuan = new Intent(getActivity(), QiehuanListActivity.class);
-                ArrayList<Talents> arrayList = new ArrayList<Talents>();
-                for(Talents talents:talentses){
-                    arrayList.add(talents);
+                if("1".equals(getGson().fromJson(getSp().getString("isLogin", ""), String.class))){
+                    //如果已经登录了
+                    Intent mineQiehuan = new Intent(getActivity(), QiehuanListActivity.class);
+                    ArrayList<Talents> arrayList = new ArrayList<Talents>();
+                    for(Talents talents:talentses){
+                        arrayList.add(talents);
+                    }
+                    mineQiehuan.putExtra("talentses",arrayList);
+                    startActivity(mineQiehuan);
+                }else {
+                    Intent loginView = new Intent(getActivity(), com.xiaogang.yixiang.ui.LoginActivity.class);
+                    startActivity(loginView);
                 }
-                mineQiehuan.putExtra("talentses",arrayList);
-                startActivity(mineQiehuan);
+
                 break;
             case R.id.mine_location:
                 //
@@ -218,7 +224,7 @@ public class ThreeFragment extends BaseFragment implements View.OnClickListener,
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("access_token", getGson().fromJson(getSp().getString("access_token", ""), String.class));
+//                params.put("access_token", getGson().fromJson(getSp().getString("access_token", ""), String.class));
                 params.put("lat", String.valueOf(UniversityApplication.lat));
                 params.put("lng", String.valueOf(UniversityApplication.lng));
                 return params;
@@ -243,6 +249,72 @@ public class ThreeFragment extends BaseFragment implements View.OnClickListener,
                 }
 
             }
+            mBaiduMap.setOnMarkerDragListener(new BaiduMap.OnMarkerDragListener() {
+                public void onMarkerDrag(Marker marker) {
+                }
+
+                public void onMarkerDragEnd(Marker marker) {
+//                    Toast.makeText(
+//                            OverlayDemo.this,
+//                            "拖拽结束，新位置：" + marker.getPosition().latitude + ", "
+//                                    + marker.getPosition().longitude,
+//                            Toast.LENGTH_LONG).show();
+                }
+
+                public void onMarkerDragStart(Marker marker) {
+                }
+            });
+
+            mBaiduMap.setOnMarkerClickListener(new BaiduMap.OnMarkerClickListener() {
+                public boolean onMarkerClick(final Marker marker) {
+//                    Button button = new Button(getActivity());
+//                    button.setBackgroundResource(R.drawable.index_pop);
+                    Talents talentsTmp = new Talents();
+                    for(Talents talents:talentses){
+                        if(!StringUtil.isNullOrEmpty(talents.getLat()) && !StringUtil.isNullOrEmpty(talents.getLng())){
+                            if(talents.getLat().equals(String.valueOf(marker.getPosition().latitude))){
+                                talentsTmp = talents;
+                                break;
+                            }
+                        }
+                    }
+                    if(talentsTmp != null && !StringUtil.isNullOrEmpty(talentsTmp.getUser_id())){
+                        final String userid = talentsTmp.getUser_id();
+                        View view = (RelativeLayout) LayoutInflater.from(getActivity()).inflate(R.layout.pop_view, null);
+                        ImageView head= (ImageView) view.findViewById(R.id.head);
+                        TextView nickname= (TextView) view.findViewById(R.id.nickname);
+                        TextView content= (TextView) view.findViewById(R.id.content);
+                        nickname.setText(talentsTmp.getTruename()==null?"":talentsTmp.getTruename());
+                        content.setText(talentsTmp.getCompanyNameOrCareer()==null?"":talentsTmp.getCompanyNameOrCareer());
+                        imageLoader.displayImage(InternetURL.INTERNAL_PIC + talentsTmp.getCover(), head, UniversityApplication.txOptions, animateFirstListener);
+                        InfoWindow.OnInfoWindowClickListener listener = null;
+//                        button.setText("更改位置");
+                        listener = new InfoWindow.OnInfoWindowClickListener() {
+                            public void onInfoWindowClick() {
+//                                LatLng ll = marker.getPosition();
+//                                LatLng llNew = new LatLng(ll.latitude + 0.005,
+//                                        ll.longitude + 0.005);
+//                                marker.setPosition(llNew);
+//                                mBaiduMap.hideInfoWindow();
+                                if("1".equals(getGson().fromJson(getSp().getString("isLogin", ""), String.class))){
+                                    //如果已经登录了
+                                    Intent detailV = new Intent(getActivity(), DetailMemberActivity.class);
+                                    detailV.putExtra("userid", userid);
+                                    startActivity(detailV);
+                                }else {
+                                    Intent loginView = new Intent(getActivity(), com.xiaogang.yixiang.ui.LoginActivity.class);
+                                    startActivity(loginView);
+                                }
+                            }
+                        };
+                        LatLng ll = marker.getPosition();
+                        mInfoWindow = new InfoWindow(BitmapDescriptorFactory.fromView(view), ll, -47, listener);
+                        mBaiduMap.showInfoWindow(mInfoWindow);
+                    }
+
+                    return true;
+                }
+            });
         }
     }
 
@@ -260,6 +332,8 @@ public class ThreeFragment extends BaseFragment implements View.OnClickListener,
         OverlayOptions option = new MarkerOptions()
                 .position(point)
                 .icon(bitmap);
+
+
         //在地图上添加Marker，并显示
         mBaiduMap.addOverlay(option);
     }
