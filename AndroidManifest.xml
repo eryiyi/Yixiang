@@ -255,7 +255,7 @@
         <activity
                 android:name="com.easemob.chatuidemo.activity.HxAlertYanzheng"
                 android:screenOrientation="portrait"
-                android:theme="@style/horizontal_slide" >
+                android:theme="@style/MyDialogStyle" >
         </activity>
         <activity
                 android:name="com.easemob.chatuidemo.activity.HxAlertDialog"

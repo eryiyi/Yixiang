@@ -319,45 +319,64 @@ public class ThreeFragment extends BaseFragment implements View.OnClickListener,
                 }
             });
         }
+        new Thread(){
+            @Override
+            public void run(){
+                //等待三秒 重新刷新页面
+                try {
+                    Thread.sleep(3000);
+                    mMapView.refreshDrawableState();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+
     }
 
     public void MydrawPointCurrentLocation(Double lat, Double lng, Talents talents){
         //定义Maker坐标点
-        LatLng point = new LatLng(lat,lng);
+       final LatLng point = new LatLng(lat,lng);
        final String pic = talents.getCover();
         View convertView = LayoutInflater.from(getActivity()).inflate(R.layout.item_pic, null);
        final ImageView imageView = (ImageView) convertView.findViewById(R.id.head);
-//        imageLoader.displayImage(InternetURL.INTERNAL_PIC+pic, imageView, UniversityApplication.txOptions, animateFirstListener);
-        new Thread(){
+        imageLoader.displayImage(InternetURL.INTERNAL_PIC+pic, imageView, UniversityApplication.txOptions, new AnimateFirstDisplayListener(){
             @Override
-            public void run(){
-                Bitmap bitmap2 = StringUtil.returnBitMap(InternetURL.INTERNAL_PIC+pic);
-                imageView.setImageBitmap(bitmap2);
-                handler.sendEmptyMessage(0);
+            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                super.onLoadingComplete(imageUri, view, loadedImage);
+                //构建Marker图标
+                BitmapDescriptor bitmap = BitmapDescriptorFactory
+                        .fromView(imageView);
+                //构建MarkerOption，用于在地图上添加Marker
+                OverlayOptions option = new MarkerOptions()
+                        .position(point)
+                        .icon(bitmap);
+
+                //在地图上添加Marker，并显示
+                mBaiduMap.addOverlay(option);
             }
-        }.start();
+        });
+//        new Thread(){
+//            @Override
+//            public void run(){
+//                Bitmap bitmap2 = StringUtil.returnBitMap(InternetURL.INTERNAL_PIC+pic);
+//                imageView.setImageBitmap(bitmap2);
+//                handler.sendEmptyMessage(0);
+//            }
+//        }.start();
 
-        //构建Marker图标
-        BitmapDescriptor bitmap = BitmapDescriptorFactory
-                .fromView(imageView);
-        //构建MarkerOption，用于在地图上添加Marker
-        OverlayOptions option = new MarkerOptions()
-                .position(point)
-                .icon(bitmap);
 
-        //在地图上添加Marker，并显示
-        mBaiduMap.addOverlay(option);
     }
 
-    //定义Handler对象
-    private Handler handler =new Handler(){
-        @Override
-//当有消息发送出来的时候就执行Handler的这个方法
-        public void handleMessage(Message msg){
-            super.handleMessage(msg);
-//处理UI
-        }
-    };
+//    //定义Handler对象
+//    private Handler handler =new Handler(){
+//        @Override
+////当有消息发送出来的时候就执行Handler的这个方法
+//        public void handleMessage(Message msg){
+//            super.handleMessage(msg);
+////处理UI
+//        }
+//    };
 
 
 
