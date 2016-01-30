@@ -2,7 +2,10 @@ package com.xiaogang.yixiang.fragment;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -321,10 +324,19 @@ public class ThreeFragment extends BaseFragment implements View.OnClickListener,
     public void MydrawPointCurrentLocation(Double lat, Double lng, Talents talents){
         //定义Maker坐标点
         LatLng point = new LatLng(lat,lng);
-        String pic = talents.getCover();
+       final String pic = talents.getCover();
         View convertView = LayoutInflater.from(getActivity()).inflate(R.layout.item_pic, null);
-        ImageView imageView = (ImageView) convertView.findViewById(R.id.head);
-        imageLoader.displayImage(InternetURL.INTERNAL_PIC+pic, imageView, UniversityApplication.txOptions, animateFirstListener);
+       final ImageView imageView = (ImageView) convertView.findViewById(R.id.head);
+//        imageLoader.displayImage(InternetURL.INTERNAL_PIC+pic, imageView, UniversityApplication.txOptions, animateFirstListener);
+        new Thread(){
+            @Override
+            public void run(){
+                Bitmap bitmap2 = StringUtil.returnBitMap(InternetURL.INTERNAL_PIC+pic);
+                imageView.setImageBitmap(bitmap2);
+                handler.sendEmptyMessage(0);
+            }
+        }.start();
+
         //构建Marker图标
         BitmapDescriptor bitmap = BitmapDescriptorFactory
                 .fromView(imageView);
@@ -333,10 +345,19 @@ public class ThreeFragment extends BaseFragment implements View.OnClickListener,
                 .position(point)
                 .icon(bitmap);
 
-
         //在地图上添加Marker，并显示
         mBaiduMap.addOverlay(option);
     }
+
+    //定义Handler对象
+    private Handler handler =new Handler(){
+        @Override
+//当有消息发送出来的时候就执行Handler的这个方法
+        public void handleMessage(Message msg){
+            super.handleMessage(msg);
+//处理UI
+        }
+    };
 
 
 
