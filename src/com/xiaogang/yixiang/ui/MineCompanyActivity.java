@@ -507,16 +507,40 @@ public class MineCompanyActivity extends BaseActivity implements View.OnClickLis
                 params.put("company_phpne", tel.getText().toString());
                 params.put("company_address", address.getText().toString());
                 params.put("company_introduce", jieshao.getText().toString());
-                params.put("file1", picurl1);
-                params.put("prod_name_1", textOne.getText().toString() );
-                params.put("file2", picurl2);
-                params.put("prod_name_2",textTwo.getText().toString() );
-                params.put("file3", picurl3);
-                params.put("prod_name_3", textThree.getText().toString());
-                params.put("file4", picurl4);
-                params.put("prod_name_4", textFour.getText().toString());
-                params.put("file5", picurl5);
-                params.put("prod_name_5", textFive.getText().toString());
+                if(!StringUtil.isNullOrEmpty(picurl1)){
+                    params.put("file1", picurl1);
+                }
+                if(!StringUtil.isNullOrEmpty(picurl2)){
+                    params.put("file2", picurl2);
+                }
+                if(!StringUtil.isNullOrEmpty(picurl3)){
+                    params.put("file3", picurl3);
+                }
+                if(!StringUtil.isNullOrEmpty(picurl4)){
+                    params.put("file4", picurl4);
+                }
+                if(!StringUtil.isNullOrEmpty(picurl2)){
+                    params.put("file2", picurl2);
+                }
+                if(!StringUtil.isNullOrEmpty(picurl5)){
+                    params.put("file5", picurl5);
+                }
+
+                if(!StringUtil.isNullOrEmpty(textOne.getText().toString())){
+                    params.put("prod_name_1", textOne.getText().toString() );
+                }
+                if(!StringUtil.isNullOrEmpty(textTwo.getText().toString())){
+                    params.put("prod_name_2", textTwo.getText().toString() );
+                }
+                if(!StringUtil.isNullOrEmpty(textThree.getText().toString())){
+                    params.put("prod_name_3", textThree.getText().toString() );
+                }
+                if(!StringUtil.isNullOrEmpty(textFour.getText().toString())){
+                    params.put("prod_name_4", textFour.getText().toString() );
+                }
+                if(!StringUtil.isNullOrEmpty(textFive.getText().toString())){
+                    params.put("prod_name_5", textFive.getText().toString() );
+                }
                 return params;
             }
 
