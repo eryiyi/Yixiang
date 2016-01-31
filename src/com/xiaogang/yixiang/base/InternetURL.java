@@ -64,9 +64,9 @@ public class InternetURL {
     // 、 领取股份 (equity.api- -ge
     public static final String GET_EQUYLITY_URL = INTERNAL + "equity.api-get";
 //    、、26 、微信充值
-    public static final String WEIXIN_CHONGZHI_URL = INTERNAL + "Weixin/unifiedorder";
+    public static final String WEIXIN_CHONGZHI_URL = INTERNAL_PIC + "Weixin/unifiedorder";
     //27 、
-    public static final String SHARE_URL = INTERNAL + "share/index";
+    public static final String SHARE_URL = INTERNAL_PIC + "share/index";
     // 、提现
     public static final String DRAW_URL = INTERNAL + "withdraw.api-set";
     // 、上传图片

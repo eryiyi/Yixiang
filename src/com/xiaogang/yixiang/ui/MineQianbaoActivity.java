@@ -32,6 +32,8 @@ public class MineQianbaoActivity extends BaseActivity implements View.OnClickLis
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.chongzhi:
+                Intent payV = new Intent(MineQianbaoActivity.this, PayActivity.class);
+                startActivity(payV);
                 break;
             case R.id.hongbao:
                 Intent redbag = new Intent(MineQianbaoActivity.this, MineRedBagActivity.class);

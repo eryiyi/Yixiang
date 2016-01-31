@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -30,6 +31,10 @@ public class TixianActivity extends BaseActivity implements View.OnClickListener
     private EditText zhanghao;
     private EditText kaihuhang;
     private String type= "0";
+
+    private TextView zhifubao;
+    private TextView yinhangka;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +48,9 @@ public class TixianActivity extends BaseActivity implements View.OnClickListener
         this.findViewById(R.id.zhifubao).setOnClickListener(this);
         this.findViewById(R.id.yinhangka).setOnClickListener(this);
         kaihuhang.setVisibility(View.GONE);
+
+        zhifubao = (TextView) this.findViewById(R.id.zhifubao);
+        yinhangka = (TextView) this.findViewById(R.id.yinhangka);
     }
 
     @Override
@@ -51,10 +59,14 @@ public class TixianActivity extends BaseActivity implements View.OnClickListener
             case R.id.zhifubao:
                 type = "0";
                 kaihuhang.setVisibility(View.GONE);
+                zhifubao.setTextColor(getResources().getColor(R.color.red));
+                yinhangka.setTextColor(getResources().getColor(R.color.dark_gray));
                 break;
             case R.id.yinhangka:
                 type = "1";
                 kaihuhang.setVisibility(View.VISIBLE);
+                zhifubao.setTextColor(getResources().getColor(R.color.dark_gray));
+                yinhangka.setTextColor(getResources().getColor(R.color.red));
                 break;
         }
 
@@ -68,8 +80,8 @@ public class TixianActivity extends BaseActivity implements View.OnClickListener
             showMsg(TixianActivity.this, "请输入真实姓名");
             return;
         }
-        if(StringUtil.isNullOrEmpty(jine.getText().toString())){
-            showMsg(TixianActivity.this, "请输入金额");
+        if(StringUtil.isNullOrEmpty(jine.getText().toString()) || "0".equals(jine.getText().toString())){
+            showMsg(TixianActivity.this, "请输入金额,金额必须大于0");
             return;
         }
         if(StringUtil.isNullOrEmpty(zhanghao.getText().toString())){

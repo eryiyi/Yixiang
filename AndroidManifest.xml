@@ -3,7 +3,7 @@
           package="com.xiaogang.yixiang"
           android:versionCode="1"
           android:versionName="1.0">
-    <uses-sdk android:minSdkVersion="14"/>
+    <uses-sdk android:minSdkVersion="16"/>
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
     <uses-permission android:name="android.permission.GET_TASKS" />
@@ -42,6 +42,8 @@
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
 
+
+
     <meta-data android:value="568cb46667e58e9227001daa" android:name="UMENG_APPKEY"></meta-data>
     <meta-data android:value="wandoujia" android:name="UMENG_CHANNEL"/>
 
@@ -68,6 +70,13 @@
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="wx98992885feea801b"/>
+            </intent-filter>
+
+
         </activity>
         <activity android:name=".MainActivity"     android:launchMode="singleTask" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".ui.QiehuanListActivity"     android:launchMode="singleTask" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
@@ -90,6 +99,7 @@
         <activity android:name=".ui.DetailArticleActivity"    android:launchMode="singleTask" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".ui.CardListActivity"    android:launchMode="singleTask" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".ui.AddCardActivity"    android:launchMode="singleTask" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".ui.PayActivity"    android:launchMode="singleTask" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
 
         <!-- 设置环信应用的appkey -->
         <meta-data
@@ -453,6 +463,16 @@
                   android:theme="@android:style/Theme.Translucent.NoTitleBar"
                   android:screenOrientation="portrait">
         </activity>
+
+
+
+        <receiver
+                android:name="com.xiaogang.yixiang.weixinpay.AppRegister">
+            <intent-filter>
+                <action android:name="com.tencent.mm.plugin.openapi.Intent.ACTION_REFRESH_WXAPP" />
+            </intent-filter>
+        </receiver>
+
 
     </application>
 </manifest>

@@ -1,6 +1,7 @@
 package com.xiaogang.yixiang.fragment;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.baidu.mapapi.map.*;
 import com.baidu.mapapi.model.LatLng;
+import com.baidu.mapapi.model.inner.Point;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.xiaogang.yixiang.R;
@@ -334,12 +336,15 @@ public class ThreeFragment extends BaseFragment implements View.OnClickListener,
 
     }
 
+
+
     public void MydrawPointCurrentLocation(Double lat, Double lng, Talents talents){
         //定义Maker坐标点
        final LatLng point = new LatLng(lat,lng);
        final String pic = talents.getCover();
-        View convertView = LayoutInflater.from(getActivity()).inflate(R.layout.item_pic, null);
-       final ImageView imageView = (ImageView) convertView.findViewById(R.id.head);
+       View convertView =null;
+        convertView = LayoutInflater.from(getActivity()).inflate(R.layout.item_pic, null);
+        final ImageView imageView = (ImageView) convertView.findViewById(R.id.head);
         imageLoader.displayImage(InternetURL.INTERNAL_PIC+pic, imageView, UniversityApplication.txOptions, new AnimateFirstDisplayListener(){
             @Override
             public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
@@ -347,10 +352,12 @@ public class ThreeFragment extends BaseFragment implements View.OnClickListener,
                 //构建Marker图标
                 BitmapDescriptor bitmap = BitmapDescriptorFactory
                         .fromView(imageView);
+
                 //构建MarkerOption，用于在地图上添加Marker
                 OverlayOptions option = new MarkerOptions()
                         .position(point)
                         .icon(bitmap);
+
 
                 //在地图上添加Marker，并显示
                 mBaiduMap.addOverlay(option);
@@ -364,8 +371,6 @@ public class ThreeFragment extends BaseFragment implements View.OnClickListener,
 //                handler.sendEmptyMessage(0);
 //            }
 //        }.start();
-
-
     }
 
 //    //定义Handler对象
@@ -377,7 +382,23 @@ public class ThreeFragment extends BaseFragment implements View.OnClickListener,
 ////处理UI
 //        }
 //    };
+    private Bitmap getViewBitmap(View addViewContent) {
 
+        addViewContent.setDrawingCacheEnabled(true);
+
+        addViewContent.measure(
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        addViewContent.layout(0, 0,
+                addViewContent.getMeasuredWidth(),
+                addViewContent.getMeasuredHeight());
+
+        addViewContent.buildDrawingCache();
+        Bitmap cacheBitmap = addViewContent.getDrawingCache();
+        Bitmap bitmap = Bitmap.createBitmap(cacheBitmap);
+
+        return bitmap;
+    }
 
 
 }

@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
-<com.xiaogang.yixiang.widget.CircleImageView
-        android:src="@drawable/head"
-        android:layout_width="20dp"
-        android:id="@+id/head"
-        android:layout_height="20dp"/>
+              android:layout_gravity="center"
+              android:gravity="center"
+              android:paddingBottom="8dp"
+              android:paddingTop="3dp"
+              android:paddingLeft="6dp"
+              android:paddingRight="6dp"
+              android:background="@drawable/head_bg"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content">
+
+        <com.xiaogang.yixiang.widget.CircleImageView
+                android:src="@drawable/head"
+                android:layout_width="30dp"
+                android:scaleType="centerCrop"
+                android:background="@drawable/head_bg"
+                android:id="@+id/head"
+                android:layout_height="30dp"/>
+
 </LinearLayout>

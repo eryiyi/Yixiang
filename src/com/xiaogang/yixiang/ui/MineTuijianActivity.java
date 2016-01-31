@@ -16,9 +16,6 @@ import com.umeng.socialize.sso.QZoneSsoHandler;
 import com.umeng.socialize.sso.SinaSsoHandler;
 import com.umeng.socialize.sso.TencentWBSsoHandler;
 import com.umeng.socialize.sso.UMQQSsoHandler;
-import com.umeng.socialize.weixin.controller.UMWXHandler;
-import com.umeng.socialize.weixin.media.CircleShareContent;
-import com.umeng.socialize.weixin.media.WeiXinShareContent;
 import com.xiaogang.yixiang.R;
 import com.xiaogang.yixiang.UniversityApplication;
 import com.xiaogang.yixiang.adapter.AnimateFirstDisplayListener;
@@ -91,25 +88,25 @@ public class MineTuijianActivity extends BaseActivity implements View.OnClickLis
         qqSsoHandler.setTargetUrl(shareUrl + shareParams);
         qqSsoHandler.addToSocialSDK();
         // 添加微信平台
-        UMWXHandler wxHandler = new UMWXHandler(this, appID);
-        wxHandler.addToSocialSDK();
-        //支持微信朋友圈
-        UMWXHandler wxCircleHandler = new UMWXHandler(this, appID);
-        wxCircleHandler.setToCircle(true);
-        wxCircleHandler.addToSocialSDK();
-        //单独设置微信分享
-        WeiXinShareContent xinShareContent = new WeiXinShareContent();
-        xinShareContent.setShareContent(shareCont);
-        xinShareContent.setTitle(shareCont);
-        xinShareContent.setShareImage(new UMImage(this, bitmap));
-        xinShareContent.setTargetUrl(shareUrl + shareParams);
-        mController.setShareMedia(xinShareContent);
-        CircleShareContent circleMedia = new CircleShareContent();
-        circleMedia.setShareContent(shareCont);
-        circleMedia.setTitle(shareCont);
-        circleMedia.setShareImage(new UMImage(this, bitmap));
-        circleMedia.setTargetUrl(shareUrl + shareParams);
-        mController.setShareMedia(circleMedia);
+//        UMWXHandler wxHandler = new UMWXHandler(this, appID);
+//        wxHandler.addToSocialSDK();
+//        //支持微信朋友圈
+//        UMWXHandler wxCircleHandler = new UMWXHandler(this, appID);
+//        wxCircleHandler.setToCircle(true);
+//        wxCircleHandler.addToSocialSDK();
+//        //单独设置微信分享
+//        WeiXinShareContent xinShareContent = new WeiXinShareContent();
+//        xinShareContent.setShareContent(shareCont);
+//        xinShareContent.setTitle(shareCont);
+//        xinShareContent.setShareImage(new UMImage(this, bitmap));
+//        xinShareContent.setTargetUrl(shareUrl + shareParams);
+//        mController.setShareMedia(xinShareContent);
+//        CircleShareContent circleMedia = new CircleShareContent();
+//        circleMedia.setShareContent(shareCont);
+//        circleMedia.setTitle(shareCont);
+//        circleMedia.setShareImage(new UMImage(this, bitmap));
+//        circleMedia.setTargetUrl(shareUrl + shareParams);
+//        mController.setShareMedia(circleMedia);
     }
 
     @Override

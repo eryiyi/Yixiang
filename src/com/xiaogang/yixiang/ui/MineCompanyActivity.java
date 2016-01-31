@@ -13,6 +13,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -45,11 +46,11 @@ public class MineCompanyActivity extends BaseActivity implements View.OnClickLis
     private EditText tel;
     private EditText address;
     private EditText jieshao;
-    private EditText textOne;
-    private EditText textTwo;
-    private EditText textThree;
-    private EditText textFour;
-    private EditText textFive;
+    private TextView textOne;
+    private TextView textTwo;
+    private TextView textThree;
+    private TextView textFour;
+    private TextView textFive;
     private int tmpPosition;
     private String picurl1;
     private String picurl2;
@@ -73,11 +74,11 @@ public class MineCompanyActivity extends BaseActivity implements View.OnClickLis
         tel = (EditText) this.findViewById(R.id.tel);
         address = (EditText) this.findViewById(R.id.address);
         jieshao = (EditText) this.findViewById(R.id.jieshao);
-        textOne = (EditText) this.findViewById(R.id.textOne);
-        textTwo = (EditText) this.findViewById(R.id.textTwo);
-        textThree = (EditText) this.findViewById(R.id.textThree);
-        textFour = (EditText) this.findViewById(R.id.textFour);
-        textFive = (EditText) this.findViewById(R.id.textFive);
+        textOne = (TextView) this.findViewById(R.id.textOne);
+        textTwo = (TextView) this.findViewById(R.id.textTwo);
+        textThree = (TextView) this.findViewById(R.id.textThree);
+        textFour = (TextView) this.findViewById(R.id.textFour);
+        textFive = (TextView) this.findViewById(R.id.textFive);
 
         this.findViewById(R.id.btnOne).setOnClickListener(this);
         this.findViewById(R.id.btnTwo).setOnClickListener(this);
@@ -439,14 +440,14 @@ public class MineCompanyActivity extends BaseActivity implements View.OnClickLis
                 showMsg(MineCompanyActivity.this, "请输入公司介绍");
                 return;
             }
-            if(StringUtil.isNullOrEmpty(textOne.getText().toString())
-                    || StringUtil.isNullOrEmpty(textTwo.getText().toString())
-                    ||StringUtil.isNullOrEmpty(textThree.getText().toString()) ||
-                    StringUtil.isNullOrEmpty(textFour.getText().toString()) ||
-                    StringUtil.isNullOrEmpty(textFive.getText().toString()) ){
-                showMsg(MineCompanyActivity.this, "请输入图片介绍");
-                return;
-            }
+//            if(StringUtil.isNullOrEmpty(textOne.getText().toString())
+//                    || StringUtil.isNullOrEmpty(textTwo.getText().toString())
+//                    ||StringUtil.isNullOrEmpty(textThree.getText().toString()) ||
+//                    StringUtil.isNullOrEmpty(textFour.getText().toString()) ||
+//                    StringUtil.isNullOrEmpty(textFive.getText().toString()) ){
+//                showMsg(MineCompanyActivity.this, "请输入图片介绍");
+//                return;
+//            }
             progressDialog = new CustomProgressDialog(MineCompanyActivity.this , "请稍后", R.anim.frame_paopao);
             progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
             progressDialog.setCancelable(false);

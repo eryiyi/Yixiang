@@ -30,9 +30,12 @@ import com.easemob.chatuidemo.domain.User;
 import com.easemob.chatuidemo.utils.CommonUtils;
 import com.easemob.util.EMLog;
 import com.easemob.util.HanziToPinyin;
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import com.xiaogang.yixiang.base.BaseActivity;
 import com.xiaogang.yixiang.fragment.FourFragment;
 import com.xiaogang.yixiang.fragment.ThreeFragment;
+import com.xiaogang.yixiang.weixinpay.Constants;
 import com.xiaogang.yixiang.widget.MenuPopMenu;
 
 import java.util.*;
@@ -79,6 +82,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
 
     private MyConnectionListener connectionListener = null;
     private MyGroupChangeListener groupChangeListener = null;
+    private IWXAPI api;
 
 
     @Override
@@ -105,6 +109,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
             init();
             ((DemoHXSDKHelper)HXSDKHelper.getInstance()).getUserProfileManager().asyncGetCurrentUserInfo();
         }
+
+        api = WXAPIFactory.createWXAPI(this, Constants.APP_ID, false);
+
+        api.registerApp(Constants.APP_ID);
+//        api = WXAPIFactory.createWXAPI(this, "wx98992885feea801b");
+
     }
 
     private void init() {
@@ -1168,6 +1178,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         //注册广播
         this.registerReceiver(mBroadcastReceiver, myIntentFilter);
     }
+
 
 
 }
