@@ -137,30 +137,38 @@ public class MineCompanyActivity extends BaseActivity implements View.OnClickLis
                                             textOne.setText(companyImage1.getProd_image());
                                             prod_image_id_1 = companyImage1.getImage_id();
                                         }
+                                        if(company_image.size()>1){
+                                            CompanyImage companyImage2 = company_image.get(1);
+                                            if(companyImage2 != null ){
+                                                textTwo.setText(companyImage2.getProd_image());
+                                                prod_image_id_2 = companyImage2.getImage_id();
+                                            }
 
-                                        CompanyImage companyImage2 = company_image.get(1);
-                                        if(companyImage2 != null ){
-                                            textTwo.setText(companyImage2.getProd_image());
-                                            prod_image_id_2 = companyImage2.getImage_id();
+                                        }
+                                        if(company_image.size()>2){
+                                            CompanyImage companyImage3 = company_image.get(2);
+                                            if(companyImage3 != null ){
+                                                textThree.setText(companyImage3.getProd_image());
+                                                prod_image_id_3 = companyImage3.getImage_id();
+                                            }
                                         }
 
-                                        CompanyImage companyImage3 = company_image.get(2);
-                                        if(companyImage3 != null ){
-                                            textThree.setText(companyImage3.getProd_image());
-                                            prod_image_id_3 = companyImage3.getImage_id();
+                                        if(company_image.size()>3){
+                                            CompanyImage companyImage4 = company_image.get(3);
+                                            if(companyImage4 != null ){
+                                                textFour.setText(companyImage4.getProd_image());
+                                                prod_image_id_4 = companyImage4.getImage_id();
+                                            }
                                         }
 
-                                        CompanyImage companyImage4 = company_image.get(3);
-                                        if(companyImage4 != null ){
-                                            textFour.setText(companyImage4.getProd_image());
-                                            prod_image_id_4 = companyImage4.getImage_id();
+                                        if(company_image.size()>4){
+                                            CompanyImage companyImage5 = company_image.get(4);
+                                            if(companyImage5 != null ){
+                                                textFive.setText(companyImage5.getProd_image());
+                                                prod_image_id_5 = companyImage5.getImage_id();
+                                            }
                                         }
 
-                                        CompanyImage companyImage5 = company_image.get(4);
-                                        if(companyImage5 != null ){
-                                            textFive.setText(companyImage5.getProd_image());
-                                            prod_image_id_5 = companyImage5.getImage_id();
-                                        }
                                     }
 
                                     //说明已经添加过了
@@ -401,22 +409,58 @@ public class MineCompanyActivity extends BaseActivity implements View.OnClickLis
                                         case 1:
                                             picurl1 = jo.getString("url");
                                             textOne.setText(picurl1);
+                                            if(StringUtil.isNullOrEmpty(prod_image_id_1)){
+                                                //新增
+                                                getDataEdit2(picurl1);
+                                            }else {
+                                                //修改
+                                                getDataEdit3(picurl1, "file1", prod_image_id_1);
+                                            }
+
                                             break;
                                         case 2:
                                             picurl2 = jo.getString("url");
                                             textTwo.setText(picurl2);
+                                            if(StringUtil.isNullOrEmpty(prod_image_id_2)){
+                                                //新增
+                                                getDataEdit2(picurl2);
+                                            }else {
+                                                //修改
+                                                getDataEdit3(picurl2, "file2", prod_image_id_2);
+                                            }
                                             break;
                                         case 3:
                                             picurl3 = jo.getString("url");
                                             textThree.setText(picurl3);
+                                            if(StringUtil.isNullOrEmpty(prod_image_id_3)){
+                                                //新增
+                                                getDataEdit2(picurl3);
+                                            }else {
+                                                //修改
+                                                getDataEdit3(picurl3, "file3", prod_image_id_3);
+                                            }
                                             break;
                                         case 4:
                                             picurl4 = jo.getString("url");
                                             textFour.setText(picurl4);
+                                            if(StringUtil.isNullOrEmpty(prod_image_id_4)){
+                                                //新增
+                                                getDataEdit2(picurl4);
+                                            }else {
+                                                //修改
+                                                getDataEdit3(picurl4, "file4", prod_image_id_4);
+                                            }
                                            break;
                                         case 5:
                                             picurl5 = jo.getString("url");
                                             textFive.setText(picurl5);
+                                            if(StringUtil.isNullOrEmpty(prod_image_id_5)){
+                                                //新增
+                                                getDataEdit2(picurl5);
+                                            }else {
+                                                //修改
+                                                getDataEdit3(picurl5, "file5",prod_image_id_5);
+                                            }
                                             break;
                                     }
                                 }
@@ -644,56 +688,6 @@ public class MineCompanyActivity extends BaseActivity implements View.OnClickLis
                 params.put("company_address", address.getText().toString());
                 params.put("company_introduce", jieshao.getText().toString());
 
-                if(!StringUtil.isNullOrEmpty(prod_image_id_1)){
-                    params.put("prod_image_id_1", prod_image_id_1);
-                }
-                if(!StringUtil.isNullOrEmpty(prod_image_id_2)){
-                    params.put("prod_image_id_2", prod_image_id_2);
-                }
-                if(!StringUtil.isNullOrEmpty(prod_image_id_3)){
-                    params.put("prod_image_id_3", prod_image_id_3);
-                }
-                if(!StringUtil.isNullOrEmpty(prod_image_id_4)){
-                    params.put("prod_image_id_4", prod_image_id_4);
-                }
-                if(!StringUtil.isNullOrEmpty(prod_image_id_5)){
-                    params.put("prod_image_id_5", prod_image_id_5);
-                }
-
-                if(!StringUtil.isNullOrEmpty(picurl1)){
-                    params.put("file1", picurl1);
-                }
-                if(!StringUtil.isNullOrEmpty(picurl2)){
-                    params.put("file2", picurl2);
-                }
-                if(!StringUtil.isNullOrEmpty(picurl3)){
-                    params.put("file3", picurl3);
-                }
-                if(!StringUtil.isNullOrEmpty(picurl4)){
-                    params.put("file4", picurl4);
-                }
-                if(!StringUtil.isNullOrEmpty(picurl2)){
-                    params.put("file2", picurl2);
-                }
-                if(!StringUtil.isNullOrEmpty(picurl5)){
-                    params.put("file5", picurl5);
-                }
-
-                if(!StringUtil.isNullOrEmpty(textOne.getText().toString())){
-                    params.put("prod_name_1", textOne.getText().toString() );
-                }
-                if(!StringUtil.isNullOrEmpty(textTwo.getText().toString())){
-                    params.put("prod_name_2", textTwo.getText().toString() );
-                }
-                if(!StringUtil.isNullOrEmpty(textThree.getText().toString())){
-                    params.put("prod_name_3", textThree.getText().toString() );
-                }
-                if(!StringUtil.isNullOrEmpty(textFour.getText().toString())){
-                    params.put("prod_name_4", textFour.getText().toString() );
-                }
-                if(!StringUtil.isNullOrEmpty(textFive.getText().toString())){
-                    params.put("prod_name_5", textFive.getText().toString() );
-                }
 
                 return params;
             }
@@ -708,5 +702,119 @@ public class MineCompanyActivity extends BaseActivity implements View.OnClickLis
         getRequestQueue().add(request);
     }
 
+
+
+    void getDataEdit2(final String picurl){
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                InternetURL.COMPANY_INFO_EDIT_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        if (StringUtil.isJson(s)) {
+                            try {
+                                JSONObject jo = new JSONObject(s);
+                                String code =  jo.getString("code");
+                                if(Integer.parseInt(code) == 200){
+                                    Toast.makeText(MineCompanyActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
+                                    finish();
+                                }
+                                else{
+                                    Toast.makeText(MineCompanyActivity.this, jo.getString("msg"), Toast.LENGTH_SHORT).show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        if (progressDialog != null) {
+                            progressDialog.dismiss();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        if (progressDialog != null) {
+                            progressDialog.dismiss();
+                        }
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("access_token", getGson().fromJson(getSp().getString("access_token", ""), String.class));
+                params.put("user_id", getGson().fromJson(getSp().getString("user_id", ""), String.class));
+                params.put("file", picurl);
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+        getRequestQueue().add(request);
+    }
+
+
+    void getDataEdit3(final String picurl , final String filesname ,final String prod_image_id){
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                InternetURL.COMPANY_INFO_EDIT_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        if (StringUtil.isJson(s)) {
+                            try {
+                                JSONObject jo = new JSONObject(s);
+                                String code =  jo.getString("code");
+                                if(Integer.parseInt(code) == 200){
+                                    Toast.makeText(MineCompanyActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
+                                    finish();
+                                }
+                                else{
+                                    Toast.makeText(MineCompanyActivity.this, jo.getString("msg"), Toast.LENGTH_SHORT).show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        if (progressDialog != null) {
+                            progressDialog.dismiss();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        if (progressDialog != null) {
+                            progressDialog.dismiss();
+                        }
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("access_token", getGson().fromJson(getSp().getString("access_token", ""), String.class));
+                params.put("user_id", getGson().fromJson(getSp().getString("user_id", ""), String.class));
+                params.put(filesname, picurl);
+                params.put(filesname, picurl);
+                params.put(prod_image_id, prod_image_id);
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+        getRequestQueue().add(request);
+    }
 
 }
