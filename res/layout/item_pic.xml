@@ -7,15 +7,13 @@
               android:paddingTop="3dp"
               android:paddingLeft="6dp"
               android:paddingRight="6dp"
-              android:background="@drawable/head_bg"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content">
+              android:layout_width="35dp"
+              android:layout_height="35dp">
 
         <com.xiaogang.yixiang.widget.CircleImageView
                 android:src="@drawable/head"
                 android:layout_width="30dp"
                 android:scaleType="centerCrop"
-                android:background="@drawable/head_bg"
                 android:id="@+id/head"
                 android:layout_height="30dp"/>
 

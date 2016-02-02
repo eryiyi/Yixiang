@@ -1,5 +1,7 @@
 package com.xiaogang.yixiang.module;
 
+import java.util.List;
+
 /**
  * Created by Administrator on 2016/1/6.
  *  "uid": "16",
@@ -16,6 +18,15 @@ public class CompanyObj {
     private String company_address;
     private String company_introduce;
     private String user_id;
+    private List<CompanyImage> company_image;
+
+    public List<CompanyImage> getCompany_image() {
+        return company_image;
+    }
+
+    public void setCompany_image(List<CompanyImage> company_image) {
+        this.company_image = company_image;
+    }
 
     public String getUid() {
         return uid;

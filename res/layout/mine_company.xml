@@ -57,6 +57,7 @@
         <EditText android:layout_width="wrap_content"
                   android:layout_weight="1"
                   android:id="@+id/tel"
+                  android:phoneNumber="true"
                   android:layout_height="wrap_content"/>
     </LinearLayout>
     <LinearLayout android:layout_width="match_parent"

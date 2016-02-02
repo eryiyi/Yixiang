@@ -24,6 +24,7 @@ import com.xiaogang.yixiang.R;
 import com.xiaogang.yixiang.base.BaseActivity;
 import com.xiaogang.yixiang.base.InternetURL;
 import com.xiaogang.yixiang.data.CompanyObjData;
+import com.xiaogang.yixiang.module.CompanyImage;
 import com.xiaogang.yixiang.module.CompanyObj;
 import com.xiaogang.yixiang.upload.CommonUtil;
 import com.xiaogang.yixiang.util.CompressPhotoUtil;
@@ -35,7 +36,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -65,6 +68,14 @@ public class MineCompanyActivity extends BaseActivity implements View.OnClickLis
     private LinearLayout line_three;
     private LinearLayout line_four;
     private LinearLayout line_five;
+
+    private String prod_image_id_1;
+    private String prod_image_id_2;
+    private String prod_image_id_3;
+    private String prod_image_id_4;
+    private String prod_image_id_5;
+
+    List<CompanyImage> company_image = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,12 +130,45 @@ public class MineCompanyActivity extends BaseActivity implements View.OnClickLis
                                     tel.setText(companyObj.getCompany_phone());
                                     address.setText(companyObj.getCompany_address());
                                     jieshao.setText(companyObj.getCompany_introduce());
+                                    company_image = companyObj.getCompany_image();
+                                    if(company_image != null && company_image.size()>0){
+                                        CompanyImage companyImage1 = company_image.get(0);
+                                        if(companyImage1 != null ){
+                                            textOne.setText(companyImage1.getProd_image());
+                                            prod_image_id_1 = companyImage1.getImage_id();
+                                        }
+
+                                        CompanyImage companyImage2 = company_image.get(1);
+                                        if(companyImage2 != null ){
+                                            textTwo.setText(companyImage2.getProd_image());
+                                            prod_image_id_2 = companyImage2.getImage_id();
+                                        }
+
+                                        CompanyImage companyImage3 = company_image.get(2);
+                                        if(companyImage3 != null ){
+                                            textThree.setText(companyImage3.getProd_image());
+                                            prod_image_id_3 = companyImage3.getImage_id();
+                                        }
+
+                                        CompanyImage companyImage4 = company_image.get(3);
+                                        if(companyImage4 != null ){
+                                            textFour.setText(companyImage4.getProd_image());
+                                            prod_image_id_4 = companyImage4.getImage_id();
+                                        }
+
+                                        CompanyImage companyImage5 = company_image.get(4);
+                                        if(companyImage5 != null ){
+                                            textFive.setText(companyImage5.getProd_image());
+                                            prod_image_id_5 = companyImage5.getImage_id();
+                                        }
+                                    }
+
                                     //说明已经添加过了
-                                    line_one.setVisibility(View.GONE);
-                                    line_two.setVisibility(View.GONE);
-                                    line_three.setVisibility(View.GONE);
-                                    line_four.setVisibility(View.GONE);
-                                    line_five.setVisibility(View.GONE);
+//                                    line_one.setVisibility(View.GONE);
+//                                    line_two.setVisibility(View.GONE);
+//                                    line_three.setVisibility(View.GONE);
+//                                    line_four.setVisibility(View.GONE);
+//                                    line_five.setVisibility(View.GONE);
                                 }
                                 else{
                                     Toast.makeText(MineCompanyActivity.this, jo.getString("msg"), Toast.LENGTH_SHORT).show();
@@ -504,7 +548,7 @@ public class MineCompanyActivity extends BaseActivity implements View.OnClickLis
                 params.put("access_token", getGson().fromJson(getSp().getString("access_token", ""), String.class));
                 params.put("user_id", getGson().fromJson(getSp().getString("user_id", ""), String.class));
                 params.put("company_name", name.getText().toString());
-                params.put("company_phpne", tel.getText().toString());
+                params.put("company_phone", tel.getText().toString());
                 params.put("company_address", address.getText().toString());
                 params.put("company_introduce", jieshao.getText().toString());
                 if(!StringUtil.isNullOrEmpty(picurl1)){
@@ -566,7 +610,7 @@ public class MineCompanyActivity extends BaseActivity implements View.OnClickLis
                                 JSONObject jo = new JSONObject(s);
                                 String code =  jo.getString("code");
                                 if(Integer.parseInt(code) == 200){
-                                    Toast.makeText(MineCompanyActivity.this, "新增公司成立", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(MineCompanyActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
                                     finish();
                                 }
                                 else{
@@ -596,9 +640,61 @@ public class MineCompanyActivity extends BaseActivity implements View.OnClickLis
                 params.put("access_token", getGson().fromJson(getSp().getString("access_token", ""), String.class));
                 params.put("user_id", getGson().fromJson(getSp().getString("user_id", ""), String.class));
                 params.put("company_name", name.getText().toString());
-                params.put("company_phpne", tel.getText().toString());
+                params.put("company_phone", tel.getText().toString());
                 params.put("company_address", address.getText().toString());
                 params.put("company_introduce", jieshao.getText().toString());
+
+                if(!StringUtil.isNullOrEmpty(prod_image_id_1)){
+                    params.put("prod_image_id_1", prod_image_id_1);
+                }
+                if(!StringUtil.isNullOrEmpty(prod_image_id_2)){
+                    params.put("prod_image_id_2", prod_image_id_2);
+                }
+                if(!StringUtil.isNullOrEmpty(prod_image_id_3)){
+                    params.put("prod_image_id_3", prod_image_id_3);
+                }
+                if(!StringUtil.isNullOrEmpty(prod_image_id_4)){
+                    params.put("prod_image_id_4", prod_image_id_4);
+                }
+                if(!StringUtil.isNullOrEmpty(prod_image_id_5)){
+                    params.put("prod_image_id_5", prod_image_id_5);
+                }
+
+                if(!StringUtil.isNullOrEmpty(picurl1)){
+                    params.put("file1", picurl1);
+                }
+                if(!StringUtil.isNullOrEmpty(picurl2)){
+                    params.put("file2", picurl2);
+                }
+                if(!StringUtil.isNullOrEmpty(picurl3)){
+                    params.put("file3", picurl3);
+                }
+                if(!StringUtil.isNullOrEmpty(picurl4)){
+                    params.put("file4", picurl4);
+                }
+                if(!StringUtil.isNullOrEmpty(picurl2)){
+                    params.put("file2", picurl2);
+                }
+                if(!StringUtil.isNullOrEmpty(picurl5)){
+                    params.put("file5", picurl5);
+                }
+
+                if(!StringUtil.isNullOrEmpty(textOne.getText().toString())){
+                    params.put("prod_name_1", textOne.getText().toString() );
+                }
+                if(!StringUtil.isNullOrEmpty(textTwo.getText().toString())){
+                    params.put("prod_name_2", textTwo.getText().toString() );
+                }
+                if(!StringUtil.isNullOrEmpty(textThree.getText().toString())){
+                    params.put("prod_name_3", textThree.getText().toString() );
+                }
+                if(!StringUtil.isNullOrEmpty(textFour.getText().toString())){
+                    params.put("prod_name_4", textFour.getText().toString() );
+                }
+                if(!StringUtil.isNullOrEmpty(textFive.getText().toString())){
+                    params.put("prod_name_5", textFive.getText().toString() );
+                }
+
                 return params;
             }
 

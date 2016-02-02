@@ -285,36 +285,42 @@ public class ThreeFragment extends BaseFragment implements View.OnClickListener,
                     }
                     if(talentsTmp != null && !StringUtil.isNullOrEmpty(talentsTmp.getUser_id())){
                         final String userid = talentsTmp.getUser_id();
-                        View view = (RelativeLayout) LayoutInflater.from(getActivity()).inflate(R.layout.pop_view, null);
+                        final View view = (RelativeLayout) LayoutInflater.from(getActivity()).inflate(R.layout.pop_view, null);
                         ImageView head= (ImageView) view.findViewById(R.id.head);
                         TextView nickname= (TextView) view.findViewById(R.id.nickname);
                         TextView content= (TextView) view.findViewById(R.id.content);
                         nickname.setText(talentsTmp.getTruename()==null?"":talentsTmp.getTruename());
                         content.setText(talentsTmp.getCompanyNameOrCareer()==null?"":talentsTmp.getCompanyNameOrCareer());
-                        imageLoader.displayImage(InternetURL.INTERNAL_PIC + talentsTmp.getCover(), head, UniversityApplication.txOptions, animateFirstListener);
-                        InfoWindow.OnInfoWindowClickListener listener = null;
+                        imageLoader.displayImage(InternetURL.INTERNAL_PIC + talentsTmp.getCover(), head, UniversityApplication.txOptions, new AnimateFirstDisplayListener(){
+                            @Override
+                            public void onLoadingComplete(String imageUri, View view1, Bitmap loadedImage) {
+                                super.onLoadingComplete(imageUri, view1, loadedImage);
+                                InfoWindow.OnInfoWindowClickListener listener = null;
 //                        button.setText("更改位置");
-                        listener = new InfoWindow.OnInfoWindowClickListener() {
-                            public void onInfoWindowClick() {
+                                listener = new InfoWindow.OnInfoWindowClickListener() {
+                                    public void onInfoWindowClick() {
 //                                LatLng ll = marker.getPosition();
 //                                LatLng llNew = new LatLng(ll.latitude + 0.005,
 //                                        ll.longitude + 0.005);
 //                                marker.setPosition(llNew);
 //                                mBaiduMap.hideInfoWindow();
-                                if("1".equals(getGson().fromJson(getSp().getString("isLogin", ""), String.class))){
-                                    //如果已经登录了
-                                    Intent detailV = new Intent(getActivity(), DetailMemberActivity.class);
-                                    detailV.putExtra("userid", userid);
-                                    startActivity(detailV);
-                                }else {
-                                    Intent loginView = new Intent(getActivity(), com.xiaogang.yixiang.ui.LoginActivity.class);
-                                    startActivity(loginView);
-                                }
+                                        if("1".equals(getGson().fromJson(getSp().getString("isLogin", ""), String.class))){
+                                            //如果已经登录了
+                                            Intent detailV = new Intent(getActivity(), DetailMemberActivity.class);
+                                            detailV.putExtra("userid", userid);
+                                            startActivity(detailV);
+                                        }else {
+                                            Intent loginView = new Intent(getActivity(), com.xiaogang.yixiang.ui.LoginActivity.class);
+                                            startActivity(loginView);
+                                        }
+                                    }
+                                };
+                                LatLng ll = marker.getPosition();
+                                mInfoWindow = new InfoWindow(BitmapDescriptorFactory.fromView(view), ll, -47, listener);
+                                mBaiduMap.showInfoWindow(mInfoWindow);
                             }
-                        };
-                        LatLng ll = marker.getPosition();
-                        mInfoWindow = new InfoWindow(BitmapDescriptorFactory.fromView(view), ll, -47, listener);
-                        mBaiduMap.showInfoWindow(mInfoWindow);
+                        });
+
                     }
 
                     return true;
@@ -363,42 +369,6 @@ public class ThreeFragment extends BaseFragment implements View.OnClickListener,
                 mBaiduMap.addOverlay(option);
             }
         });
-//        new Thread(){
-//            @Override
-//            public void run(){
-//                Bitmap bitmap2 = StringUtil.returnBitMap(InternetURL.INTERNAL_PIC+pic);
-//                imageView.setImageBitmap(bitmap2);
-//                handler.sendEmptyMessage(0);
-//            }
-//        }.start();
     }
-
-//    //定义Handler对象
-//    private Handler handler =new Handler(){
-//        @Override
-////当有消息发送出来的时候就执行Handler的这个方法
-//        public void handleMessage(Message msg){
-//            super.handleMessage(msg);
-////处理UI
-//        }
-//    };
-    private Bitmap getViewBitmap(View addViewContent) {
-
-        addViewContent.setDrawingCacheEnabled(true);
-
-        addViewContent.measure(
-                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
-                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
-        addViewContent.layout(0, 0,
-                addViewContent.getMeasuredWidth(),
-                addViewContent.getMeasuredHeight());
-
-        addViewContent.buildDrawingCache();
-        Bitmap cacheBitmap = addViewContent.getDrawingCache();
-        Bitmap bitmap = Bitmap.createBitmap(cacheBitmap);
-
-        return bitmap;
-    }
-
 
 }
